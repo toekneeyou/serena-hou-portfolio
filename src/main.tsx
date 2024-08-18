@@ -1,18 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import ViewportContextProvider from "./contexts/viewportContext/ViewportContextProvider.tsx";
-import RefContextProvider from "./contexts/refContext/RefContextProvider.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([{ path: "/", element: <App /> }]);
+import { RouterProvider } from "react-router-dom";
+import { router } from "./lib/services/routes.tsx";
+import { Provider } from "react-redux";
+import { store } from "./store/store.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ViewportContextProvider>
-      <RefContextProvider>
-        <RouterProvider router={router} />
-      </RefContextProvider>
-    </ViewportContextProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
