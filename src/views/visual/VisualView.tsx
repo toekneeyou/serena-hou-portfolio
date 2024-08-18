@@ -1,3 +1,3 @@
 export const VisualView = () => {
-  return <div>Visual</div>;
+  return <div>Visual </div>;
 };

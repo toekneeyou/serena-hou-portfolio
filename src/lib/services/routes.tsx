@@ -48,7 +48,7 @@ const visualRoute = new AppRoute({
   id: "visual",
   path: "visual",
   lazy: async () => {
-    const { VisualView } = await import("../../views/visual/VisualVisual");
+    const { VisualView } = await import("../../views/visual/VisualView");
     return { Component: VisualView };
   },
 });
