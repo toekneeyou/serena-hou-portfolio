@@ -31,7 +31,7 @@ export interface ViewportState {
  * Slice Helpers
  *
  */
-const calculateViewportSize = () => {
+export const calculateViewportSize = () => {
   const { innerWidth } = window;
   if (innerWidth >= xxlViewport) {
     return "xxl";
