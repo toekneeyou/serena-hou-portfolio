@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, WithSlice } from "@reduxjs/toolkit";
 import { rootReducer, RootState, store } from "./store";
 /**
  *
@@ -14,6 +14,10 @@ interface Post {
 export interface BlogState {
   postIds: string[];
   posts: { [id: string]: Post };
+}
+declare module "./store" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface LazyLoadedSlices extends WithSlice<typeof blogSlice> {}
 }
 /**
  *
@@ -41,12 +45,17 @@ export const blogSlice = createSlice({
     },
   },
 });
-
+/**
+ *
+ *
+ * Code splitting and reducer injection
+ *
+ *
+ */
 const withBlogSlice = rootReducer.inject(blogSlice);
 export const injectBlogSlice = () => {
   store.replaceReducer(withBlogSlice);
 };
-
 /**
  *
  *
@@ -62,4 +71,6 @@ export const { setPosts } = blogSlice.actions;
  *
  *
  */
-export const getPostIds = (state: RootState) => state.blog?.postIds;
+export const getPostIds = withBlogSlice.selector(
+  (state: RootState) => state.blog!.postIds
+);
