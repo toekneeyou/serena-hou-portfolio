@@ -1,6 +1,11 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
 
+/**
+ *
+ * AppRoute is the route class for nav elements inside the App.
+ *
+ */
 class AppRoute {
   name: string;
   id: string;
@@ -18,7 +23,11 @@ class AppRoute {
     this.children = children ?? [];
   }
 }
-
+/**
+ *
+ * Create Routes. `homeRoute` is the parent route.
+ *
+ */
 export const homeRoute = new AppRoute({
   name: "Home",
   id: "home",
@@ -70,7 +79,6 @@ const contactRoute = new AppRoute({
     return { Component: ContactView };
   },
 });
-
 homeRoute.children?.push(
   projectRoute,
   visualRoute,
@@ -78,7 +86,11 @@ homeRoute.children?.push(
   aboutRoute,
   contactRoute
 );
-
+/**
+ *
+ * Converts appRoutes into the right format to pass into `createBrowserRouter` for react-router-dom to use
+ *
+ */
 const convertAppRouteToRouterRoute = (appRoutes: AppRoute[]) => {
   return appRoutes.map((ar) => {
     const routeObject: RouteObject = {
@@ -96,7 +108,10 @@ const convertAppRouteToRouterRoute = (appRoutes: AppRoute[]) => {
     return routeObject;
   });
 };
-
 const routerRoutes = convertAppRouteToRouterRoute([homeRoute]);
-
+/**
+ *
+ * Router that react-router-dom is going to use
+ *
+ */
 export const router = createBrowserRouter(routerRoutes);
