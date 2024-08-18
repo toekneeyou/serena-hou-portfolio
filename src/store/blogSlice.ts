@@ -13,7 +13,7 @@ interface Post {
 }
 export interface BlogState {
   postIds: string[];
-  posts: { [id: string]: Post };
+  posts: { [id: string]: Post }; // normalized data structure
 }
 declare module "./store" {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type

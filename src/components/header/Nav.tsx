@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { fog, taupe } from "../../styles/GlobalStyle";
-import { homeRoute } from "../../lib/services/routes";
+import { homeRoute } from "../../lib/services/routeService";
 
 const NavContainer = styled.nav`
   ul {

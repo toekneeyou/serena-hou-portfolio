@@ -1,20 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
 import {
   calculateViewportSize,
-  getViewportState,
   setViewportSize,
+  ViewportSize,
 } from "../../store/viewportSlice";
+import { useAppDispatch } from "../../lib/hooks/reduxHooks";
 
 const ViewportObserver = () => {
-  const { viewportSize } = useSelector(getViewportState);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const prevViewportSize = useRef<ViewportSize>();
 
   useEffect(() => {
     const observer = new ResizeObserver(() => {
       const newViewportSize = calculateViewportSize();
-      if (viewportSize !== newViewportSize)
+      if (prevViewportSize.current !== newViewportSize) {
         dispatch(setViewportSize(calculateViewportSize()));
+        prevViewportSize.current = newViewportSize;
+      }
     });
 
     observer.observe(document.documentElement);
@@ -22,7 +24,7 @@ const ViewportObserver = () => {
     return () => {
       observer.disconnect();
     };
-  }, [dispatch, viewportSize]);
+  }, [dispatch]);
 
   return null;
 };
