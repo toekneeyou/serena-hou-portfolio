@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { charcoal } from "../../styles/GlobalStyle";
 import { useLayoutEffect, useRef } from "react";
 
 const HeroContainer = styled.section`
   height: 100vh;
+  width: inherit;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: max-content 1fr;
 `;
 const HeroText = styled.div`
   height: 100%;
@@ -48,6 +52,26 @@ const HeroText = styled.div`
     font-size: 1.125rem;
   }
 `;
+const heroAnimation = keyframes`
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-200%); }
+`;
+const HeroVisual = styled.div``;
+const HeroMarquee = styled.div`
+  pointer-events: none;
+  display: flex;
+  transform: rotate(45deg) translate(-10rem, -10rem);
+  transform-origin: 0% 0%;
+  img {
+    animation: ${heroAnimation} 30s linear infinite;
+  }
+`;
+const SerenaFilm = () => (
+  <img
+    src="/src/assets/hero-film.jpg"
+    alt="film strip of serena in different poses"
+  />
+);
 
 const Hero = () => {
   const heroTextContainerRef = useRef<HTMLDivElement>(null);
@@ -73,6 +97,14 @@ const Hero = () => {
           </p>
         </div>
       </HeroText>
+      <HeroVisual>
+        <HeroMarquee>
+          <SerenaFilm />
+          <SerenaFilm />
+          <SerenaFilm />
+          <SerenaFilm />
+        </HeroMarquee>
+      </HeroVisual>
     </HeroContainer>
   );
 };

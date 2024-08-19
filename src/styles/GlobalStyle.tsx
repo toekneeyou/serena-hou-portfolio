@@ -22,8 +22,15 @@ const GlobalStyle = createGlobalStyle`
         }
     }
     body {
+        width: 100%;
         background: ${charcoal};
         color: ${white};
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #root {
+        width: inherit;
     }
 `;
 
