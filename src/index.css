@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: #262525;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+  .centered-row {
+    @apply flex justify-center items-center;
+  }
+  .centered-col {
+    @apply flex flex-col justify-center items-center;
+  }
+  .between-row {
+    @apply flex items-center justify-between;
+  }
+}

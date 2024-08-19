@@ -34,10 +34,10 @@ export const homeRoute = new AppRoute({
   path: "/",
   element: <App />,
 });
-const projectRoute = new AppRoute({
+export const projectRoute = new AppRoute({
   name: "Project",
   id: "project",
-  path: "/#project",
+  path: "project",
   element: <App />,
 });
 const visualRoute = new AppRoute({
