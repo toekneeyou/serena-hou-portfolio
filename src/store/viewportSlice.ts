@@ -92,6 +92,10 @@ export const { setViewportSize } = viewportSlice.actions;
  *
  *
  */
-export const getViewportState = (state: RootState) => state.viewport;
+export const getViewportSize = (state: RootState) =>
+  state.viewport.viewportSize;
+export const getIsMobile = (state: RootState) => state.viewport.isMobile;
+export const getIsTablet = (state: RootState) => state.viewport.isTablet;
+export const getIsDesktop = (state: RootState) => state.viewport.isDesktop;
 
 export default viewportSlice.reducer;
