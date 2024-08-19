@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Nav from "./Nav";
+import { createElement } from "react";
+import { NavLink } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -12,11 +14,20 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-  return (
-    <HeaderContainer>
-      <img src="/src/assets/serena-white.png" width={140} height={30} />
-      <Nav />
-    </HeaderContainer>
+  return createElement(
+    HeaderContainer,
+    null,
+    createElement(
+      NavLink,
+      { to: "/" },
+      createElement("img", {
+        src: "/src/assets/serena-white.png",
+        width: 140,
+        height: 30,
+      })
+    ),
+
+    createElement(Nav, null)
   );
 };
 
