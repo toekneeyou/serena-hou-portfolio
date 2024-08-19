@@ -38,10 +38,7 @@ const projectRoute = new AppRoute({
   name: "Project",
   id: "project",
   path: "/#project",
-  lazy: async () => {
-    const { ProjectView } = await import("../../views/project/ProjectView");
-    return { Component: ProjectView };
-  },
+  element: <App />,
 });
 const visualRoute = new AppRoute({
   name: "Visual",
