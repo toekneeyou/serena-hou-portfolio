@@ -4,11 +4,11 @@ import Hero from "./Hero";
 
 const HomeView = () => {
   return (
-    <div>
+    <>
       <Hero />
       <Brands />
       <ProjectView />
-    </div>
+    </>
   );
 };
 

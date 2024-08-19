@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { fog, taupe } from "../../styles/GlobalStyle";
 import { homeRoute } from "../../lib/services/routeService";
+import { createElement } from "react";
 
 const NavContainer = styled.nav`
   ul {
@@ -26,18 +27,20 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Nav = () => {
-  return (
-    <NavContainer>
-      <ul>
-        {homeRoute.children?.map((ar) => {
-          return (
-            <StyledNavLink key={ar.id} to={ar.path!}>
-              {ar.name}
-            </StyledNavLink>
-          );
-        })}
-      </ul>
-    </NavContainer>
+  return createElement(
+    NavContainer,
+    null,
+    createElement(
+      "ul",
+      null,
+      homeRoute.children?.map((ar) => {
+        return createElement(
+          StyledNavLink,
+          { key: ar.id, to: ar.path! },
+          ar.name
+        );
+      })
+    )
   );
 };
 
