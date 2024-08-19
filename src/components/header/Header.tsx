@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
 const Header = () => {
   return (
     <HeaderContainer>
-      <div>Serena</div>
+      <img src="/src/assets/serena-white.png" width={140} height={30} />
       <Nav />
     </HeaderContainer>
   );
