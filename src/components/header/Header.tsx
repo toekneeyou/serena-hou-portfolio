@@ -1,42 +1,37 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import Nav from "./Nav";
 import { homeRoute } from "../../lib/services/routeService";
-
-const HeaderContainer = styled.header`
-  position: fixed;
-  height: 6.25rem;
-  width: 100%;
-  padding: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 100;
-`;
-
-const HeaderGradient = styled.div`
-  background: linear-gradient(rgba(0, 0, 0, 0.75), transparent);
-  height: 40%;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  z-index: 99;
-`;
+import { classnames } from "../../lib/helpers";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <>
-      <HeaderContainer>
-        <NavLink to={homeRoute.path!}>
+      <header
+        className={classnames(
+          "header",
+          "between-row z-50 fixed h-[6.25rem] w-full p-[2.25rem]"
+        )}
+      >
+        <Link to={homeRoute.path!}>
           <img src="/src/assets/serena-white.png" width={140} height={30} />
-        </NavLink>
+        </Link>
         <Nav />
-      </HeaderContainer>
-      <HeaderGradient role="none" />
+      </header>
+      <HeaderGradient />
     </>
   );
 };
 
 export default Header;
+
+const HeaderGradient = () => {
+  return (
+    <div
+      role="none"
+      className={classnames(
+        "header-gradient",
+        "bg-header h-[40%] w-full fixed left-0 top-0 pointer-events-none z-[49]"
+      )}
+    />
+  );
+};
