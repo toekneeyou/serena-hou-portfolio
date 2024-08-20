@@ -2,9 +2,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./components/header/Header";
 import ViewportObserver from "./components/viewportObserver/ViewportObserver";
 import { lazy, Suspense } from "react";
+import { homeRoute } from "./lib/services/routeService";
 
 import "./index.css";
-import { homeRoute, projectRoute } from "./lib/services/routeService";
 
 const HomeView = lazy(() => import("./views/home/HomeView"));
 
@@ -27,12 +27,11 @@ function Main() {
 
   return (
     <main className="w-full">
-      {location.pathname === homeRoute.path ||
-        (location.pathname === `/${projectRoute.path}` && (
-          <Suspense>
-            <HomeView />
-          </Suspense>
-        ))}
+      {location.pathname === homeRoute.path && (
+        <Suspense>
+          <HomeView />
+        </Suspense>
+      )}
       <Outlet />
     </main>
   );

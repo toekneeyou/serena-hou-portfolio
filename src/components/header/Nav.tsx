@@ -9,12 +9,12 @@ const Nav = () => {
     <nav className="nav">
       <ul className="flex items-center gap-x-[0.625rem]">
         {homeRoute.children?.map((ar) => {
-          const isActive = location.pathname === `/${ar.path}`;
+          const isActive = location.pathname + location.hash === ar.path;
 
           return (
             <Link
               key={ar.id}
-              to={ar.path!}
+              to={`${ar.path!}`}
               className={classnames(
                 "text-[1.25rem] uppercase rounded-[0.625rem] py-[0.625rem] px-4",
                 { "text-white": !isActive },

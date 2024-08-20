@@ -37,13 +37,13 @@ export const homeRoute = new AppRoute({
 export const projectRoute = new AppRoute({
   name: "Project",
   id: "project",
-  path: "project",
+  path: "/#project",
   element: <App />,
 });
 const visualRoute = new AppRoute({
   name: "Visual",
   id: "visual",
-  path: "visual",
+  path: "/visual",
   lazy: async () => {
     const { VisualView } = await import("../../views/visual/VisualView");
     return { Component: VisualView };
@@ -52,7 +52,7 @@ const visualRoute = new AppRoute({
 const videoRoute = new AppRoute({
   name: "Video",
   id: "video",
-  path: "video",
+  path: "/video",
   lazy: async () => {
     const { VideoView } = await import("../../views/video/VideoView");
     return { Component: VideoView };
@@ -61,7 +61,7 @@ const videoRoute = new AppRoute({
 const aboutRoute = new AppRoute({
   name: "About",
   id: "about",
-  path: "about",
+  path: "/about",
   lazy: async () => {
     const { AboutView } = await import("../../views/about/AboutView");
     return { Component: AboutView };
@@ -70,7 +70,7 @@ const aboutRoute = new AppRoute({
 const contactRoute = new AppRoute({
   name: "Contact",
   id: "contact",
-  path: "contact",
+  path: "/contact",
   lazy: async () => {
     const { ContactView } = await import("../../views/contact/ContactView");
     return { Component: ContactView };

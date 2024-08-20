@@ -8,7 +8,7 @@ const ProjectView = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === `/${projectRoute.path}`) {
+    if (location.pathname + location.hash === `${projectRoute.path}`) {
       const projectContainer = projectContainerRef.current!;
       projectContainer.scrollIntoView();
     }
