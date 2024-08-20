@@ -1,9 +1,19 @@
 import Nav from "./Nav";
 import { homeRoute } from "../../lib/services/routeService";
 import { classnames } from "../../lib/helpers";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const navigateHome = () => {
+    if (location.pathname === homeRoute.path) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    navigate(homeRoute.path!);
+  };
+
   return (
     <>
       <header
@@ -12,9 +22,9 @@ const Header = () => {
           "between-row z-50 fixed h-[6.25rem] w-full p-[2.25rem]"
         )}
       >
-        <Link to={homeRoute.path!}>
+        <button onClick={navigateHome}>
           <img src="/src/assets/serena-white.png" width={140} height={30} />
-        </Link>
+        </button>
         <Nav />
       </header>
       <HeaderGradient />
