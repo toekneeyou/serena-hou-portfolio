@@ -1,112 +1,70 @@
-import styled, { keyframes } from "styled-components";
-import { charcoal } from "../../styles/GlobalStyle";
-
-const BrandsContainer = styled.section`
-  position: relative;
-  padding: 3.25rem 11rem;
-  background: linear-gradient(
-    90deg,
-    ${charcoal} 0%,
-    rgba(0, 0, 0, 0) 10%,
-    rgba(0, 0, 0, 0) 90%,
-    ${charcoal} 100%
-  );
-  &::before {
-    z-index: 1;
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 30rem;
-    background: linear-gradient(90deg, ${charcoal}, transparent);
-  }
-  &::after {
-    z-index: 1;
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 30rem;
-    background: linear-gradient(90deg, transparent, ${charcoal});
-  }
-`;
-const brandsRowOneAnimation = keyframes`
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-200%); }
-`;
-const brandsRowTwoAnimation = keyframes`
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(200%); }
-`;
-const BrandsRowOne = styled.div`
-  margin-bottom: 3.25rem;
-  display: flex;
-  column-gap: 8rem;
-`;
-const BrandsOneContainer = styled.div`
-  animation: ${brandsRowOneAnimation} 20s linear infinite;
-  display: flex;
-  align-items: center;
-  column-gap: 8rem;
-`;
-const BrandsRowTwo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  column-gap: 8rem;
-`;
-const BrandsTwoContainer = styled.div`
-  animation: ${brandsRowTwoAnimation} 20s linear infinite;
-  display: flex;
-  align-items: center;
-  column-gap: 8rem;
-`;
-
-const BrandsOne = () => {
-  return (
-    <BrandsOneContainer>
-      <img src="/src/assets/heineken-logo.png" />
-      <img src="/src/assets/budweiser-logo.png" />
-      <img src="/src/assets/lipton-logo.png" />
-      <img src="/src/assets/pringles-logo.png" />
-      <img src="/src/assets/boiling-point-logo.png" />
-      <img src="/src/assets/lg-logo.png" />
-      <img src="/src/assets/summers-eve-logo.png" />
-    </BrandsOneContainer>
-  );
-};
-
-const BrandsTwo = () => {
-  return (
-    <BrandsTwoContainer>
-      <img src="/src/assets/microsoft-logo.png" />
-      <img src="/src/assets/food-panda-logo.png" />
-      <img src="/src/assets/surfshark-logo.png" />
-      <img src="/src/assets/samsung-logo.png" />
-      <img src="/src/assets/scottish-leader-logo.png" />
-      <img src="/src/assets/la-food-fest-logo.png" />
-      <img src="/src/assets/oakberry-logo.png" />
-      <img src="/src/assets/wei-chuan-logo.png" />
-    </BrandsTwoContainer>
-  );
-};
+import { classnames } from "../../lib/helpers";
 
 const Brands = () => {
   return (
-    <BrandsContainer>
-      <BrandsRowOne>
+    <section
+      id="brands"
+      className={classnames(
+        "relative py-[3.25rem] px-[11rem] overflow-hidden",
+        "before:z-[1] before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[30rem] before:bg-brandsLeft",
+        "after:z-[1] after:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-[30rem] after:bg-brandsRight"
+      )}
+    >
+      <div className="flex gap-x-32 mb-[3.25rem]">
         <BrandsOne />
         <BrandsOne />
         <BrandsOne />
-      </BrandsRowOne>
-      <BrandsRowTwo>
+      </div>
+      <div className="flex justify-end gap-x-32 mb-[3.25rem]">
         <BrandsTwo />
         <BrandsTwo />
         <BrandsTwo />
-      </BrandsRowTwo>
-    </BrandsContainer>
+      </div>
+    </section>
+  );
+};
+/**
+ *
+ * Comopnent used to style logos for the brand marquee
+ *
+ */
+const BrandsLogo = ({ src }: { src: string }) => {
+  return <img className="max-w-[initial]" src={src} />;
+};
+/**
+ *
+ * Brands on the first row
+ *
+ */
+const BrandsOne = () => {
+  return (
+    <div className="flex items-center gap-x-32 animate-brand-one-marquee">
+      <BrandsLogo src="/src/assets/heineken-logo.png" />
+      <BrandsLogo src="/src/assets/budweiser-logo.png" />
+      <BrandsLogo src="/src/assets/lipton-logo.png" />
+      <BrandsLogo src="/src/assets/pringles-logo.png" />
+      <BrandsLogo src="/src/assets/boiling-point-logo.png" />
+      <BrandsLogo src="/src/assets/lg-logo.png" />
+      <BrandsLogo src="/src/assets/summers-eve-logo.png" />
+    </div>
+  );
+};
+/**
+ *
+ * Brands on the second row
+ *
+ */
+const BrandsTwo = () => {
+  return (
+    <div className="flex items-center gap-x-32 animate-brand-two-marquee">
+      <BrandsLogo src="/src/assets/food-panda-logo.png" />
+      <BrandsLogo src="/src/assets/surfshark-logo.png" />
+      <BrandsLogo src="/src/assets/samsung-logo.png" />
+      <BrandsLogo src="/src/assets/scottish-leader-logo.png" />
+      <BrandsLogo src="/src/assets/la-food-fest-logo.png" />
+      <BrandsLogo src="/src/assets/oakberry-logo.png" />
+      <BrandsLogo src="/src/assets/wei-chuan-logo.png" />
+    </div>
   );
 };
 

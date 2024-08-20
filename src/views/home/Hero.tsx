@@ -1,82 +1,29 @@
-import styled, { keyframes } from "styled-components";
-import { charcoal } from "../../styles/GlobalStyle";
 import { useLayoutEffect, useRef } from "react";
-
-const HeroContainer = styled.section`
-  height: 100vh;
-  width: inherit;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-`;
-const HeroText = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 11rem;
-
-  h1 {
-    display: inline-block;
-    font-size: 5.125rem;
-    font-weight: 700;
-    position: relative;
-    text-wrap: nowrap;
-    word-spacing: 1rem;
-
-    &::after {
-      text-wrap: nowrap;
-      content: "SERENA HOU";
-      position: absolute;
-      left: 0.25rem;
-      top: 0.25rem;
-      z-index: -1; /* Place behind the original text */
-      color: ${charcoal}; /* Make the text transparent */
-      text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
-        1px 1px 0 white; /* Outline color */
-    }
-  }
-
-  hr {
-    height: 0.125rem;
-    margin: 1rem 0;
-  }
-
-  h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    max-width: 28.75rem;
-    font-size: 1.125rem;
-  }
-`;
-const heroAnimation = keyframes`
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-200%); }
-`;
-const HeroVisual = styled.div``;
-const HeroMarquee = styled.div`
-  pointer-events: none;
-  display: flex;
-  transform: rotate(45deg) translate(-10rem, -10rem);
-  transform-origin: 0% 0%;
-  img {
-    animation: ${heroAnimation} 30s linear infinite;
-  }
-`;
-const SerenaFilm = () => (
-  <img
-    src="/src/assets/hero-film.jpg"
-    alt="film strip of serena in different poses"
-  />
-);
+import { classnames } from "../../lib/helpers";
 
 const Hero = () => {
+  return (
+    <section
+      id="hero"
+      className="h-screen overflow-hidden grid grid-cols-[max-content_1fr]"
+    >
+      <HeroText />
+      <HeroVisual />
+    </section>
+  );
+};
+/**
+ *
+ * Hero text content
+ *
+ */
+const HeroText = () => {
   const heroTextContainerRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
-
+  /**
+   *
+   * Sets the max width of the hero text container based off of the width of the h1 element
+   */
   useLayoutEffect(() => {
     const h1 = h1Ref.current!;
     const heroTextContainer = heroTextContainerRef.current!;
@@ -84,29 +31,57 @@ const Hero = () => {
   }, []);
 
   return (
-    <HeroContainer id="hero">
-      <HeroText>
-        <div ref={heroTextContainerRef}>
-          <h1 ref={h1Ref}>SERENA HOU</h1>
-          <hr />
-          <h2>MULTI-DISCIPLINARY CREATOR</h2>
-          <p>
-            Breathing life into visions and solving creative challenges are my
-            strengths, powered by an obsession with design and the choreography
-            of storytelling.
-          </p>
-        </div>
-      </HeroText>
-      <HeroVisual>
-        <HeroMarquee>
-          <SerenaFilm />
-          <SerenaFilm />
-          <SerenaFilm />
-          <SerenaFilm />
-        </HeroMarquee>
-      </HeroVisual>
-    </HeroContainer>
+    <div className="hero-text h-full flex items-center pl-[11rem]">
+      <div ref={heroTextContainerRef}>
+        <h1
+          ref={h1Ref}
+          data-text="SERENA HOU"
+          className={classnames(
+            "inline-block relative text-nowrap [word-spacing:1rem]",
+            "after:text-nowrap after:content-[attr(data-text)] after:absolute after:left-1 after:top-1 after:z-[-1] after:text-charcoal after:serena-hou-h1-shadow"
+          )}
+        >
+          SERENA HOU
+        </h1>
+        <hr className="h-[0.125rem] my-4 mx-0" />
+        <h2 className="mb-4">MULTI-DISCIPLINARY CREATOR</h2>
+        <p className="max-w-[28.75rem] text-[1.125rem]">
+          Breathing life into visions and solving creative challenges are my
+          strengths, powered by an obsession with design and the choreography of
+          storytelling.
+        </p>
+      </div>
+    </div>
   );
 };
+/**
+ *
+ * Serena film marquee visual
+ *
+ */
+const HeroVisual = () => {
+  return (
+    <div className="hero-visual">
+      <div className="hero-marquee pointer-events-none flex rotate-45 -translate-y-52 origin-[0%_0%]">
+        <SerenaFilm />
+        <SerenaFilm />
+        <SerenaFilm />
+        <SerenaFilm />
+      </div>
+    </div>
+  );
+};
+/**
+ *
+ * Individual Serena film strips
+ *
+ */
+const SerenaFilm = () => (
+  <img
+    className="animate-hero-film-marquee max-w-[initial]"
+    src="/src/assets/hero-film.jpg"
+    alt="film strip of serena in different poses"
+  />
+);
 
 export default Hero;

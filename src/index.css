@@ -28,6 +28,11 @@
     font-size: 2.25rem;
     font-weight: 700;
   }
+
+  .serena-hou-h1-shadow {
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
+      1px 1px 0 white; /* Outline color */
+  }
 }
 
 @layer components {

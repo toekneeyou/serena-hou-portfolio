@@ -18,6 +18,8 @@ const config: Config = {
       },
       backgroundImage: {
         header: "linear-gradient(rgba(0, 0, 0, 0.4), transparent)",
+        brandsLeft: "linear-gradient(90deg, #262525, transparent)",
+        brandsRight: "linear-gradient(90deg, transparent, #262525)",
       },
       colors: {
         beige,
