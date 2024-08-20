@@ -9,7 +9,9 @@ export interface StackedCardsProps<T extends { id: string }> {
     ref: LegacyRef<HTMLElement>
   ) => JSX.Element;
 }
-
+/**
+ * StackedCards needs to be inside a scrollable container with position:relative
+ */
 const StackedCards = <T extends { id: string }>({
   cards,
   cardRenderFunction,

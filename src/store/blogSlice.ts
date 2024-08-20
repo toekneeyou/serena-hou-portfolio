@@ -52,7 +52,9 @@ export const blogSlice = createSlice({
  */
 const withBlogSlice = rootReducer.inject(blogSlice);
 export const injectBlogSlice = () => {
-  store.replaceReducer(withBlogSlice);
+  if (!store.getState().blog) {
+    store.replaceReducer(withBlogSlice);
+  }
 };
 /**
  *
