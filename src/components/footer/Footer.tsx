@@ -1,4 +1,19 @@
+import { useLocation } from "react-router-dom";
+import {
+  contactRoute,
+  videoRoute,
+  visualRoute,
+} from "../../lib/services/routeService";
+
 const Footer = () => {
+  const location = useLocation();
+  const isHidden =
+    location.pathname === visualRoute.path ||
+    location.pathname === videoRoute.path ||
+    location.pathname === contactRoute.path;
+
+  if (isHidden) return null;
+
   return (
     <footer className="border-t-[1px] border-t-[rgba(255,255,255,0.5)] h-52 px-[2.25rem] between-row">
       <div className="flex items-center gap-x-[2.25rem]">

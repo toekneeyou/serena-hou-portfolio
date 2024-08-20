@@ -31,7 +31,7 @@ function Main() {
   const location = useLocation();
 
   return (
-    <main className="w-full">
+    <main className="w-full max-w-[1728px] mx-auto">
       {location.pathname === homeRoute.path && (
         <Suspense>
           <HomeView />

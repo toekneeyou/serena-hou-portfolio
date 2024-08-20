@@ -1,16 +1,20 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { projectRoute } from "../../lib/services/routeService";
-import ProjectList from "./ProjectList";
+import ProjectList from "./ProjectCards";
 
 const ProjectView = () => {
   const projectContainerRef = useRef<HTMLElement>(null);
   const location = useLocation();
-
+  /**
+   *
+   * Scroll project view into view if pathname === '/project'
+   *
+   */
   useEffect(() => {
     if (location.pathname + location.hash === `${projectRoute.path}`) {
       const projectContainer = projectContainerRef.current!;
-      projectContainer.scrollIntoView();
+      projectContainer.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 

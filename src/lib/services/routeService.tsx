@@ -40,7 +40,7 @@ export const projectRoute = new AppRoute({
   path: "/#project",
   element: <App />,
 });
-const visualRoute = new AppRoute({
+export const visualRoute = new AppRoute({
   name: "Visual",
   id: "visual",
   path: "/visual",
@@ -49,7 +49,7 @@ const visualRoute = new AppRoute({
     return { Component: VisualView };
   },
 });
-const videoRoute = new AppRoute({
+export const videoRoute = new AppRoute({
   name: "Video",
   id: "video",
   path: "/video",
@@ -58,7 +58,7 @@ const videoRoute = new AppRoute({
     return { Component: VideoView };
   },
 });
-const aboutRoute = new AppRoute({
+export const aboutRoute = new AppRoute({
   name: "About",
   id: "about",
   path: "/about",
@@ -67,7 +67,7 @@ const aboutRoute = new AppRoute({
     return { Component: AboutView };
   },
 });
-const contactRoute = new AppRoute({
+export const contactRoute = new AppRoute({
   name: "Contact",
   id: "contact",
   path: "/contact",
