@@ -4,6 +4,8 @@ import ViewportObserver from "./components/viewportObserver/ViewportObserver";
 import { lazy, Suspense } from "react";
 import { homeRoute } from "./lib/services/routeService";
 
+const Footer = lazy(() => import("./components/footer/Footer"));
+
 import "./index.css";
 
 const HomeView = lazy(() => import("./views/home/HomeView"));
@@ -14,6 +16,9 @@ function App() {
       <ViewportObserver />
       <Header />
       <Main />
+      <Suspense>
+        <Footer />
+      </Suspense>
     </>
   );
 }
