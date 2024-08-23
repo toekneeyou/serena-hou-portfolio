@@ -13,8 +13,8 @@ const config: Config = {
     extend: {
       animation: {
         "hero-film-marquee": "marquee-left 30s linear infinite",
-        "brand-one-marquee": "marquee-left 20s linear infinite",
-        "brand-two-marquee": "marquee-right 20s linear infinite",
+        "brand-one-marquee": "marquee-left 60s linear infinite",
+        "brand-two-marquee": "marquee-right 60s linear infinite",
       },
       backgroundImage: {
         header: "linear-gradient(rgba(0, 0, 0, 0.4), transparent)",
@@ -26,6 +26,9 @@ const config: Config = {
         taupe,
         charcoal,
         fog,
+      },
+      fontFamily: {
+        oswald: ["Oswald", "sans-serif"],
       },
       keyframes: {
         "marquee-left": {

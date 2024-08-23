@@ -61,11 +61,8 @@ const HeroText = () => {
  */
 const HeroVisual = () => {
   return (
-    <div className="hero-visual">
-      <div className="hero-marquee pointer-events-none flex rotate-45 -translate-y-52 origin-[0%_0%]">
-        <SerenaFilm />
-        <SerenaFilm />
-        <SerenaFilm />
+    <div className="hero-visual flex items-start">
+      <div className="hero-marquee pointer-events-none flex translate-y-[-100%] -translate-x-20 rotate-45 origin-[0%_100%]">
         <SerenaFilm />
       </div>
     </div>
@@ -78,7 +75,9 @@ const HeroVisual = () => {
  */
 const SerenaFilm = () => (
   <img
-    className="animate-hero-film-marquee max-w-[initial]"
+    className={classnames("max-w-[initial]", {
+      "animate-hero-film-marquee": false,
+    })}
     src="/src/assets/hero-film.jpg"
     alt="film strip of serena in different poses"
   />

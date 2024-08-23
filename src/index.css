@@ -49,3 +49,10 @@
     @apply flex items-center justify-between;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+    transition: none;
+  }
+}
