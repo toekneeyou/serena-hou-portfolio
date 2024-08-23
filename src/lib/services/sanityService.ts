@@ -1,7 +1,7 @@
 import { createClient } from "@sanity/client";
 
 export const sanityClient = createClient({
-  projectId: "iaut86sl",
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
   dataset: "production",
   useCdn: true,
   apiVersion: "2023-05-03",
