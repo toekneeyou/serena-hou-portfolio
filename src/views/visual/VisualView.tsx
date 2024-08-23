@@ -1,19 +1,18 @@
-import { useCallback, useEffect, useRef, WheelEventHandler } from "react";
+import { useCallback, useRef, WheelEventHandler } from "react";
 import VisualCarousel from "./VisualCarousel";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { WrenchIcon } from "@heroicons/react/20/solid";
 import {
   getVisuals,
-  injectVisualSlice,
   Visual,
   visualGetCurrIndex,
   visualGetCurrIndexStatus,
-  visualInitialFetch,
   visualNext,
   visualPrev,
 } from "../../store/visualSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 import { classnames } from "../../lib/helpers";
+import VisualInitializer from "./VisualInitializer";
 
 export const VisualView = () => {
   const dispatch = useAppDispatch();
@@ -21,20 +20,6 @@ export const VisualView = () => {
   const { canGoToNextVisual, canGoToPrevVisual } = useAppSelector(
     visualGetCurrIndexStatus
   );
-  /**
-   *
-   * Inject visual slice into redux store
-   *
-   */
-  useEffect(() => {
-    injectVisualSlice();
-  }, []);
-  /**
-   * Initial fetch of visuals
-   */
-  useEffect(() => {
-    dispatch(visualInitialFetch());
-  }, [dispatch]);
   /**
    *
    * Detects wheel event and scrolls to the next or current page
@@ -58,6 +43,7 @@ export const VisualView = () => {
 
   return (
     <section className="h-screen w-full centered-col" onWheel={handleWheel}>
+      <VisualInitializer />
       <div className="between-row w-full pl-32 pr-14 pb-10">
         <ProjectName />
         <Date />

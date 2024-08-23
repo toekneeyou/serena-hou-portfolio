@@ -26,6 +26,7 @@ export interface Visual {
 interface VisualState
   extends ReturnType<typeof visualsAdapter.getInitialState> {
   status: ApiStatus;
+  lastUpdatedTime: Date | null;
   visualCurrIndex: number;
 }
 
@@ -63,6 +64,7 @@ export const visualInitialFetch = createAsyncThunk(
 const visualsAdapter = createEntityAdapter<Visual>();
 const initialState: VisualState = visualsAdapter.getInitialState({
   status: "idle",
+  lastUpdatedTime: null,
   visualCurrIndex: 0,
 });
 
@@ -95,6 +97,7 @@ export const visualSlice = createSlice({
     });
     builder.addCase(visualInitialFetch.fulfilled, (state, action) => {
       visualsAdapter.setAll(state, action.payload);
+      state.lastUpdatedTime = new Date();
       state.status = "success";
     });
     builder.addCase(visualInitialFetch.rejected, (state) => {
@@ -125,6 +128,9 @@ export const { visualNext, visualPrev, visualSetCurrIndex } =
  * Slice selectors
  *
  */
+export const visualGetLastUpdatedTime = withVisualSlice.selector(
+  (state: RootState) => state.visual!.lastUpdatedTime
+);
 export const visualGetCurrIndex = withVisualSlice.selector(
   (state: RootState) => state.visual!.visualCurrIndex
 );
