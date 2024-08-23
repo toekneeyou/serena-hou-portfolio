@@ -45,3 +45,16 @@ export const fetchVisuals = async () => {
   handleNoResults(response);
   return response;
 };
+
+export const fetchProjects = async () => {
+  const response = await sanityClient.fetch(`*[_type == "project"]{
+    _id,
+    title,
+    description,
+    imageDescription,
+    skills,
+    "image": image.asset->url
+  }`);
+  handleNoResults(response);
+  return response;
+};
