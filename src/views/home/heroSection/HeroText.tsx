@@ -1,33 +1,17 @@
 import { useLayoutEffect, useRef } from "react";
-import { classnames } from "../../lib/helpers";
+import { classnames } from "../../../lib/helpers";
 
-const Hero = () => {
-  return (
-    <section
-      id="hero"
-      className="h-screen overflow-hidden grid grid-cols-[max-content_1fr]"
-    >
-      <HeroText />
-      <HeroVisual />
-    </section>
-  );
-};
-/**
- *
- * Hero text content
- *
- */
 const HeroText = () => {
   const heroTextContainerRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
   /**
-   *
    * Sets the max width of the hero text container based off of the width of the h1 element
    */
   useLayoutEffect(() => {
     const h1 = h1Ref.current!;
     const heroTextContainer = heroTextContainerRef.current!;
-    heroTextContainer.style.maxWidth = `${h1.getBoundingClientRect().width}px`;
+    const h1Width = h1.getBoundingClientRect().width;
+    heroTextContainer.style.maxWidth = `${h1Width}px`;
   }, []);
 
   return (
@@ -54,33 +38,5 @@ const HeroText = () => {
     </div>
   );
 };
-/**
- *
- * Serena film marquee visual
- *
- */
-const HeroVisual = () => {
-  return (
-    <div className="hero-visual flex items-start">
-      <div className="hero-marquee pointer-events-none flex translate-y-[-100%] -translate-x-20 rotate-45 origin-[0%_100%]">
-        <SerenaFilm />
-      </div>
-    </div>
-  );
-};
-/**
- *
- * Individual Serena film strips
- *
- */
-const SerenaFilm = () => (
-  <img
-    className={classnames("max-w-[initial]", {
-      "animate-hero-film-marquee": false,
-    })}
-    src="/src/assets/hero-film.jpg"
-    alt="film strip of serena in different poses"
-  />
-);
 
-export default Hero;
+export default HeroText;
