@@ -6,6 +6,7 @@ import {
   WithSlice,
 } from "@reduxjs/toolkit";
 import { rootReducer, RootState, store } from "./store";
+import { ApiStatus } from "../lib/types";
 /**
  *
  *
@@ -19,7 +20,7 @@ interface Post {
 }
 
 interface BlogState extends ReturnType<typeof postsAdapter.getInitialState> {
-  status: "idle" | "pending";
+  status: ApiStatus;
 }
 
 declare module "./store" {
