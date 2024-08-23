@@ -36,6 +36,13 @@ declare module "./store" {
 }
 /**
  *
+ *
+ * Visual Constants
+ *
+ */
+export const VISUAL_TIME_UNTIL_NEXT_CALL = 1200000;
+/**
+ *
  * Create Async Thunks
  *
  */
@@ -152,6 +159,17 @@ export const visualGetCurrIndexStatus = createSelector(
     };
   }
 );
+
+export const visualGetShouldFetch = createSelector(
+  [visualGetLastUpdatedTime],
+  (lastUpdatedTime) => {
+    return lastUpdatedTime
+      ? new Date().getMilliseconds() - lastUpdatedTime.getMilliseconds() >
+          VISUAL_TIME_UNTIL_NEXT_CALL
+      : true;
+  }
+);
+
 export const {
   selectAll: getVisuals,
   selectIds: getVisualIds,

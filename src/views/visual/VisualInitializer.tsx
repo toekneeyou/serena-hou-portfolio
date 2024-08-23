@@ -1,21 +1,15 @@
 import { useEffect } from "react";
 import {
   injectVisualSlice,
-  visualGetLastUpdatedTime,
+  visualGetShouldFetch,
   visualInitialFetch,
   visualSetCurrIndex,
 } from "../../store/visualSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 
-const FIVE_MINUTES = 600000;
-
 const VisualInitializer = () => {
   const dispatch = useAppDispatch();
-  const lastUpdatedTime = useAppSelector(visualGetLastUpdatedTime);
-  const shouldFetch = lastUpdatedTime
-    ? new Date().getMilliseconds() - lastUpdatedTime.getMilliseconds() >
-      FIVE_MINUTES
-    : true;
+  const shouldFetch = useAppSelector(visualGetShouldFetch);
   /**
    * Inject visual slice into redux store
    */
