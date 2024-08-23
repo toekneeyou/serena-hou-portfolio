@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { classnames } from "../../lib/helpers";
+import { PropsWithClassName } from "../../lib/types";
 
-interface ScrollerProps {
+interface ScrollerProps extends PropsWithClassName {
   pages: number;
   currIndex: number;
   handleSelection: (index: number) => void;
@@ -9,7 +10,12 @@ interface ScrollerProps {
 
 const SEGMENT_HEIGHT = 1.25; // rem
 
-const Scroller = ({ pages, currIndex, handleSelection }: ScrollerProps) => {
+const Scroller = ({
+  pages,
+  currIndex,
+  handleSelection,
+  className,
+}: ScrollerProps) => {
   /**
    * create segments to be mapped based on number of pages
    */
@@ -19,7 +25,11 @@ const Scroller = ({ pages, currIndex, handleSelection }: ScrollerProps) => {
 
   return (
     <div
-      className="flex flex-col items-center justify-start absolute -right-14 w-[24px] overflow-y-hidden"
+      className={classnames(
+        "scroller",
+        "flex flex-col items-center justify-start w-[24px] overflow-y-hidden",
+        className
+      )}
       style={{ height: `${5 * SEGMENT_HEIGHT}rem` }}
     >
       {segments.map((indexNum) => {
