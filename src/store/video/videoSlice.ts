@@ -5,9 +5,9 @@ import {
   PayloadAction,
   WithSlice,
 } from "@reduxjs/toolkit";
-import { rootReducer, RootState, store } from "./store";
-import { fetchVideosAndCategories } from "../lib/services/sanityService";
-import { ApiStatus } from "../lib/types";
+import { rootReducer, RootState, store } from "../store";
+import { fetchVideosAndCategories } from "../../lib/services/sanityService";
+import { ApiStatus } from "../../lib/types";
 /**
  *
  * Video Types
@@ -37,21 +37,26 @@ export interface VideoEntity {
 
 export interface VideoState {
   status: ApiStatus;
+  lastUpdatedTime: string | null;
   categoryIds: string[];
   categoryEntities: VideoCategoryEntity;
   videoEntities: VideoEntity; // used for accessing video object with id
   videoCurrIndex: number; // used for pagination
 }
 
-declare module "./store" {
+declare module "../store" {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface LazyLoadedSlices extends WithSlice<typeof videoSlice> {}
 }
 /**
  *
  *
- * Async Thunks
+ * Video Constants
  *
+ */
+export const VIDEO_TIME_UNTIL_NEXT_CALL = 1200000;
+/**
+ * Async Actions
  */
 const formatVideoResponse = (
   response: {
@@ -104,6 +109,7 @@ export const videoInitialFetch = createAsyncThunk(
  */
 const initialState: VideoState = {
   status: "idle",
+  lastUpdatedTime: null,
   categoryIds: [],
   categoryEntities: {},
   videoEntities: {},
@@ -136,6 +142,7 @@ export const videoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(videoInitialFetch.fulfilled, (state, action) => {
+      state.lastUpdatedTime = new Date().toISOString();
       state.categoryEntities = action.payload.categoryEntities;
       state.categoryIds = action.payload.categoryIds;
       state.videoEntities = action.payload.videoEntities;
@@ -182,15 +189,26 @@ const flattenIds = (
  * Video Category related selectors
  *
  */
+export const videoGetStatus = withVideoSlice.selector(
+  (state: RootState) => state.video!.status
+);
+
+export const videoGetLastUpdatedTime = withVideoSlice.selector(
+  (state: RootState) => state.video!.lastUpdatedTime
+);
+
 export const videoGetCategoryEntities = withVideoSlice.selector(
   (state: RootState) => state.video!.categoryEntities
 );
+
 export const videoGetCategoryIds = withVideoSlice.selector(
   (state: RootState) => state.video!.categoryIds
 );
+
 export const videoGetVideoEntities = withVideoSlice.selector(
   (state: RootState) => state.video!.videoEntities
 );
+
 export const videoGetCurrIndex = withVideoSlice.selector(
   (state: RootState) => state.video!.videoCurrIndex
 );
@@ -206,8 +224,7 @@ export const videoGetAllVideoIds = createSelector(
       (state: RootState) => state.video!.categoryEntities!
     ),
   ],
-  (categoryIds, categorizedVideoIds) =>
-    flattenIds(categoryIds, categorizedVideoIds)
+  (categoryIds, categoryEntities) => flattenIds(categoryIds, categoryEntities)
 );
 /**
  *
@@ -257,5 +274,18 @@ export const videoGetCategoryCurrIndex = createSelector(
     } else {
       return -1;
     }
+  }
+);
+/**
+ * Only call sanity api after a certain amount of time has elapsed.
+ */
+export const videoGetShouldFetch = createSelector(
+  [videoGetLastUpdatedTime],
+  (lastUpdatedTime) => {
+    return lastUpdatedTime
+      ? new Date().getMilliseconds() -
+          new Date(lastUpdatedTime).getMilliseconds() >
+          VIDEO_TIME_UNTIL_NEXT_CALL
+      : true;
   }
 );

@@ -25,7 +25,7 @@ const Nav = () => {
 
   const prefetchVideos = () => {
     requestIdleCallback(() => {
-      import("../../store/videoSlice").then((module) => {
+      import("../../store/video/videoSlice").then((module) => {
         module.injectVideoSlice();
         if (module.videoGetShouldFetch(store.getState())) {
           dispatch(module.videoInitialFetch());

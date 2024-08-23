@@ -118,9 +118,15 @@ export const { selectAll: projectGetAllProjects } =
   projectsAdapter.getSelectors(
     withProjectSlice.selector((state: RootState) => state.project!)
   );
+
 export const projectGetLastUpdatedTime = withProjectSlice.selector(
   (state: RootState) => state.project!.lastUpdatedTime
 );
+
+export const projectGetStatus = withProjectSlice.selector(
+  (state: RootState) => state.project!.status
+);
+
 export const projectGetShouldFetch = createSelector(
   [projectGetLastUpdatedTime],
   (lastUpdatedTime) => {
