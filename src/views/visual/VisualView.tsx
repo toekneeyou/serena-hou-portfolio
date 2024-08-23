@@ -3,7 +3,7 @@ import VisualCarousel from "./VisualCarousel";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { WrenchIcon } from "@heroicons/react/20/solid";
 import {
-  getVisuals,
+  visualGetVisuals,
   Visual,
   visualGetCurrIndex,
   visualGetCurrIndexStatus,
@@ -58,7 +58,7 @@ export const VisualView = () => {
 };
 
 const ProjectName = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const projectNameRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
@@ -76,7 +76,7 @@ const ProjectName = () => {
   );
 };
 const Date = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const dateRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
@@ -91,7 +91,7 @@ const Date = () => {
   );
 };
 const Tags = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const tagsRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
@@ -122,7 +122,7 @@ const Tags = () => {
   );
 };
 const ProjectNumber = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const itemNumberRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((_, i) => {

@@ -171,9 +171,9 @@ export const visualGetShouldFetch = createSelector(
 );
 
 export const {
-  selectAll: getVisuals,
-  selectIds: getVisualIds,
-  selectEntities: getVisualEntities,
+  selectAll: visualGetVisuals,
+  selectIds: visualGetVisualIds,
+  selectEntities: visualGetVisualEntities,
 } = visualsAdapter.getSelectors(
   withVisualSlice.selector((state: RootState) => state.visual!)
 );

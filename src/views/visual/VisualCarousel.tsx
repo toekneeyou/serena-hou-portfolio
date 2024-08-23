@@ -2,13 +2,12 @@ import { useCallback } from "react";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { classnames } from "../../lib/helpers";
 import {
-  getVisualIds,
-  getVisuals,
   Visual,
   visualGetCurrIndex,
-  visualSetCurrIndex,
+  visualGetVisuals,
 } from "../../store/visualSlice";
-import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
+import { useAppSelector } from "../../lib/hooks/reduxHooks";
+import VisualScroller from "./VisualScroller";
 
 const VisualCarousel = () => {
   const currIndex = useAppSelector(visualGetCurrIndex);
@@ -25,14 +24,14 @@ const VisualCarousel = () => {
       </div>
       <div className="centered-row relative">
         <Cover />
-        <Scroller />
+        <VisualScroller />
       </div>
     </div>
   );
 };
 
 const Title = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const titleRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
@@ -53,7 +52,7 @@ const Title = () => {
 };
 
 const Cover = () => {
-  const visuals = useAppSelector(getVisuals);
+  const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
   const coverRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
@@ -69,42 +68,6 @@ const Cover = () => {
       items={visuals}
       itemRenderFunction={coverRenderFunction}
     />
-  );
-};
-
-const Scroller = () => {
-  const dispatch = useAppDispatch();
-  const visualIds = useAppSelector(getVisualIds);
-  const currIndex = useAppSelector(visualGetCurrIndex);
-  return (
-    <div className="flex flex-col items-center justify-start absolute -right-14 w-[24px]">
-      {visualIds.map((id, i) => {
-        const isCurr = currIndex === i;
-        const yOffset =
-          Math.floor(visualIds.length / 2) * 100 - 100 * currIndex;
-
-        const handleClick = () => {
-          dispatch(visualSetCurrIndex(i));
-        };
-
-        return (
-          <button
-            key={id}
-            type="button"
-            onClick={handleClick}
-            className="centered-row h-5 transition-transform"
-            style={{ transform: `translateY(${yOffset}%)` }}
-          >
-            <div
-              className={classnames(
-                "h-[6px] w-[12px] rounded-[0.25rem] bg-[#E5DBD0] transition-all",
-                { "opacity-30 w-[12px]": !isCurr, "w-[24px]": isCurr }
-              )}
-            />
-          </button>
-        );
-      })}
-    </div>
   );
 };
 
