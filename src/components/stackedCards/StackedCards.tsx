@@ -1,6 +1,8 @@
 import { LegacyRef, useEffect, useRef } from "react";
 import { classnames } from "../../lib/helpers";
 
+const MAX_STACK_DEPTH = 7; // rem
+
 export interface StackedCardsProps<T extends { id: string }> {
   cards: T[];
   cardRenderFunction: (
@@ -59,7 +61,9 @@ const StackedCards = <T extends { id: string }>({
         .fill(0.05)
         .map((percentage, i) => percentage * i)
         .reverse();
-      const yOffset = new Array(size).fill(100).map((y, i) => -y / (i + 1));
+      const yOffset = new Array(size)
+        .fill(Math.min(1 * cards.length, MAX_STACK_DEPTH))
+        .map((y, i) => -y / (i + 1));
       return { scale, yOffset };
     };
     /**
@@ -72,7 +76,7 @@ const StackedCards = <T extends { id: string }>({
       scale: number[],
       yOffset: number[]
     ) => {
-      return `scale(${1 - scale[index]}) translateY(${yOffset[index]}px)`;
+      return `scale(${1 - scale[index]}) translateY(${yOffset[index]}rem)`;
     };
     /**
      *
@@ -127,7 +131,7 @@ const StackedCards = <T extends { id: string }>({
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [cards]);
 
   return (
     <ul ref={containerRef} className={classnames("stacked-cards")}>

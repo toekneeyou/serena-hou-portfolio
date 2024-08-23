@@ -1,4 +1,5 @@
 import {
+  createAsyncThunk,
   createEntityAdapter,
   createSelector,
   createSlice,
@@ -6,66 +7,8 @@ import {
   WithSlice,
 } from "@reduxjs/toolkit";
 import { rootReducer, RootState, store } from "./store";
-
-const visualEntities = {
-  1: {
-    id: "1",
-    projectName: "Ghost Writer / Season 6",
-    title: "Ghost Writer S6",
-    date: "05/2024",
-    duties: ["BRAND EVOLUTION", "POSTER DESIGN"],
-    imgSrc: "/src/assets/ghost-writer-visual-1.jpg",
-  },
-  2: {
-    id: "2",
-    projectName: "Ghost Writer / Season 5",
-    title: "Ghost Writer S5",
-    date: "08/2023",
-    duties: ["BRAND EVOLUTION", "POSTER DESIGN"],
-    imgSrc: "/src/assets/ghost-writer-visual-4.jpg",
-  },
-  3: {
-    id: "3",
-    projectName: "DoDo's City of Love",
-    title: "DODO'S CITY OF LOVE",
-    date: "08/2022",
-    duties: ["BRAND VISUALIZATION", "GRAPHIC DESIGN"],
-    imgSrc: "/src/assets/dodo-visual-1.jpg",
-  },
-  4: {
-    id: "4",
-    projectName: "Just Let Me Eat",
-    title: "JUST LET ME EAT",
-    date: "07/2022",
-    duties: ["VIDEO THUMBNAIL DESIGN"],
-    imgSrc: "/src/assets/just-let-me-eat-visual-1.jpg",
-  },
-  5: {
-    id: "5",
-    projectName: "Rogue Ouija",
-    title: "ROGUE OUIJA",
-    date: "05/2022",
-    duties: ["FILM POSTER DESIGN"],
-    imgSrc: "/src/assets/rogue-oujia-visual.jpg",
-  },
-  6: {
-    id: "6",
-    projectName: "Burn / Season 2, 3, 4",
-    title: "BURN",
-    date: "02/2022",
-    duties: ["BRAND ANIMATION DESIGN", "VISUAL DESIGN"],
-    imgSrc: "/src/assets/burn-visual.jpg",
-  },
-  7: {
-    id: "7",
-    projectName: "Burn - Mean Comments / Season 3",
-    title: "BURN",
-    date: "02/2022",
-    duties: ["BRAND ANIMATION DESIGN", "VISUAL DESIGN"],
-    imgSrc: "/src/assets/burn-visual-2.jpg",
-  },
-};
-const visualIds = Object.keys(visualEntities);
+import { fetchVisuals } from "../lib/services/sanityService";
+import { ApiStatus } from "../lib/types";
 /**
  *
  * Visual Types
@@ -73,15 +16,18 @@ const visualIds = Object.keys(visualEntities);
  */
 export interface Visual {
   id: string;
-  projectName: string;
+  name: string;
   title: string;
   date: string;
-  duties: string[];
-  imgSrc: string;
+  tags: string[];
+  image: string;
 }
+
 interface VisualState
   extends ReturnType<typeof visualsAdapter.getInitialState> {
-  currPage: number;
+  status: ApiStatus;
+  lastUpdatedTime: string | null;
+  visualCurrIndex: number;
 }
 
 declare module "./store" {
@@ -90,38 +36,78 @@ declare module "./store" {
 }
 /**
  *
+ *
+ * Visual Constants
+ *
+ */
+export const VISUAL_TIME_UNTIL_NEXT_CALL = 1200000;
+/**
+ * Async Actions
+ */
+const formatVisualsResponse = (
+  response: Array<Omit<Visual, "id"> & { _id: string }>
+) => {
+  return response.map((r) => ({ ...r, id: r._id })) as Visual[];
+};
+export const visualInitialFetch = createAsyncThunk(
+  "visual/initialFetch",
+  async () => {
+    try {
+      const response = await fetchVisuals();
+      return formatVisualsResponse(response);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+/**
+ *
  * Visual Slice Setup
  *
  */
 const visualsAdapter = createEntityAdapter<Visual>();
 const initialState: VisualState = visualsAdapter.getInitialState({
-  currPage: 0,
-  ids: visualIds,
-  entities: visualEntities,
+  status: "idle",
+  lastUpdatedTime: null,
+  visualCurrIndex: 0,
 });
+
 export const visualSlice = createSlice({
   name: "visual",
   initialState,
   reducers: {
-    setVisuals: visualsAdapter.setAll,
-    setCurrPage: (state, action: PayloadAction<number>) => {
-      state.currPage = action.payload;
+    visualSetCurrIndex: (state, action: PayloadAction<number>) => {
+      state.visualCurrIndex = action.payload;
     },
-    nextVisual: (state) => {
+    visualNext: (state) => {
       const maxPage = state.ids.length - 1;
-      if (state.currPage < maxPage) {
-        state.currPage++;
+      if (state.visualCurrIndex < maxPage) {
+        state.visualCurrIndex++;
       } else {
         console.log("There are no more visuals.");
       }
     },
-    prevVisual: (state) => {
-      if (state.currPage > 0) {
-        state.currPage--;
+    visualPrev: (state) => {
+      if (state.visualCurrIndex > 0) {
+        state.visualCurrIndex--;
       } else {
         console.log("There are no more visuals to go back to.");
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(visualInitialFetch.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(visualInitialFetch.fulfilled, (state, action) => {
+      visualsAdapter.setAll(state, action.payload);
+      state.lastUpdatedTime = new Date().toISOString();
+      state.status = "success";
+    });
+    builder.addCase(visualInitialFetch.rejected, (state) => {
+      state.status = "fail";
+    });
   },
 });
 /**
@@ -140,36 +126,53 @@ export const injectVisualSlice = () => {
  * Slice actions
  *
  */
-export const { nextVisual, prevVisual, setVisuals, setCurrPage } =
+export const { visualNext, visualPrev, visualSetCurrIndex } =
   visualSlice.actions;
 /**
  *
  * Slice selectors
  *
  */
-export const getCurrPage = withVisualSlice.selector(
-  (state: RootState) => state.visual!.currPage
+export const visualGetLastUpdatedTime = withVisualSlice.selector(
+  (state: RootState) => state.visual!.lastUpdatedTime
 );
-export const getCurrPageStatus = createSelector(
+export const visualGetCurrIndex = withVisualSlice.selector(
+  (state: RootState) => state.visual!.visualCurrIndex
+);
+export const visualGetCurrIndexStatus = createSelector(
   [
     withVisualSlice.selector((state: RootState) => state.visual!.ids),
-    withVisualSlice.selector((state: RootState) => state.visual!.currPage),
+    withVisualSlice.selector(
+      (state: RootState) => state.visual!.visualCurrIndex
+    ),
   ],
-  (visualIds, currPage) => {
+  (visualIds, visualCurrIndex) => {
     if (visualIds.length === 0) {
-      return { canGoToNextPage: false, canGoToPrevPage: false };
+      return { canGoToNextVisual: false, canGoToPrevVisual: false };
     }
 
     return {
-      canGoToNextPage: currPage < visualIds.length - 1,
-      canGoToPrevPage: currPage > 0,
+      canGoToNextVisual: visualCurrIndex < visualIds.length - 1,
+      canGoToPrevVisual: visualCurrIndex > 0,
     };
   }
 );
+
+export const visualGetShouldFetch = createSelector(
+  [visualGetLastUpdatedTime],
+  (lastUpdatedTime) => {
+    return lastUpdatedTime
+      ? new Date().getMilliseconds() -
+          new Date(lastUpdatedTime).getMilliseconds() >
+          VISUAL_TIME_UNTIL_NEXT_CALL
+      : true;
+  }
+);
+
 export const {
-  selectAll: getVisuals,
-  selectIds: getVisualIds,
-  selectEntities: getVisualEntities,
+  selectAll: visualGetVisuals,
+  selectIds: visualGetVisualIds,
+  selectEntities: visualGetVisualEntities,
 } = visualsAdapter.getSelectors(
   withVisualSlice.selector((state: RootState) => state.visual!)
 );

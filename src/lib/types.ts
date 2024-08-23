@@ -7,3 +7,5 @@ export interface PropsWithClassName {
 export interface PropsWithClassNameAndChildren
   extends PropsWithClassName,
     PropsWithChildren {}
+
+export type ApiStatus = "idle" | "loading" | "success" | "fail";

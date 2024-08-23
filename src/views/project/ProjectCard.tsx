@@ -1,15 +1,12 @@
 import { forwardRef, LegacyRef } from "react";
 import { PropsWithClassName } from "../../lib/types";
 import { classnames } from "../../lib/helpers";
-import { Project } from "./ProjectCards";
+import { Project } from "../../store/projectSlice";
 
 interface ProjectCardProps extends PropsWithClassName, Project {}
 
 const ProjectCard = forwardRef(
-  (
-    { className, title, description, skills, src, alt }: ProjectCardProps,
-    ref
-  ) => {
+  ({ className, title, description, skills, image }: ProjectCardProps, ref) => {
     return (
       <div
         ref={ref as LegacyRef<HTMLDivElement>}
@@ -39,7 +36,7 @@ const ProjectCard = forwardRef(
           </ul>
         </div>
         <div className="project-card__image my-auto">
-          <img src={src} alt={alt} />
+          <img {...image} />
         </div>
       </div>
     );

@@ -1,13 +1,13 @@
+import HeroSection from "./heroSection/HeroSection";
 import ProjectView from "../project/ProjectView";
-import Brands from "./Brands";
-import Hero from "./Hero";
+import BrandsSection from "./brandsSection/BrandsSection";
 import { ContactView } from "../contact/ContactView";
 
 const HomeView = () => {
   return (
     <>
-      <Hero />
-      <Brands />
+      <HeroSection />
+      <BrandsSection />
       <ProjectView />
       <ContactView />
     </>

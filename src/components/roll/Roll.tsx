@@ -1,6 +1,9 @@
 import { LegacyRef, useLayoutEffect, useMemo, useRef } from "react";
+import { PropsWithClassName } from "../../lib/types";
+import { classnames } from "../../lib/helpers";
 
-export interface RollProps<T extends { id: string }> {
+export interface RollProps<T> extends PropsWithClassName {
+  selectId?: (item: T) => string;
   items: T[];
   itemRenderFunction: (
     item: T,
@@ -12,7 +15,9 @@ export interface RollProps<T extends { id: string }> {
   direction?: "up" | "down";
 }
 
-const Roll = <T extends { id: string }>({
+const Roll = <T,>({
+  className,
+  selectId,
   items,
   itemRenderFunction,
   currIndex,
@@ -57,12 +62,19 @@ const Roll = <T extends { id: string }>({
   }, [items, direction, currIndex]);
 
   return (
-    <ul style={{ height }} className="overflow-hidden" ref={containerRef}>
+    <ul
+      style={{ height }}
+      className={classnames("roll", "overflow-hidden", className)}
+      ref={containerRef}
+    >
       {itemsCopy.map((item, i) => {
+        const key =
+          selectId !== undefined ? selectId(item) : JSON.stringify(item);
+
         return (
           <li
             ref={(el) => (itemsRef.current[i] = el as HTMLLIElement)}
-            key={item.id}
+            key={key}
             className="transition-transform duration-300 flex items-center"
             style={{ transform: `translateY(-${yOffset}%)`, height }}
           >
