@@ -88,7 +88,6 @@ export const projectSlice = createSlice({
       state.status = "loading";
     });
     builders.addCase(projectInitialFetch.fulfilled, (state, action) => {
-      console.log(action.payload);
       projectsAdapter.setAll(state, action.payload);
       state.lastUpdatedTime = new Date().toISOString();
       state.status = "success";
