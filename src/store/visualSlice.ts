@@ -26,7 +26,7 @@ export interface Visual {
 interface VisualState
   extends ReturnType<typeof visualsAdapter.getInitialState> {
   status: ApiStatus;
-  lastUpdatedTime: Date | null;
+  lastUpdatedTime: string | null;
   visualCurrIndex: number;
 }
 
@@ -42,9 +42,7 @@ declare module "./store" {
  */
 export const VISUAL_TIME_UNTIL_NEXT_CALL = 1200000;
 /**
- *
- * Create Async Thunks
- *
+ * Async Actions
  */
 const formatVisualsResponse = (
   response: Array<Omit<Visual, "id"> & { _id: string }>
@@ -104,7 +102,7 @@ export const visualSlice = createSlice({
     });
     builder.addCase(visualInitialFetch.fulfilled, (state, action) => {
       visualsAdapter.setAll(state, action.payload);
-      state.lastUpdatedTime = new Date();
+      state.lastUpdatedTime = new Date().toISOString();
       state.status = "success";
     });
     builder.addCase(visualInitialFetch.rejected, (state) => {
@@ -164,7 +162,8 @@ export const visualGetShouldFetch = createSelector(
   [visualGetLastUpdatedTime],
   (lastUpdatedTime) => {
     return lastUpdatedTime
-      ? new Date().getMilliseconds() - lastUpdatedTime.getMilliseconds() >
+      ? new Date().getMilliseconds() -
+          new Date(lastUpdatedTime).getMilliseconds() >
           VISUAL_TIME_UNTIL_NEXT_CALL
       : true;
   }

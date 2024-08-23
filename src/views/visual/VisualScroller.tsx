@@ -20,6 +20,7 @@ const VisualScroller = () => {
       pages={visualIds.length}
       currIndex={currIndex}
       handleSelection={handleSelection}
+      className="absolute -right-14"
     />
   );
 };
