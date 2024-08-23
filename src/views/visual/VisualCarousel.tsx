@@ -2,22 +2,22 @@ import { useCallback } from "react";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { classnames } from "../../lib/helpers";
 import {
-  getCurrPage,
   getVisualIds,
   getVisuals,
-  setCurrPage,
   Visual,
+  visualGetCurrIndex,
+  visualSetCurrIndex,
 } from "../../store/visualSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 
 const VisualCarousel = () => {
-  const currPage = useAppSelector(getCurrPage);
+  const currIndex = useAppSelector(visualGetCurrIndex);
 
   return (
     <div className="w-full centered-row relative">
       <div
         className={classnames("centered-row gap-x-6 absolute left-0 z-10 ", {
-          "mix-blend-exclusion": currPage !== 1 && currPage !== 6,
+          "mix-blend-exclusion": currIndex !== 1 && currIndex !== 6,
         })}
       >
         <div className="h-1 bg-white w-44" />
@@ -33,7 +33,7 @@ const VisualCarousel = () => {
 
 const Title = () => {
   const visuals = useAppSelector(getVisuals);
-  const currPage = useAppSelector(getCurrPage);
+  const currIndex = useAppSelector(visualGetCurrIndex);
   const titleRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
       return (
@@ -44,7 +44,7 @@ const Title = () => {
     }, []);
   return (
     <Roll
-      currIndex={currPage}
+      currIndex={currIndex}
       items={visuals}
       direction="down"
       itemRenderFunction={titleRenderFunction}
@@ -54,18 +54,18 @@ const Title = () => {
 
 const Cover = () => {
   const visuals = useAppSelector(getVisuals);
-  const currPage = useAppSelector(getCurrPage);
+  const currIndex = useAppSelector(visualGetCurrIndex);
   const coverRenderFunction: RollProps<Visual>["itemRenderFunction"] =
     useCallback((item) => {
       return (
         <button className="h-[485px]">
-          <img src={item.imgSrc} className="rounded-[0.5rem]" />
+          <img src={item.image} className="rounded-[0.5rem]" />
         </button>
       );
     }, []);
   return (
     <Roll
-      currIndex={currPage}
+      currIndex={currIndex}
       items={visuals}
       itemRenderFunction={coverRenderFunction}
     />
@@ -75,15 +75,16 @@ const Cover = () => {
 const Scroller = () => {
   const dispatch = useAppDispatch();
   const visualIds = useAppSelector(getVisualIds);
-  const currPage = useAppSelector(getCurrPage);
+  const currIndex = useAppSelector(visualGetCurrIndex);
   return (
     <div className="flex flex-col items-center justify-start absolute -right-14 w-[24px]">
       {visualIds.map((id, i) => {
-        const isCurr = currPage === i;
-        const yOffset = Math.floor(visualIds.length / 2) * 100 - 100 * currPage;
+        const isCurr = currIndex === i;
+        const yOffset =
+          Math.floor(visualIds.length / 2) * 100 - 100 * currIndex;
 
         const handleClick = () => {
-          dispatch(setCurrPage(i));
+          dispatch(visualSetCurrIndex(i));
         };
 
         return (
