@@ -1,18 +1,16 @@
-import { useCallback, useRef, WheelEventHandler } from "react";
+import { useRef, WheelEventHandler } from "react";
 import VisualCarousel from "./VisualCarousel";
-import Roll, { RollProps } from "../../components/roll/Roll";
-import { WrenchIcon } from "@heroicons/react/20/solid";
 import {
-  visualGetVisuals,
-  Visual,
-  visualGetCurrIndex,
   visualGetCurrIndexStatus,
   visualNext,
   visualPrev,
 } from "../../store/visualSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
-import { classnames } from "../../lib/helpers";
 import VisualInitializer from "./VisualInitializer";
+import ProjectNameRoll from "./ProjectNameRoll";
+import DateRoll from "./DateRoll";
+import ProjectNumberRoll from "./ProjectNumberRoll";
+import TagsRoll from "./TagsRoll";
 
 export const VisualView = () => {
   const dispatch = useAppDispatch();
@@ -45,98 +43,14 @@ export const VisualView = () => {
     <section className="h-screen w-full centered-col" onWheel={handleWheel}>
       <VisualInitializer />
       <div className="between-row w-full pl-32 pr-14 pb-10">
-        <ProjectName />
-        <Date />
+        <ProjectNameRoll />
+        <DateRoll />
       </div>
       <VisualCarousel />
       <div className="between-row w-full pl-32 pr-14 pt-10">
-        <Tags />
-        <ProjectNumber />
+        <TagsRoll />
+        <ProjectNumberRoll />
       </div>
     </section>
-  );
-};
-
-const ProjectName = () => {
-  const visuals = useAppSelector(visualGetVisuals);
-  const currIndex = useAppSelector(visualGetCurrIndex);
-  const projectNameRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return <span>{item.name}</span>;
-    }, []);
-  return (
-    <div className="flex gap-x-[1ch] h-6">
-      Project:{" "}
-      <Roll
-        items={visuals}
-        itemRenderFunction={projectNameRenderFunction}
-        currIndex={currIndex}
-      />
-    </div>
-  );
-};
-const Date = () => {
-  const visuals = useAppSelector(visualGetVisuals);
-  const currIndex = useAppSelector(visualGetCurrIndex);
-  const dateRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return <span>{item.date}</span>;
-    }, []);
-  return (
-    <Roll
-      items={visuals}
-      currIndex={currIndex}
-      itemRenderFunction={dateRenderFunction}
-    />
-  );
-};
-const Tags = () => {
-  const visuals = useAppSelector(visualGetVisuals);
-  const currIndex = useAppSelector(visualGetCurrIndex);
-  const tagsRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return (
-        <ul className="flex">
-          {item.tags.map((tag, i) => {
-            const isLast = i === item.tags.length - 1;
-            return (
-              <li
-                key={tag}
-                className={classnames("uppercase", {
-                  "after:content-['/'] after:mx-[1ch]": !isLast,
-                })}
-              >
-                {tag}
-              </li>
-            );
-          })}
-        </ul>
-      );
-    }, []);
-  return (
-    <Roll
-      items={visuals}
-      currIndex={currIndex}
-      itemRenderFunction={tagsRenderFunction}
-    />
-  );
-};
-const ProjectNumber = () => {
-  const visuals = useAppSelector(visualGetVisuals);
-  const currIndex = useAppSelector(visualGetCurrIndex);
-  const itemNumberRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((_, i) => {
-      return <span>{(i ?? 0) + 1}</span>;
-    }, []);
-  return (
-    <div className="flex">
-      <WrenchIcon className="size-4 mr-[1ch] translate-y-[2px]" />
-      00:00:00:0
-      <Roll
-        items={visuals}
-        currIndex={currIndex}
-        itemRenderFunction={itemNumberRenderFunction}
-      />
-    </div>
   );
 };
