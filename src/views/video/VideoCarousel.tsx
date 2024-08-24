@@ -21,18 +21,21 @@ const VideoCarousel = () => {
           const isCurr = i === currIndex;
 
           return (
-            <img
-              key={videoId}
-              className={classnames("transition-transform", {
-                "brightness-50": !isCurr,
-              })}
-              src={video.thumbnailUrl}
-              style={{
-                transform: `translateY(calc(${
-                  currIndex * -100 * diff
-                }%)) scale(${isCurr ? 1 : 0.75})`,
-              }}
-            />
+            <li>
+              <img
+                aria-hidden={isCurr ? "false" : "true"}
+                key={videoId}
+                className={classnames("transition-transform", {
+                  "brightness-50": !isCurr,
+                })}
+                src={video.thumbnailUrl}
+                style={{
+                  transform: `translateY(calc(${
+                    currIndex * -100 * diff
+                  }%)) scale(${isCurr ? 1 : 0.75})`,
+                }}
+              />
+            </li>
           );
         } else {
           console.log(`Could not find video ${videoId}`);
