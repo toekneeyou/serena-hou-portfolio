@@ -64,6 +64,7 @@ export const blogSlice = createSlice({
       state.status = "loading";
     });
     builders.addCase(blogInitialFetch.fulfilled, (state) => {
+      state.lastUpdatedTime = new Date().toISOString();
       state.status = "success";
     });
     builders.addCase(blogInitialFetch.rejected, (state) => {
