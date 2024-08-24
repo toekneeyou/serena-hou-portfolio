@@ -5,14 +5,14 @@ import {
   videoGetCategoryCurrIndex,
 } from "../../store/video/videoSlice";
 
-const VideoCategoryRoll = () => {
+const VideoCurrCategoryRoll = () => {
   const categoryIds = useAppSelector(videoGetCategoryIds);
   const categoryEntities = useAppSelector(videoGetCategoryEntities);
   const categoryCurrIndex = useAppSelector(videoGetCategoryCurrIndex);
 
   return (
     <ul
-      className="video-category-roll h-[inherit] grid w-24 overflow-hidden"
+      className="video-curr-category-roll h-[inherit] grid w-24 overflow-hidden"
       style={{
         gridTemplateColumns: `repeat(${categoryIds.length}, 6rem)`,
       }}
@@ -35,4 +35,4 @@ const VideoCategoryRoll = () => {
   );
 };
 
-export default VideoCategoryRoll;
+export default VideoCurrCategoryRoll;

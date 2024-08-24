@@ -1,19 +1,17 @@
-import { useCallback, useRef, WheelEventHandler } from "react";
+import { useRef, WheelEventHandler } from "react";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
-  videoGetAllVideoIds,
-  videoGetCurrIndex,
   videoGetCurrIndexStatus,
   videoNext,
   videoPrev,
 } from "../../store/video/videoSlice";
 
-import VideoCategoryRoll from "./VideoCategoryRoll";
+import VideoCurrCategoryRoll from "./VideoCurrCategoryRoll";
 import VideoCarousel from "./VideoCarousel";
 import VideoCategoryListRoll from "./VideoCategoryListRoll";
 import VideoInitializer from "./VideoInitializer";
-import Roll, { RollProps } from "../../components/roll/Roll";
-import { WrenchIcon } from "@heroicons/react/20/solid";
+import VideoNumberRoll from "./VideoNumberRoll";
+import VideoScroller from "./VideoScroller";
 
 export const VideoView = () => {
   const dispatch = useAppDispatch();
@@ -46,36 +44,24 @@ export const VideoView = () => {
       onWheel={handleWheel}
     >
       <VideoInitializer />
+
       <div className="centered-row h-[inherit] w-max z-[1]">
-        <VideoCategoryRoll />
+        <VideoCurrCategoryRoll />
         <VideoCategoryListRoll />
       </div>
+
       <div className="absolute left-0 top-0 w-full h-full overflow-hidden centered-row">
-        <VideoCarousel />
+        <div className="relative">
+          <VideoCarousel />
+          <div className="absolute h-full -right-14 top-0 centered-row">
+            <VideoScroller />
+          </div>
+        </div>
       </div>
+
       <div className="flex items-end h-full pr-14 pb-28">
-        <VideoNumber />
+        <VideoNumberRoll />
       </div>
     </section>
-  );
-};
-
-const VideoNumber = () => {
-  const videoIds = useAppSelector(videoGetAllVideoIds);
-  const currIndex = useAppSelector(videoGetCurrIndex);
-  const itemNumberRenderFunction: RollProps<string>["itemRenderFunction"] =
-    useCallback((_, i) => {
-      return <span>{(i ?? 0) + 1}</span>;
-    }, []);
-  return (
-    <div className="flex">
-      <WrenchIcon className="size-4 mr-[1ch] translate-y-[2px]" />
-      00:00:00:0
-      <Roll
-        items={videoIds}
-        currIndex={currIndex}
-        itemRenderFunction={itemNumberRenderFunction}
-      />
-    </div>
   );
 };
