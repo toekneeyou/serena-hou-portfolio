@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import {
+  aboutRoute,
   homeRoute,
   videoRoute,
   visualRoute,
@@ -34,6 +35,17 @@ const Nav = () => {
     });
   };
 
+  const prefetchBlog = () => {
+    requestIdleCallback(() => {
+      import("../../store/blog/blogSlice").then((module) => {
+        module.injectBlogSlice();
+        if (module.blogGetShouldFetch(store.getState())) {
+          dispatch(module.blogInitialFetch());
+        }
+      });
+    });
+  };
+
   return (
     <nav className="nav">
       <ul className="flex items-center gap-x-[0.625rem]">
@@ -43,6 +55,7 @@ const Nav = () => {
           const handleMouseEnter = () => {
             if (ar.name === visualRoute.name) prefetchVisuals();
             if (ar.name === videoRoute.name) prefetchVideos();
+            if (ar.name === aboutRoute.name) prefetchBlog();
           };
 
           return (

@@ -1,3 +1,9 @@
+import AboutInitializer from "./AboutInitializer";
+
 export const AboutView = () => {
-  return <div>About</div>;
+  return (
+    <section>
+      <AboutInitializer />
+    </section>
+  );
 };
