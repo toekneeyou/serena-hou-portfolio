@@ -8,6 +8,7 @@ import {
 import { classnames } from "../../lib/helpers";
 import {} from "../../lib/hooks/reduxHooks";
 import { store } from "../../store/store";
+import { MouseEventHandler } from "react";
 
 const prefetchVisuals = () => {
   requestIdleCallback(() => {
@@ -51,6 +52,14 @@ const Nav = () => {
         {homeRoute.children?.map((ar) => {
           const isActive = location.pathname + location.hash === ar.path;
 
+          const preventDefaultIfActive: MouseEventHandler<HTMLAnchorElement> = (
+            e
+          ) => {
+            if (isActive) {
+              e.preventDefault();
+            }
+          };
+
           const handleMouseEnter = () => {
             if (ar.name === visualRoute.name) prefetchVisuals();
             if (ar.name === videoRoute.name) prefetchVideos();
@@ -59,6 +68,7 @@ const Nav = () => {
 
           return (
             <Link
+              onClick={preventDefaultIfActive}
               key={ar.id}
               to={`${ar.path!}`}
               onMouseEnter={handleMouseEnter}
