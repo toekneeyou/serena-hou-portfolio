@@ -20,7 +20,7 @@ const TagsRoll = () => {
             return (
               <li
                 key={tag}
-                className={classnames("uppercase", {
+                className={classnames("capitalize", {
                   "after:content-['/'] after:mx-[1ch]": !isLast,
                 })}
               >
