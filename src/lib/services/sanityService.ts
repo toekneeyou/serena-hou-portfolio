@@ -39,6 +39,7 @@ export const fetchVisuals = async () => {
     title,
     date,
     tags,
+    isBlendText,
     "image": image.asset->url
     }
   `);

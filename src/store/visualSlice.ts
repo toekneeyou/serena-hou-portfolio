@@ -21,6 +21,7 @@ export interface Visual {
   date: string;
   tags: string[];
   image: string;
+  isBlendText: boolean;
 }
 
 interface VisualState
@@ -47,7 +48,11 @@ export const VISUAL_TIME_UNTIL_NEXT_CALL = Infinity;
 const formatVisualsResponse = (
   response: Array<Omit<Visual, "id"> & { _id: string }>
 ) => {
-  return response.map((r) => ({ ...r, id: r._id })) as Visual[];
+  return response.map((r) => ({
+    ...r,
+    id: r._id,
+    isBlendText: Boolean(r.isBlendText),
+  })) as Visual[];
 };
 export const visualInitialFetch = createAsyncThunk(
   "visual/initialFetch",

@@ -11,12 +11,13 @@ import VisualScroller from "./VisualScroller";
 
 const VisualCarousel = () => {
   const currIndex = useAppSelector(visualGetCurrIndex);
+  const visuals = useAppSelector(visualGetVisuals);
 
   return (
     <div className="w-full centered-row relative">
       <div
         className={classnames("centered-row gap-x-6 absolute left-0 z-10 ", {
-          "mix-blend-exclusion": currIndex !== 1 && currIndex !== 6,
+          "mix-blend-exclusion": visuals[currIndex]?.isBlendText,
         })}
       >
         <div className="h-1 bg-white w-44" />
