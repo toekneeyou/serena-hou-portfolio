@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
@@ -11,11 +10,12 @@ const DateRoll = () => {
   const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
 
-  const dateRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return <span>{item.date}</span>;
-    }, []);
-    
+  const dateRenderFunction: RollProps<Visual>["itemRenderFunction"] = (
+    item
+  ) => {
+    return <span>{item.date}</span>;
+  };
+
   return (
     <Roll
       items={visuals}

@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
@@ -14,10 +13,12 @@ const ProjectNumberRoll = () => {
   /**
    * Renders project numbers inside Roll
    */
-  const itemNumberRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((_, i) => {
-      return <span>{(i ?? 0) + 1}</span>;
-    }, []);
+  const itemNumberRenderFunction: RollProps<Visual>["itemRenderFunction"] = (
+    _,
+    i
+  ) => {
+    return <span>{(i ?? 0) + 1}</span>;
+  };
 
   return (
     <div className="project-number-roll flex">
