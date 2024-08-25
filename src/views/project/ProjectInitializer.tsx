@@ -1,10 +1,10 @@
+import { memo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {
   projectGetShouldFetch,
   projectInitialFetch,
 } from "../../store/projectSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
-import { useEffect } from "react";
 import { projectRoute } from "../../lib/services/routeService";
 
 const ProjectInitializer = ({
@@ -35,4 +35,4 @@ const ProjectInitializer = ({
   return null;
 };
 
-export default ProjectInitializer;
+export default memo(ProjectInitializer);
