@@ -40,7 +40,7 @@ declare module "./store" {
  * Visual Constants
  *
  */
-export const VISUAL_TIME_UNTIL_NEXT_CALL = 1200000;
+export const VISUAL_TIME_UNTIL_NEXT_CALL = Infinity;
 /**
  * Async Actions
  */

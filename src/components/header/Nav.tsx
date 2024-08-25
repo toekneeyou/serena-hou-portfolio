@@ -6,45 +6,44 @@ import {
   visualRoute,
 } from "../../lib/services/routeService";
 import { classnames } from "../../lib/helpers";
-import { useAppDispatch } from "../../lib/hooks/reduxHooks";
+import {} from "../../lib/hooks/reduxHooks";
 import { store } from "../../store/store";
 
+const prefetchVisuals = () => {
+  requestIdleCallback(() => {
+    import("../../store/visualSlice").then((module) => {
+      module.injectVisualSlice();
+      if (module.visualGetShouldFetch(store.getState())) {
+        store.dispatch(module.visualInitialFetch());
+      }
+    });
+  });
+};
+
+const prefetchVideos = () => {
+  requestIdleCallback(() => {
+    import("../../store/video/videoSlice").then((module) => {
+      module.injectVideoSlice();
+      if (module.videoGetShouldFetch(store.getState())) {
+        store.dispatch(module.videoInitialFetch());
+      }
+    });
+  });
+};
+
+const prefetchBlog = () => {
+  requestIdleCallback(() => {
+    import("../../store/blog/blogSlice").then((module) => {
+      module.injectBlogSlice();
+      if (module.blogGetShouldFetch(store.getState())) {
+        store.dispatch(module.blogInitialFetch());
+      }
+    });
+  });
+};
+
 const Nav = () => {
-  const dispatch = useAppDispatch();
   const location = useLocation();
-
-  const prefetchVisuals = () => {
-    requestIdleCallback(() => {
-      import("../../store/visualSlice").then((module) => {
-        module.injectVisualSlice();
-        if (module.visualGetShouldFetch(store.getState())) {
-          dispatch(module.visualInitialFetch());
-        }
-      });
-    });
-  };
-
-  const prefetchVideos = () => {
-    requestIdleCallback(() => {
-      import("../../store/video/videoSlice").then((module) => {
-        module.injectVideoSlice();
-        if (module.videoGetShouldFetch(store.getState())) {
-          dispatch(module.videoInitialFetch());
-        }
-      });
-    });
-  };
-
-  const prefetchBlog = () => {
-    requestIdleCallback(() => {
-      import("../../store/blog/blogSlice").then((module) => {
-        module.injectBlogSlice();
-        if (module.blogGetShouldFetch(store.getState())) {
-          dispatch(module.blogInitialFetch());
-        }
-      });
-    });
-  };
 
   return (
     <nav className="nav">

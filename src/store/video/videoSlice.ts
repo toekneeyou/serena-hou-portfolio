@@ -54,7 +54,7 @@ declare module "../store" {
  * Video Constants
  *
  */
-export const VIDEO_TIME_UNTIL_NEXT_CALL = 1200000;
+export const VIDEO_TIME_UNTIL_NEXT_CALL = Infinity;
 /**
  * Async Actions
  */

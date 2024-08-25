@@ -33,7 +33,7 @@ declare module "./store" {
 /**
  * Project Constants
  */
-export const PROJECT_TIME_UNTIL_NEXT_CALL = 1200000;
+export const PROJECT_TIME_UNTIL_NEXT_CALL = Infinity;
 /**
  * Async Actions
  */

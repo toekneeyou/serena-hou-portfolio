@@ -23,7 +23,7 @@ const AboutMe = () => {
           About Me
         </h2>
       </div>
-      ;
+
       <div
         className={classnames(
           "flex-grow centered-row ",

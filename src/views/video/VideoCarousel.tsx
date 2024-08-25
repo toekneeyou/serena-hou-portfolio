@@ -21,7 +21,7 @@ const VideoCarousel = () => {
           const isCurr = i === currIndex;
 
           return (
-            <li>
+            <li key={videoId}>
               <img
                 aria-hidden={isCurr ? "false" : "true"}
                 key={videoId}
