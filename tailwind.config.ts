@@ -11,6 +11,12 @@ const config: Config = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        "small-laptop": "1024px",
+        "macbook-air": "1280px",
+        "macbook-14": "1512px",
+        "macbook-16": "1728px",
+      },
       animation: {
         "hero-film-marquee": "marquee-left 30s linear infinite",
         "brand-one-marquee": "marquee-left 60s linear infinite",
