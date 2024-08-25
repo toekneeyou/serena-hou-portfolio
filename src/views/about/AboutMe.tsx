@@ -1,4 +1,21 @@
+import { useLayoutEffect, useRef } from "react";
+import { classnames } from "../../lib/helpers";
+
 const AboutMe = () => {
+  const aboutMeTextRef = useRef<HTMLParagraphElement>(null);
+  const serenaGifRef = useRef<HTMLImageElement>(null);
+
+  useLayoutEffect(() => {
+    const aboutMeTextEl = aboutMeTextRef.current;
+    const serenaGifEl = serenaGifRef.current;
+    if (aboutMeTextEl && serenaGifEl) {
+      serenaGifEl.style.height = `${
+        aboutMeTextEl.getBoundingClientRect().height
+      }px`;
+      serenaGifEl.style.width = "auto";
+    }
+  }, []);
+
   return (
     <div className="h-screen w-full flex">
       <div className="centered-row w-24 transition-transform">
@@ -7,8 +24,14 @@ const AboutMe = () => {
         </h2>
       </div>
       ;
-      <div className="flex-grow centered-row gap-x-28 px-36">
-        <p>
+      <div
+        className={classnames(
+          "flex-grow centered-row ",
+          "macbook-air:gap-x-20 macbook-14:gap-x-28",
+          "macbook-air:px-20 macbook-14:px-36"
+        )}
+      >
+        <p className="w-[36rem]" ref={aboutMeTextRef}>
           <span className="block text-3xl font-bold mb-10">
             Hey there, I'm Serena!
           </span>{" "}
@@ -40,7 +63,11 @@ const AboutMe = () => {
           </span>
         </p>
 
-        <img src="/src/assets/about-me-photo.jpg" className="rounded-2xl" />
+        <img
+          ref={serenaGifRef}
+          src="/src/assets/about-me.gif"
+          className="rounded-2xl w-[35%]"
+        />
       </div>
     </div>
   );
