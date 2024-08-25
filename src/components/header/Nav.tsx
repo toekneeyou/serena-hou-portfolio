@@ -64,7 +64,7 @@ const Nav = () => {
               to={`${ar.path!}`}
               onMouseEnter={handleMouseEnter}
               className={classnames(
-                "text-[1.25rem] uppercase rounded-[0.625rem] py-[0.625rem] px-4",
+                "uppercase rounded-[0.625rem] py-2 px-4",
                 { "text-white": !isActive },
                 { "bg-fog text-taupe": isActive }
               )}
