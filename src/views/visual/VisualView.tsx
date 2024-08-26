@@ -1,4 +1,4 @@
-import { useRef, WheelEventHandler } from "react";
+import { PropsWithChildren, useRef, WheelEventHandler } from "react";
 import VisualCarousel from "./VisualCarousel";
 import {
   visualGetCurrIndexStatus,
@@ -13,6 +13,23 @@ import ProjectNumberRoll from "./ProjectNumberRoll";
 import TagsRoll from "./TagsRoll";
 
 export const VisualView = () => {
+  return (
+    <VisualViewContainer>
+      <VisualInitializer />
+      <div className="between-row w-full pl-32 pr-14 pb-10">
+        <ProjectNameRoll />
+        <DateRoll />
+      </div>
+      <VisualCarousel />
+      <div className="between-row w-full pl-32 pr-14 pt-10">
+        <TagsRoll />
+        <ProjectNumberRoll />
+      </div>
+    </VisualViewContainer>
+  );
+};
+
+const VisualViewContainer = ({ children }: PropsWithChildren) => {
   const dispatch = useAppDispatch();
   const doNotInterupt = useRef(false);
   const { canGoToNextVisual, canGoToPrevVisual } = useAppSelector(
@@ -41,16 +58,7 @@ export const VisualView = () => {
 
   return (
     <section className="h-screen w-full centered-col" onWheel={handleWheel}>
-      <VisualInitializer />
-      <div className="between-row w-full pl-32 pr-14 pb-10">
-        <ProjectNameRoll />
-        <DateRoll />
-      </div>
-      <VisualCarousel />
-      <div className="between-row w-full pl-32 pr-14 pt-10">
-        <TagsRoll />
-        <ProjectNumberRoll />
-      </div>
+      {children}
     </section>
   );
 };
