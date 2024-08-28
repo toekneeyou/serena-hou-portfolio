@@ -1,4 +1,4 @@
-import { useRef, WheelEventHandler } from "react";
+import { PropsWithChildren, useRef, WheelEventHandler } from "react";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
   videoGetCurrIndexStatus,
@@ -14,6 +14,32 @@ import VideoNumberRoll from "./VideoNumberRoll";
 import VideoScroller from "./VideoScroller";
 
 export const VideoView = () => {
+  return (
+    <VideoViewContainer>
+      <VideoInitializer />
+
+      <div className="centered-row h-[inherit] w-max z-[1]">
+        <VideoCurrCategoryRoll />
+        <VideoCategoryListRoll />
+      </div>
+
+      <div className="absolute left-0 top-0 w-full h-full overflow-hidden centered-row">
+        <div className="relative">
+          <VideoCarousel />
+          <div className="absolute h-full -right-14 top-0 centered-row">
+            <VideoScroller />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-end h-full pr-14 pb-28">
+        <VideoNumberRoll />
+      </div>
+    </VideoViewContainer>
+  );
+};
+
+const VideoViewContainer = ({ children }: PropsWithChildren) => {
   const dispatch = useAppDispatch();
   const doNotInterupt = useRef(false);
   const { canGoToNextVideo, canGoToPrevVideo } = useAppSelector(
@@ -37,31 +63,12 @@ export const VideoView = () => {
       }
     }
   };
-
   return (
     <section
       className="between-row w-full h-screen relative"
       onWheel={handleWheel}
     >
-      <VideoInitializer />
-
-      <div className="centered-row h-[inherit] w-max z-[1]">
-        <VideoCurrCategoryRoll />
-        <VideoCategoryListRoll />
-      </div>
-
-      <div className="absolute left-0 top-0 w-full h-full overflow-hidden centered-row">
-        <div className="relative">
-          <VideoCarousel />
-          <div className="absolute h-full -right-14 top-0 centered-row">
-            <VideoScroller />
-          </div>
-        </div>
-      </div>
-
-      <div className="flex items-end h-full pr-14 pb-28">
-        <VideoNumberRoll />
-      </div>
+      {children}
     </section>
   );
 };
