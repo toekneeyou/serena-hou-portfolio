@@ -10,9 +10,6 @@ type ClassNameArg =
  * The argument can either be a string, an object with a class as key
  * and a truthy/falsy value, or an array/nested array containing
  * those two types.
- *
- * @param {...ClassNameArg} args - The arguments to combine.
- * @returns {string} The combined class names.
  */
 export const classnames = (
   ...args: Array<ClassNameArg>
@@ -44,8 +41,6 @@ export const classnames = (
 
 /**
  * Detects whether the user is using a mobile browser based on user agent substring matching.
- *
- * @returns {boolean} True if user is using a mobile browser
  */
 export function isMobileBrowser(): boolean {
   const userAgent = navigator.userAgent;
@@ -56,3 +51,10 @@ export function isMobileBrowser(): boolean {
 
   return userAgent ? mobileRegex.test(userAgent) : false;
 }
+/**
+ * Compares two values to see if they are equal and returns the strings 'true' or 'false'.
+ */
+export const isAriaHidden = (a: number | string, b: number | string) => {
+  const isCurr = a === b;
+  return isCurr ? "false" : "true";
+};

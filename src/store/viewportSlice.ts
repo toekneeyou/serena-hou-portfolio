@@ -9,9 +9,10 @@ import { RootState } from "./store";
  */
 export const smViewport = 640;
 export const mdViewport = 768;
-export const lgViewport = 1024;
-export const xlViewport = 1280;
-export const xxlViewport = 1536;
+export const smLaptop = 1024;
+export const mbAir = 1280;
+export const mb14 = 1512;
+export const mb16 = 1728;
 /**
  *
  *
@@ -19,7 +20,15 @@ export const xxlViewport = 1536;
  *
  *
  */
-export type ViewportSize = "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | null;
+export type ViewportSize =
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | null;
 export interface ViewportState {
   viewportSize: ViewportSize;
   isMobile: boolean;
@@ -33,11 +42,13 @@ export interface ViewportState {
  */
 export const calculateViewportSize = () => {
   const { innerWidth } = window;
-  if (innerWidth >= xxlViewport) {
-    return "xxl";
-  } else if (innerWidth >= xlViewport) {
+  if (innerWidth >= mb16) {
+    return "3xl";
+  } else if (innerWidth >= mb14) {
+    return "2xl";
+  } else if (innerWidth >= mbAir) {
     return "xl";
-  } else if (innerWidth >= lgViewport) {
+  } else if (innerWidth >= smLaptop) {
     return "lg";
   } else if (innerWidth >= mdViewport) {
     return "md";
@@ -50,7 +61,7 @@ export const calculateViewportSize = () => {
 const isMobile = (vs: ViewportSize) => vs === "xs" || vs === "sm";
 const isTablet = (vs: ViewportSize) => vs === "md";
 const isDesktop = (vs: ViewportSize) =>
-  vs === "lg" || vs === "xl" || vs === "xxl";
+  vs === "lg" || vs === "xl" || vs === "2xl" || vs === "3xl";
 /**
  *
  *

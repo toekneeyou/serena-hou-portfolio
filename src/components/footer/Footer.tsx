@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <footer className="border-t-[1px] border-t-[rgba(255,255,255,0.5)] h-52 px-[2.25rem] between-row">
       <div className="flex items-center gap-x-[2.25rem]">
-        <img src="/src/assets/serena-white.png" />
+        <img src="/src/assets/sh-logo.png" className="h-14 w-auto" />
         <p>
           Check out this portfolio on a desktop for the best experience!
           <br />

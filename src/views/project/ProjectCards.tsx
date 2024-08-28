@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import StackedCards, {
   StackedCardsProps,
 } from "../../components/stackedCards/StackedCards";
@@ -11,7 +10,7 @@ const ProjectCards = () => {
   const projects = useAppSelector(projectGetAllProjects);
 
   const projectRenderFunction: StackedCardsProps<Project>["cardRenderFunction"] =
-    useCallback((project, index, ref) => {
+    (project, index, ref) => {
       return (
         <ProjectCard
           {...project}
@@ -22,7 +21,7 @@ const ProjectCards = () => {
           })}
         />
       );
-    }, []);
+    };
 
   return (
     <StackedCards cards={projects} cardRenderFunction={projectRenderFunction} />

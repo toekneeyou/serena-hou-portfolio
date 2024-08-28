@@ -19,11 +19,11 @@ const Header = () => {
       <header
         className={classnames(
           "header",
-          "between-row z-50 fixed h-[6.25rem] w-full p-[2.25rem]"
+          "between-row z-50 fixed h-16 w-full p-[2.25rem]"
         )}
       >
         <button onClick={navigateHome}>
-          <img src="/src/assets/serena-white.png" width={140} height={30} />
+          <img src="/src/assets/sh-logo.png" className="h-6 w-auto"/>
         </button>
         <Nav />
       </header>

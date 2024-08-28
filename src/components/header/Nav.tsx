@@ -1,38 +1,50 @@
 import { Link, useLocation } from "react-router-dom";
 import {
+  aboutRoute,
   homeRoute,
   videoRoute,
   visualRoute,
 } from "../../lib/services/routeService";
 import { classnames } from "../../lib/helpers";
-import { useAppDispatch } from "../../lib/hooks/reduxHooks";
+import {} from "../../lib/hooks/reduxHooks";
 import { store } from "../../store/store";
+import { MouseEventHandler } from "react";
+
+const prefetchVisuals = () => {
+  requestIdleCallback(() => {
+    import("../../store/visualSlice").then((module) => {
+      module.injectVisualSlice();
+      if (module.visualGetShouldFetch(store.getState())) {
+        store.dispatch(module.visualInitialFetch());
+      }
+    });
+  });
+};
+
+const prefetchVideos = () => {
+  requestIdleCallback(() => {
+    import("../../store/video/videoSlice").then((module) => {
+      module.injectVideoSlice();
+      if (module.videoGetShouldFetch(store.getState())) {
+        store.dispatch(module.videoInitialFetch());
+      }
+    });
+  });
+};
+
+const prefetchBlog = () => {
+  requestIdleCallback(() => {
+    import("../../store/blog/blogSlice").then((module) => {
+      module.injectBlogSlice();
+      if (module.blogGetShouldFetch(store.getState())) {
+        store.dispatch(module.blogInitialFetch());
+      }
+    });
+  });
+};
 
 const Nav = () => {
-  const dispatch = useAppDispatch();
   const location = useLocation();
-
-  const prefetchVisuals = () => {
-    requestIdleCallback(() => {
-      import("../../store/visualSlice").then((module) => {
-        module.injectVisualSlice();
-        if (module.visualGetShouldFetch(store.getState())) {
-          dispatch(module.visualInitialFetch());
-        }
-      });
-    });
-  };
-
-  const prefetchVideos = () => {
-    requestIdleCallback(() => {
-      import("../../store/video/videoSlice").then((module) => {
-        module.injectVideoSlice();
-        if (module.videoGetShouldFetch(store.getState())) {
-          dispatch(module.videoInitialFetch());
-        }
-      });
-    });
-  };
 
   return (
     <nav className="nav">
@@ -40,18 +52,28 @@ const Nav = () => {
         {homeRoute.children?.map((ar) => {
           const isActive = location.pathname + location.hash === ar.path;
 
+          const preventDefaultIfActive: MouseEventHandler<HTMLAnchorElement> = (
+            e
+          ) => {
+            if (isActive) {
+              e.preventDefault();
+            }
+          };
+
           const handleMouseEnter = () => {
             if (ar.name === visualRoute.name) prefetchVisuals();
             if (ar.name === videoRoute.name) prefetchVideos();
+            if (ar.name === aboutRoute.name) prefetchBlog();
           };
 
           return (
             <Link
+              onClick={preventDefaultIfActive}
               key={ar.id}
               to={`${ar.path!}`}
               onMouseEnter={handleMouseEnter}
               className={classnames(
-                "text-[1.25rem] uppercase rounded-[0.625rem] py-[0.625rem] px-4",
+                "uppercase rounded-[0.625rem] py-1 px-4",
                 { "text-white": !isActive },
                 { "bg-fog text-taupe": isActive }
               )}

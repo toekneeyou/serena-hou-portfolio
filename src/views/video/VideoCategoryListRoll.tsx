@@ -1,3 +1,4 @@
+import { isAriaHidden } from "../../lib/helpers";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
   videoSetCurrIndex,
@@ -18,7 +19,7 @@ const VideoCategoryListRoll = () => {
   const allVideoIds = useAppSelector(videoGetAllVideoIds);
   const videoEntities = useAppSelector(videoGetVideoEntities);
 
-  const createListElements = (categoryId: string) => {
+  const createListElements = (categoryId: string, i: number) => {
     const categoryEntity = categoryEntities[categoryId];
     if (categoryEntity) {
       const categoryTitle = categoryEntities[categoryId].title;
@@ -34,6 +35,7 @@ const VideoCategoryListRoll = () => {
 
       return (
         <li
+          aria-hidden={isAriaHidden(i, categoryCurrIndex)}
           key={categoryTitle}
           className="transition-all flex gap-x-4 items-center group hover:ml-2"
           style={{

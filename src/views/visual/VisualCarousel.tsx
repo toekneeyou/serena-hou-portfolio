@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import Roll, { RollProps } from "../../components/roll/Roll";
 import { classnames } from "../../lib/helpers";
 import {
@@ -11,12 +10,13 @@ import VisualScroller from "./VisualScroller";
 
 const VisualCarousel = () => {
   const currIndex = useAppSelector(visualGetCurrIndex);
+  const visuals = useAppSelector(visualGetVisuals);
 
   return (
     <div className="w-full centered-row relative">
       <div
         className={classnames("centered-row gap-x-6 absolute left-0 z-10 ", {
-          "mix-blend-exclusion": currIndex !== 1 && currIndex !== 6,
+          "mix-blend-exclusion": visuals[currIndex]?.isBlendText,
         })}
       >
         <div className="h-1 bg-white w-44" />
@@ -33,14 +33,16 @@ const VisualCarousel = () => {
 const Title = () => {
   const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
-  const titleRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return (
-        <div className="max-w-[42ch]">
-          <h2 className="text-7xl">{item.title}</h2>
-        </div>
-      );
-    }, []);
+
+  const titleRenderFunction: RollProps<Visual>["itemRenderFunction"] = (
+    item
+  ) => {
+    return (
+      <div className="max-w-[42ch]">
+        <h2 className="text-7xl">{item.title}</h2>
+      </div>
+    );
+  };
   return (
     <Roll
       currIndex={currIndex}
@@ -54,14 +56,17 @@ const Title = () => {
 const Cover = () => {
   const visuals = useAppSelector(visualGetVisuals);
   const currIndex = useAppSelector(visualGetCurrIndex);
-  const coverRenderFunction: RollProps<Visual>["itemRenderFunction"] =
-    useCallback((item) => {
-      return (
-        <button className="h-[485px]">
-          <img src={item.image} className="rounded-[0.5rem]" />
-        </button>
-      );
-    }, []);
+
+  const coverRenderFunction: RollProps<Visual>["itemRenderFunction"] = (
+    item
+  ) => {
+    return (
+      <button className="h-[485px]">
+        <img src={item.image} className="rounded-[0.5rem]" />
+      </button>
+    );
+  };
+
   return (
     <Roll
       currIndex={currIndex}

@@ -3,6 +3,8 @@ import Header from "./components/header/Header";
 import ViewportObserver from "./components/viewportObserver/ViewportObserver";
 import { lazy, Suspense } from "react";
 import { homeRoute } from "./lib/services/routeService";
+import { ErrorBoundary } from "react-error-boundary";
+import Fallback from "./components/fallback/Fallback";
 
 const Footer = lazy(() => import("./components/footer/Footer"));
 
@@ -12,14 +14,14 @@ const HomeView = lazy(() => import("./views/home/HomeView"));
 
 function App() {
   return (
-    <>
+    <ErrorBoundary fallbackRender={Fallback}>
       <ViewportObserver />
       <Header />
       <Main />
       <Suspense>
         <Footer />
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 }
 /**

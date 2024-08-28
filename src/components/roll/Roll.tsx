@@ -1,6 +1,6 @@
 import { LegacyRef, useLayoutEffect, useMemo, useRef } from "react";
 import { PropsWithClassName } from "../../lib/types";
-import { classnames } from "../../lib/helpers";
+import { classnames, isAriaHidden } from "../../lib/helpers";
 
 export interface RollProps<T> extends PropsWithClassName {
   selectId?: (item: T) => string;
@@ -73,6 +73,7 @@ const Roll = <T,>({
 
         return (
           <li
+            aria-hidden={isAriaHidden(i, currIndex)}
             ref={(el) => (itemsRef.current[i] = el as HTMLLIElement)}
             key={key}
             className="transition-transform duration-300 flex items-center"

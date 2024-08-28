@@ -29,15 +29,19 @@ const StackedCards = <T extends { id: string }>({
      * Check to see if an element is interecting the viewport
      *
      */
-    const isIntersecting = (el: HTMLElement) =>
-      el.getBoundingClientRect().top <= window.innerHeight;
+    const isIntersecting = (el: HTMLElement) => {
+      if (el) return el.getBoundingClientRect().top <= window.innerHeight;
+      return false;
+    };
+
     /**
      *
      * Check to see if an element has reached the top of the viewport
      *
      */
     const hasReachedTop = (el: HTMLElement) => {
-      return el.getBoundingClientRect().top <= el.offsetTop;
+      if (el) return el.getBoundingClientRect().top <= el.offsetTop;
+      return false;
     };
     /**
      *
@@ -45,11 +49,9 @@ const StackedCards = <T extends { id: string }>({
      *
      */
     const isNextElShowing = (nextIndex: number) => {
-      if (nextIndex <= cardEls.length - 1) {
+      if (nextIndex <= cardEls.length - 1)
         return isIntersecting(cardEls[nextIndex]);
-      } else {
-        return false;
-      }
+      return false;
     };
     /**
      *
