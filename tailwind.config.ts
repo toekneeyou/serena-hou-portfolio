@@ -7,15 +7,25 @@ export const fog = "#EAEAEA";
 export const black = "#000";
 export const white = "#fff";
 
+export const sm = 640;
+export const md = 768;
+export const lg = 1024;
+export const mbAir = 1280;
+export const mb14 = 1512;
+export const mb16 = 1728;
+
 const config: Config = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       screens: {
-        "small-laptop": "1024px",
-        "macbook-air": "1280px",
-        "macbook-14": "1512px",
-        "macbook-16": "1728px",
+        xs: `0px`,
+        sm: `${sm}px`,
+        md: `${md}px`,
+        lg: `${lg}px`,
+        xl: `${mbAir}px`,
+        "2xl": `${mb14}px`,
+        "3xl": `${mb16}px`,
       },
       animation: {
         "hero-film-marquee": "marquee-left 30s linear infinite",
@@ -32,6 +42,8 @@ const config: Config = {
         taupe,
         charcoal,
         fog,
+        "ghost-writer-primary": "#387845",
+        "ghost-writer-secondary": "#D1E1D4",
       },
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],

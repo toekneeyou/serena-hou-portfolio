@@ -1,24 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { sm, md, lg, mbAir, mb14, mb16 } from "../../tailwind.config";
+
 /**
- *
- *
- * Slice Variables
- *
- *
- */
-export const smViewport = 640;
-export const mdViewport = 768;
-export const smLaptop = 1024;
-export const mbAir = 1280;
-export const mb14 = 1512;
-export const mb16 = 1728;
-/**
- *
- *
  * Slice Types
- *
- *
  */
 export type ViewportSize =
   | "xs"
@@ -36,9 +21,7 @@ export interface ViewportState {
   isDesktop: boolean;
 }
 /**
- *
  * Slice Helpers
- *
  */
 export const calculateViewportSize = () => {
   const { innerWidth } = window;
@@ -48,11 +31,11 @@ export const calculateViewportSize = () => {
     return "2xl";
   } else if (innerWidth >= mbAir) {
     return "xl";
-  } else if (innerWidth >= smLaptop) {
+  } else if (innerWidth >= lg) {
     return "lg";
-  } else if (innerWidth >= mdViewport) {
+  } else if (innerWidth >= md) {
     return "md";
-  } else if (innerWidth >= smViewport) {
+  } else if (innerWidth >= sm) {
     return "sm";
   } else {
     return "xs";
@@ -63,10 +46,7 @@ const isTablet = (vs: ViewportSize) => vs === "md";
 const isDesktop = (vs: ViewportSize) =>
   vs === "lg" || vs === "xl" || vs === "2xl" || vs === "3xl";
 /**
- *
- *
  * Slice setup
- *
  */
 const initialViewportSize = calculateViewportSize();
 const viewportInitialState: ViewportState = {
@@ -89,19 +69,11 @@ export const viewportSlice = createSlice({
   },
 });
 /**
- *
- *
  * Slice actions
- *
- *
  */
 export const { setViewportSize } = viewportSlice.actions;
 /**
- *
- *
  * Slice selectors
- *
- *
  */
 export const getViewportSize = (state: RootState) =>
   state.viewport.viewportSize;
