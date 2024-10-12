@@ -39,6 +39,9 @@
   .case-study {
     @apply text-lg;
   }
+  .case-study-body {
+    @apply bg-white rounded-[1.75rem] pt-[6.25rem] px-6 pb-9 space-y-16;
+  }
 }
 
 @layer utilities {

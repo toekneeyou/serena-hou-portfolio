@@ -44,6 +44,8 @@ const config: Config = {
         fog,
         "ghost-writer-primary": "#387845",
         "ghost-writer-secondary": "#D1E1D4",
+        "str-primary": "#61A9FF",
+        "str-secondary": "#F2F2F2",
       },
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],

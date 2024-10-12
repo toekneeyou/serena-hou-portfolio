@@ -13,7 +13,7 @@ export function CaseStudyView() {
    * Redirect to Ghost Writer case study if case study is not in pathname
    */
   useEffect(() => {
-    if (location.pathname.split(CASE_STUDY_ROUTE).length > 1) {
+    if (location.pathname.split(CASE_STUDY_ROUTE).length === 1) {
       navigate(GHOST_WRITER_ROUTE);
     }
   }, [location.pathname, navigate]);

@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
             path: STR_ROUTE,
             lazy: async () => {
               const { STRCaseStudy } = await import(
-                "../../views/caseStudy/caseStudies/STR"
+                "../../views/caseStudy/caseStudies/str/STR"
               );
               return { Component: STRCaseStudy };
             },

@@ -36,7 +36,7 @@ export const GhostWriterCaseStudy = () => {
           }}
         />
       </section>
-      <section className="bg-white rounded-[1.75rem] pt-[6.25rem] px-6 pb-9 -translate-y-[4rem] space-y-16">
+      <section className="case-study-body -translate-y-[4rem]">
         <CaseStudySection
           description=" A NEW CHAPTER FOR GHOST WRITER"
           header="Transforming Instagram Reels for Success in a YouTube Series"
