@@ -6,10 +6,10 @@ import { ContactView } from "../contact/ContactView";
 const HomeView = () => {
   return (
     <>
-      <HeroSection />
+      {/* <HeroSection />
       <BrandsSection />
       <ProjectView />
-      <ContactView />
+      <ContactView /> */}
     </>
   );
 };
