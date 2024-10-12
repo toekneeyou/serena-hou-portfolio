@@ -36,6 +36,9 @@
 }
 
 @layer components {
+  .case-study {
+    @apply text-lg;
+  }
 }
 
 @layer utilities {

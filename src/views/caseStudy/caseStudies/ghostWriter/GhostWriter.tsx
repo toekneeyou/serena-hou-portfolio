@@ -1,47 +1,62 @@
+import ghostWriterLogo from "./assets/ghost-writer-logo.png";
+import ghostWriterHeroVisual from "./assets/ghost-writer-hero-visual.png";
+import { useAppSelector } from "../../../../lib/hooks/reduxHooks";
+import { getIsMobile } from "../../../../store/viewportSlice";
+import { classnames } from "../../../../lib/helpers";
+import CaseStudyHeader from "../../CaseStudyHeader";
+import { CaseStudySection } from "../../CaseStudySection";
+
 export const GhostWriterCaseStudy = () => {
-  return <article className="text-white">hello</article>;
+  const isMobile = useAppSelector(getIsMobile);
+  const visualShadow = (() => {
+    if (isMobile)
+      return "drop-shadow(-16.1487px 15.035px 29.9px rgba(0, 0, 0, 0.2))";
+    return undefined;
+  })();
+
+  return (
+    <article className="case-study bg-ghost-writer-secondary  text-black">
+      <section className="relative z-10">
+        <CaseStudyHeader
+          logo={{ alt: "Ghost Writer Logo", src: ghostWriterLogo }}
+          header={
+            <>
+              <span className="text-xl block">Instagram Reels Redesign:</span>
+              How We Boosted Views by 525%
+            </>
+          }
+          description="Simple Layout Changes For A Big Impact On A Youtube Series"
+        />
+        <img
+          src={ghostWriterHeroVisual}
+          alt="Mobile Redesign of Ghost Writer"
+          className={classnames("mx-auto", { "w-[12rem]": isMobile })}
+          style={{
+            filter: visualShadow,
+          }}
+        />
+      </section>
+      <section className="bg-white rounded-[1.75rem] pt-[6.25rem] px-6 pb-9 -translate-y-[4rem] space-y-16">
+        <CaseStudySection
+          description=" A NEW CHAPTER FOR GHOST WRITER"
+          header="Transforming Instagram Reels for Success in a YouTube Series"
+          descriptionColor={"text-ghost-writer-primary"}
+        >
+          <p className="text-lg">
+            The social media team for the YouTube series Ghost Writer was
+            struggling with the performance of their Instagram Reels and
+            couldn’t pinpoint the visual issues. As the visual designer, I
+            stepped in, identified the design problems, and collaborated with
+            the team to create three new prototypes. These simple changes led to
+            a 525% increase in views, proving that small adjustments can make a
+            significant impact.
+          </p>
+        </CaseStudySection>
+      </section>
+    </article>
+  );
 };
 
-// import { useParams } from "react-router-dom";
-// import { useAppSelector } from "../../lib/hooks/reduxHooks";
-// import { getIsMobile } from "../../store/viewportSlice";
-// import { CaseStudyLogo } from "./CaseStudyLogo";
-// import { classnames } from "../../lib/helpers";
-// import { CaseStudySection } from "./CaseStudySection";
-// import CaseStudyList from "./CaseStudyList";
-
-// export function CaseStudyView() {
-//   const { id } = useParams();
-//   const isMobile = useAppSelector(getIsMobile);
-
-//   return (
-//     <article className={classnames(`bg-case-study-gws text-black`)}>
-//       <section className="pt-16 z-10 relative">
-//         <CaseStudyLogo
-//           mobileSrc="/src/assets/ghost-writer-mobile.png"
-//           alt="ghost writer logo"
-//           className="mx-auto mb-6"
-//         />
-
-//         <div className="text-center space-y-3 px-6 mb-6">
-//           <h1 className="text-4xl">
-//             <span className="text-xl block">Instagram Reels Redesign:</span>
-//             How We Boosted Views by 525%
-//           </h1>
-//           <p className="text-xl">
-//             Simple Layout Changes For A Big Impact On A Youtube Series
-//           </p>
-//         </div>
-//         {isMobile && (
-//           <div className="centered-row mb-6 px-6 -translate-x-[4%]">
-//             <img
-//               src="/src/assets/ghost-writer-mockup-mobile.png"
-//               alt="ghost writer logo"
-//             />
-//           </div>
-//         )}
-//       </section>
-//       <section className="bg-white rounded-[1.75rem] pt-[6.25rem] px-6 pb-9 -translate-y-[8rem] space-y-16">
 //         <CaseStudySection
 //           description=" A NEW CHAPTER FOR GHOST WRITER"
 //           header="Transforming Instagram Reels for Success in a YouTube Series"

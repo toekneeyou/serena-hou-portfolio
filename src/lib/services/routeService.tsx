@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             path: GHOST_WRITER_ROUTE,
             lazy: async () => {
               const { GhostWriterCaseStudy } = await import(
-                "../../views/caseStudy/caseStudies/GhostWriter"
+                "../../views/caseStudy/caseStudies/ghostWriter/GhostWriter"
               );
               return { Component: GhostWriterCaseStudy };
             },
