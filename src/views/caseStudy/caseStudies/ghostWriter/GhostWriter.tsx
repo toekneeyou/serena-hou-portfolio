@@ -4,6 +4,7 @@ import { classnames, getCloudUrl } from "../../../../lib/helpers";
 import CaseStudyHeader from "../../CaseStudyHeader";
 import { CaseStudySection } from "../../CaseStudySection";
 import { PropsWithChildren, useRef } from "react";
+import DownGreenArrow from "./DownGreenArrow";
 
 export const GhostWriterCaseStudy = () => {
   const ref = useRef(null);
@@ -12,6 +13,9 @@ export const GhostWriterCaseStudy = () => {
   const visualShadow = (() => {
     if (isMobile)
       return "drop-shadow(-16.1487px 15.035px 29.9px rgba(0, 0, 0, 0.2))";
+    if (isTablet)
+      return "drop-shadow(-20.1236px 18.7358px 6.93917px rgba(0, 0, 0, 0.6))";
+
     return undefined;
   })();
   const backgroundImage = isMobile
@@ -33,11 +37,17 @@ export const GhostWriterCaseStudy = () => {
             alt: "Ghost Writer Logo",
             src: getCloudUrl("gw/ghost-writer-logo.png"),
             loading: "eager",
+            width: 150,
+            height: 55,
           }}
           header={
             <>
-              <span className="text-xl block">Instagram Reels Redesign:</span>
-              How We Boosted Views by 525%
+              {isMobile && (
+                <span className="text-xl block">Instagram Reels Redesign:</span>
+              )}
+              {!isMobile && "Instagram Reels Redesign:"}
+              {!isMobile && <br />}
+              How We Boosted Views By 525%
             </>
           }
           description="Simple Layout Changes For A Big Impact On A Youtube Series"
@@ -47,11 +57,14 @@ export const GhostWriterCaseStudy = () => {
           alt="Mobile Redesign of Ghost Writer"
           className={classnames("mx-auto relative z-[1] translate-y-10", {
             "w-[12rem]": isMobile,
+            "max-w-[30vw]": isTablet,
           })}
           style={{
             filter: visualShadow,
           }}
           loading="eager"
+          width={347}
+          height={707}
         />
       </section>
       <section className="case-study-body">
@@ -78,7 +91,13 @@ export const GhostWriterCaseStudy = () => {
             <strong>750,000 views</strong>, adding up to around{" "}
             <strong>45 million views</strong> across all seasons.
           </p>
-          <img src={getCloudUrl("gw/poster.jpg")} alt="Ghost Writer Poster" />
+          <img
+            width={713}
+            height={731}
+            src={getCloudUrl("gw/poster.jpg")}
+            alt="Ghost Writer Poster"
+            loading="lazy"
+          />
         </GWCaseStudySection>
         <GWCaseStudySection
           description="What is My Role?"
@@ -123,40 +142,62 @@ export const GhostWriterCaseStudy = () => {
           description="My Approach"
           header="Finding Solutions Step by Step"
         >
-          <ol className="space-y-1">
+          <ol className="space-y-1 md:space-y-2">
             {[
               {
                 icon: "🙋🏻",
                 step: "Understand",
-                description: "1. Listening to Feedback",
+                title: "1. Listening to Feedback",
+                description:
+                  "I started by paying close attention to the social media team’s concerns. Their confusion about the reel’s design got me investigating.",
               },
               {
                 icon: "🔬",
                 step: "Analyze",
-                description: "2. Spotting the Issues",
+                title: "2. Spotting the Issues",
+                description:
+                  "We realized that the design inconsistencies between the feed and reels were confusing viewers and affecting engagement.",
               },
               {
                 icon: "🔍",
                 step: "Research",
-                description: "3. Doing Research",
+                title: "3. Doing Research",
+                description:
+                  "We gathered user feedback and checked engagement metrics to see what resonated with our audience.",
               },
               {
                 icon: "🎨",
                 step: "Redesign",
-                description: "4. Redesigning with Purpose",
+                title: "4. Redesigning with Purpose",
+                description:
+                  "I crafted three redesigns, each aimed at fixing the feedback while keeping our visual identity.",
               },
-              { icon: "🗣", step: "Test", description: "Getting User Insights" },
-            ].map((item) => {
+              {
+                icon: "🗣",
+                step: "Test",
+                title: "5. Getting User Insights",
+                description:
+                  "I also sought direct feedback from users to refine each design. Their insights were crucial in shaping the final solution.",
+              },
+            ].map((item, i) => {
               return (
                 <li
                   key={item.step}
-                  className="grid grid-cols-[6.75rem,1fr] gap-4"
+                  className="grid grid-cols-[6.75rem,1fr] gap-4 md:gap-9"
                 >
-                  <div className="rounded-full centered-col bg-ghost-writer-secondary py-4">
-                    <span className="block">{item.icon}</span>
-                    <span className="block text-sm font-bold">{item.step}</span>
+                  <div className="centered-col gap-2">
+                    <div className="rounded-full centered-col bg-ghost-writer-secondary py-4 md:py-5 self-start w-full">
+                      <span className="block">{item.icon}</span>
+                      <span className="block text-sm font-bold">
+                        {item.step}
+                      </span>
+                    </div>
+                    {i !== 4 && !isMobile && <DownGreenArrow />}
                   </div>
-                  <p className="self-center font-bold">{item.description}</p>
+                  <div className="self-center md:self-start">
+                    <p className="font-bold md:text-2xl">{item.title}</p>
+                    {!isMobile && <p>{item.description}</p>}
+                  </div>
                 </li>
               );
             })}
@@ -214,7 +255,7 @@ export const GhostWriterCaseStudy = () => {
                 <li key={item.title}>
                   <h3 className="mb-3">{item.title}</h3>
                   <p className="mb-6">{item.description}</p>
-                  <img {...item.img} loading="lazy" />
+                  <img {...item.img} loading="lazy" className="mx-auto" />
                 </li>
               );
             })}
@@ -299,13 +340,20 @@ export const GhostWriterCaseStudy = () => {
               return (
                 <li
                   key={item.title}
-                  className={classnames("rounded-[2rem] p-6 border-[0.25rem]", {
-                    "bg-ghost-writer-secondary border-transparent": i % 2 === 0,
-                    "border-ghost-writer-secondary": i % 2 !== 0,
-                  })}
+                  className={classnames(
+                    "rounded-[2rem] p-6 border-[0.25rem]",
+                    "md:flex md:items-center md:gap-6",
+                    {
+                      "bg-ghost-writer-secondary border-transparent":
+                        i % 2 === 0,
+                      "border-ghost-writer-secondary": i % 2 !== 0,
+                    }
+                  )}
                 >
-                  <h3 className="text-2xl mb-4">{item.title}</h3>
-                  <p className="mb-6">{item.description}</p>
+                  <div>
+                    <h3 className="text-2xl mb-4">{item.title}</h3>
+                    <p className="mb-6">{item.description}</p>
+                  </div>
                   <img
                     className="h-[20rem] mx-auto"
                     {...item.img}
@@ -344,25 +392,25 @@ export const GhostWriterCaseStudy = () => {
           </p>
           {[
             {
-              src: getCloudUrl("gw/before-mobile.jpg"),
+              src: getCloudUrl("gw/before.png"),
               alt: "Original Instagram reel layout",
             },
             {
-              src: getCloudUrl("gw/v1-mobile.jpg"),
+              src: getCloudUrl("gw/v1.png"),
               alt: "V1 Instagram Reel Layout",
             },
             {
-              src: getCloudUrl("gw/v2-mobile.jpg"),
+              src: getCloudUrl("gw/v2.png"),
               alt: "V2 Instagram Reel Layout",
             },
             {
-              src: getCloudUrl("gw/v3-mobile.jpg"),
+              src: getCloudUrl("gw/v3.png"),
               alt: "V3 Instagram Reel Layout",
             },
           ].map((img) => (
             <img
               key={img.src}
-              className="rounded-3xl drop-shadow-xl"
+              className="rounded-3xl drop-shadow-xl mx-auto"
               {...img}
             />
           ))}
@@ -401,7 +449,7 @@ export const GhostWriterCaseStudy = () => {
               },
             ].map((item) => (
               <li className="flex gap-3">
-                <img className="self-start" src={item.avatar} />
+                <img className="self-start" loading="lazy" src={item.avatar} />
                 <div>
                   <div className="flex items-center">
                     <span className="font-bold text-base">{item.name}</span>・
@@ -421,8 +469,9 @@ export const GhostWriterCaseStudy = () => {
           <h3>Final Design</h3>
           <p>Her's the final version of the redesign work.</p>
           <img
+            loading="lazy"
             className="mx-auto drop-shadow-xl"
-            src={getCloudUrl("gw/final-design-mobile.png")}
+            src={getCloudUrl("gw/final.png")}
             alt="final Design"
           />
         </GWCaseStudySection>
@@ -447,7 +496,7 @@ export const GhostWriterCaseStudy = () => {
             Working on this Instagram Reels project taught me a lot. Here are
             the key takeaways:
           </p>
-          <ul className="list-disc ml-4 space-y-6">
+          <ul className="list-disc ml-4 md:ml-8 space-y-6">
             {[
               {
                 title: "User-Centric Design",
@@ -475,17 +524,19 @@ export const GhostWriterCaseStudy = () => {
                 <span>{item.description}</span>
               </li>
             ))}
-            <p>
-              This project not only improved our Instagram Reels but also
-              enhanced my skills in social media content optimization and
-              user-centered design.
-            </p>
           </ul>
+          <p>
+            This project not only improved our Instagram Reels but also enhanced
+            my skills in social media content optimization and user-centered
+            design.
+          </p>
         </GWCaseStudySection>
-        <div className="rounded-[2rem] text-sm leading-[120%] italic bg-white drop-shadow-xl p-9">
-          Big shoutout to the incredible STR Network team! Special thanks to our
-          social media heroes and all our colleagues who made this project
-          happen!
+        <div className="rounded-[2rem] bg-white drop-shadow-xl p-9 md:p-[4rem]">
+          <p className="text-sm md:text-xl md:text-center leading-[120%] italic">
+            Big shoutout to the incredible STR Network team! Special thanks to
+            our social media heroes and all our colleagues who made this project
+            happen!
+          </p>
         </div>
       </section>
     </article>
