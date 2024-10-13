@@ -1,3 +1,4 @@
+import CaseStudyBody from "../../CaseStudyBody";
 import CaseStudyHeader from "../../CaseStudyHeader";
 import { CaseStudySection } from "../../CaseStudySection";
 import strLogo from "./assets/str-logo.png";
@@ -12,7 +13,7 @@ export const STRCaseStudy = () => {
           description="Streaming Platform For Comedy Shows"
         />
       </section>
-      <section className="case-study-body">
+      <CaseStudyBody nav={} content={}>
         <CaseStudySection
           header="Enhancing the Streaming Experience for Comedy Fans"
           description="It all started with a conversation"
@@ -28,7 +29,7 @@ export const STRCaseStudy = () => {
             it better for comedy fans.
           </p>
         </CaseStudySection>
-      </section>
+      </CaseStudyBody>
     </article>
   );
 };
