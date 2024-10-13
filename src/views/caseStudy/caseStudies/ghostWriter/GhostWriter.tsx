@@ -1,24 +1,38 @@
-import ghostWriterLogo from "./assets/ghost-writer-logo.png";
-import ghostWriterHeroVisual from "./assets/ghost-writer-hero-visual.png";
 import { useAppSelector } from "../../../../lib/hooks/reduxHooks";
-import { getIsMobile } from "../../../../store/viewportSlice";
-import { classnames } from "../../../../lib/helpers";
+import { getIsMobile, getIsTablet } from "../../../../store/viewportSlice";
+import { classnames, getCloudUrl } from "../../../../lib/helpers";
 import CaseStudyHeader from "../../CaseStudyHeader";
 import { CaseStudySection } from "../../CaseStudySection";
+import { useRef } from "react";
 
 export const GhostWriterCaseStudy = () => {
+  const ref = useRef(null);
   const isMobile = useAppSelector(getIsMobile);
+  const isTablet = useAppSelector(getIsTablet);
   const visualShadow = (() => {
     if (isMobile)
       return "drop-shadow(-16.1487px 15.035px 29.9px rgba(0, 0, 0, 0.2))";
     return undefined;
   })();
+  const backgroundImage = isMobile
+    ? getCloudUrl("gw/bg-mobile.jpg")
+    : isTablet
+    ? getCloudUrl("gw/bg-tablet.jpg")
+    : getCloudUrl("gw/bg-desktop.jpg");
 
   return (
-    <article className="case-study bg-ghost-writer-secondary  text-black">
-      <section className="relative z-10">
+    <article ref={ref} className="case-study bg-white text-black">
+      <section
+        className={classnames("relative")}
+        style={{
+          background: `url(${backgroundImage}) center / cover no-repeat`,
+        }}
+      >
         <CaseStudyHeader
-          logo={{ alt: "Ghost Writer Logo", src: ghostWriterLogo }}
+          logo={{
+            alt: "Ghost Writer Logo",
+            src: getCloudUrl("gw/ghost-writer-logo.png"),
+          }}
           header={
             <>
               <span className="text-xl block">Instagram Reels Redesign:</span>
@@ -28,7 +42,7 @@ export const GhostWriterCaseStudy = () => {
           description="Simple Layout Changes For A Big Impact On A Youtube Series"
         />
         <img
-          src={ghostWriterHeroVisual}
+          src={getCloudUrl("gw/iphone-mockup.png")}
           alt="Mobile Redesign of Ghost Writer"
           className={classnames("mx-auto", { "w-[12rem]": isMobile })}
           style={{
@@ -40,222 +54,167 @@ export const GhostWriterCaseStudy = () => {
         <CaseStudySection
           description=" A NEW CHAPTER FOR GHOST WRITER"
           header="Transforming Instagram Reels for Success in a YouTube Series"
-          descriptionColor={"text-ghost-writer-primary"}
+          descriptionColor="text-ghost-writer-primary"
         >
-          <p className="text-lg">
-            The social media team for the YouTube series Ghost Writer was
-            struggling with the performance of their Instagram Reels and
-            couldn’t pinpoint the visual issues. As the visual designer, I
+          <p>
+            The social media team for <em>Ghost Writer</em> was struggling with
+            the performance of their Instagram Reels. As the visual designer, I
             stepped in, identified the design problems, and collaborated with
             the team to create three new prototypes. These simple changes led to
-            a 525% increase in views, proving that small adjustments can make a
-            significant impact.
+            a <strong>525% increase in views 🚀</strong>, proving that small
+            adjustments can make a significant impact.
           </p>
+        </CaseStudySection>
+        <CaseStudySection
+          description="What is Ghost Writer?"
+          header="A Fun Comedy Series on YouTube"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <p>
+            Ghost Writer is a comedy series on YouTube, with six seasons to
+            date. Each episode averages about 750,000 views, adding up to around
+            45 million views across all seasons and drawing fans to live
+            recordings.
+          </p>
+          <img src={getCloudUrl("gw/poster.jpg")} alt="Ghost Writer Poster" />
+        </CaseStudySection>
+        <CaseStudySection
+          description="What is My Role?"
+          header="Leading Visuals for the Ghost Writer Project"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <p>
+            As the post-production lead for Ghost Writer, I’m in charge of video
+            quality and all things design for the series to help the team
+            improve their visuals to engage our audience better.
+          </p>
+        </CaseStudySection>
+        <CaseStudySection
+          description="The Problem"
+          header="Reels That Just Didn’t Capture Viewer Attention"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <p>
+            The social media team for Ghost Writer was unhappy with their
+            Instagram Reels. Views were low, and they couldn't figure out why
+            people weren’t engaged. While the team knew the design needed work,
+            they couldn’t pinpoint the issues.
+          </p>
+        </CaseStudySection>
+        <CaseStudySection
+          description="The Goal"
+          header="Boosting Viewer Retention with Engaging Reels"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <p>
+            Our main focus is viewer retention. We want to create visually
+            appealing reels that keep people watching and coming back for more.
+          </p>
+        </CaseStudySection>
+        <div>
+          <p className="uppercase text-sm font-bold mb-2 text-ghost-writer-primary">
+            Main Question
+          </p>
+          <em className="text-2xl font-bold ">
+            How can we create visually engaging reels that capture and hold the
+            audience's attention on Instagram?
+          </em>
+        </div>
+        <CaseStudySection
+          description="My Approach"
+          header="Finding Solutions Step by Step"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <ol className="space-y-1">
+            {[
+              {
+                icon: "🙋🏻",
+                step: "Understand",
+                description: "1. Listening to Feedback",
+              },
+              {
+                icon: "🔬",
+                step: "Analyze",
+                description: "2. Spotting the Issues",
+              },
+              {
+                icon: "🔍",
+                step: "Research",
+                description: "3. Doing Research",
+              },
+              {
+                icon: "🎨",
+                step: "Redesign",
+                description: "4. Redesigning with Purpose",
+              },
+              { icon: "🗣", step: "Test", description: "Getting User Insights" },
+            ].map((item) => {
+              return (
+                <li className="grid grid-cols-[6.75rem,1fr] gap-4">
+                  <div className="rounded-full centered-col bg-ghost-writer-secondary py-4">
+                    <span className="block">{item.icon}</span>
+                    <span className="block text-sm font-bold">{item.step}</span>
+                  </div>
+                  <p className="self-center font-bold">{item.description}</p>
+                </li>
+              );
+            })}
+          </ol>
+        </CaseStudySection>
+        <CaseStudySection
+          description="Listening to Feedback"
+          header="Understanding the Team's Needs"
+          descriptionColor="text-ghost-writer-primary"
+        >
+          <p>
+            Before diving into the design work, I asked the social media team
+            four key questions. This helped me grasp their concerns and set
+            clear goals for the new design.
+          </p>
+          <ol className="space-y-6">
+            {[
+              {
+                title: "1. Design Flexiblity",
+                description:
+                  "I ensured my design stayed within brand guidelines, as directed by the social media manager: keep the current theme, ad section, and limit changes to reels.",
+                imgSrc: getCloudUrl("gw/design-flexibility.png"),
+                imgAlt: "Text conversation about design flexiblity.",
+              },
+              {
+                title: "2. Primary Adjustments",
+                description:
+                  "My priority was to enhance the design based on team needs. The social media manager requested a more polished, cohesive look.",
+                imgSrc: getCloudUrl("gw/primary-adjustments.png"),
+                imgAlt:
+                  "Text conversation about making everything look nicer and better.",
+              },
+              {
+                title: "3. Sponsored Content Placement",
+                description:
+                  "The ad size had to remain unchanged, but I had flexibility to adjust its position, as long as it stayed at the top.",
+                imgSrc: getCloudUrl("gw/sponsored-content-placement.png"),
+                imgAlt: "Text conversation about sponsored content placement.",
+              },
+              {
+                title: "4. Necessity of the Logo",
+                description:
+                  "I assessed if the logo was helping or hurting engagement to decide if a cleaner design would be better.",
+                imgSrc: getCloudUrl("gw/necessity-of-the-logo.png"),
+                imgAlt:
+                  "Text conversation about the necessity of the logo on our reels.",
+              },
+            ].map((item) => {
+              return (
+                <li key={item.title}>
+                  <h3 className="mb-3">{item.title}</h3>
+                  <p className="mb-6">{item.description}</p>
+                  <img src={item.imgSrc} alt={item.imgAlt} />
+                </li>
+              );
+            })}
+          </ol>
         </CaseStudySection>
       </section>
     </article>
   );
 };
-
-//         <CaseStudySection
-//           description=" A NEW CHAPTER FOR GHOST WRITER"
-//           header="Transforming Instagram Reels for Success in a YouTube Series"
-//           descriptionColor={"text-case-study-gwp"}
-//         >
-//           <p className="text-lg">
-//             The social media team for the YouTube series Ghost Writer was
-//             struggling with the performance of their Instagram Reels and
-//             couldn’t pinpoint the visual issues. As the visual designer, I
-//             stepped in, identified the design problems, and collaborated with
-//             the team to create three new prototypes. These simple changes led to
-//             a 525% increase in views, proving that small adjustments can make a
-//             significant impact.
-//           </p>
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="What is Ghost Writer?"
-//           header="A Fun Mandarin Comedy Series on YouTube"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p>
-//             Ghost Writer is a unique Mandarin comedy series on YouTube that has
-//             been entertaining audiences since 2020, with six seasons to date.
-//             Celebrities perform live, sharing jokes made just for them. Each
-//             episode averages about 750,000 views, adding up to around 45 million
-//             views across all seasons and drawing fans to live recordings.
-//           </p>
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="What's My Role?"
-//           header="Leading Visuals for the Ghost Writer Project"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p>
-//             As the post-production lead for Ghost Writer, I’m in charge of video
-//             quality and all things design for the series. I created the theme
-//             visuals to give the show a unique look. However, when the social
-//             media team tried to use these elements for their reels, the results
-//             weren’t quite hitting the mark. So, I decided to dive in, figure out
-//             what was going wrong, and help the team improve their visuals to
-//             engage our audience better.
-//           </p>
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="The Problem"
-//           header="Reels That Just Didn’t Capture Viewer Attention"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p>
-//             The social media team for Ghost Writer was unhappy with their
-//             Instagram Reels. Views were low, and they couldn't figure out why
-//             people weren’t engaged. The goal was clear: we needed reels that
-//             looked great and grabbed attention. Fixing this was vital for
-//             boosting engagement and growing the show’s online audience. While
-//             the team knew the design needed work, they couldn’t pinpoint the
-//             issues. The challenge was to redesign the reel frame to enhance its
-//             visual appeal and better connect with viewers.
-//           </p>
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="The Goal"
-//           header="Boosting Viewer Retention with Engaging Reels"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p>
-//             Our main focus is viewer retention. We want to create visually
-//             appealing reels that keep people watching and coming back for more.
-//             The goal is to improve the visual quality of our reels to attract
-//             attention on Instagram, increase views, and build a loyal audience
-//             for Ghost Writer.
-//           </p>
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="Main Question"
-//           header="How can we create visually engaging reels that capture and hold the audience's attention on Instagram?"
-//           descriptionColor="text-case-study-gwp"
-//         />
-//         <CaseStudySection
-//           description="My Approach"
-//           header="Finding Solutions Step by Step"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <CaseStudyList
-//             as="ol"
-//             list={[
-//               {
-//                 header: "Listening to Feedback",
-//                 body: "I started by paying close attention to the social media team’s concerns. Their confusion about the reel’s design got me investigating.",
-//               },
-//               {
-//                 header: "Spotting the Issues",
-//                 body: "We realized that the design inconsistencies between the feed and reels were confusing viewers and affecting engagement.",
-//               },
-//               {
-//                 header: "Doing Research",
-//                 body: "We gathered user feedback and checked engagement metrics to see what resonated with our audience.",
-//               },
-//               {
-//                 header: "Redesigning with Purpose",
-//                 body: "I crafted three redesigns, each aimed at fixing the feedback while keeping our visual identity.",
-//               },
-//               {
-//                 header: "Getting User Insights",
-//                 body: "I also sought direct feedback from users to refine each design. Their insights were crucial in shaping the final solution.",
-//               },
-//             ]}
-//           />
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="Listening to Feedback"
-//           header="Understanding the Team's Needs"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p className="mb-6">
-//             Before diving into the design work, I asked the social media team
-//             four key questions. This helped me grasp their concerns and set
-//             clear goals for the new design.
-//           </p>
-//           <CaseStudyList
-//             as="ol"
-//             list={[
-//               {
-//                 header: "Design Flexibility",
-//                 body: (
-//                   <>
-//                     <p className="text-lg">
-//                       I needed to know how much creative freedom I had without
-//                       straying from brand guidelines.
-//                     </p>
-//                   </>
-//                 ),
-//               },
-//               {
-//                 header: "Primary Adjustments",
-//                 body: "We realized that the design inconsistencies between the feed and reels were confusing viewers and affecting engagement.",
-//               },
-//               {
-//                 header: "Doing Research",
-//                 body: "My focus was on identifying the most important changes to align with the team’s needs.",
-//               },
-//               {
-//                 header: "Sponsored Content Placement",
-//                 body: "I checked for any restrictions on placing sponsored content to avoid conflicts with agreements.",
-//               },
-//               {
-//                 header: "Necessity of the Logo",
-//                 body: "I assessed if the logo was helping or hurting engagement to decide if a cleaner design would be better.",
-//               },
-//             ]}
-//           />
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="Spotting The Issues"
-//           header="Logo Blockage and Frame Position Problems"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p className="mb-6">
-//             As I looked over the initial reel designs, I spotted a few problems
-//             that were affecting engagement and overall impact. Here’s what stood
-//             out:
-//           </p>
-//           <CaseStudyList
-//             list={[
-//               {
-//                 header: "Logo Blockage and Frame Position Issues",
-//                 body: <></>,
-//               },
-//               { header: "Frame Size Issues", body: <></> },
-//             ]}
-//           />
-//         </CaseStudySection>
-//         <CaseStudySection
-//           description="Doing Research"
-//           header="Analyzing Competitors"
-//           descriptionColor="text-case-study-gwp"
-//         >
-//           <p className="mb-6">
-//             I teamed up with the social media crew to dive into how Instagram's
-//             algorithm boosts visibility and engagement. We checked out reels
-//             from similar accounts and noticed they used full-screen visuals with
-//             minimal branding to keep viewers hooked. Our research showed that
-//             over-branding, like big logos, could actually hurt engagement, so we
-//             decided to go with a more subtle approach. From our competitors, we
-//             learned that using the full screen and keeping branding simple makes
-//             a big difference.
-//           </p>
-//           <CaseStudyList
-//             as="ol"
-//             variant="card"
-//             list={[
-//               {
-//                 header: "Logo Blockage and Frame Position Issues",
-//                 body: <></>,
-//               },
-//               { header: "Frame Size Issues", body: <></> },
-//             ]}
-//           />
-//         </CaseStudySection>
-//       </section>
-//     </article>
-//   );
-// }

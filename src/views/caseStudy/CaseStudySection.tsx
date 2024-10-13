@@ -14,17 +14,33 @@ export const CaseStudySection = ({
   descriptionColor,
 }: CaseStudySectionProps) => {
   return (
-    <div>
+    <div className="text-lg">
       <p
         className={classnames(
-          `uppercase text-sm font-bold mb-2`,
+          `uppercase font-bold mb-2`,
+          "text-sm md:text-xl",
           descriptionColor
         )}
       >
         {description}
       </p>
-      <h2 className="leading-10 mb-6">{header}</h2>
-      {children}
+      <h2
+        className={classnames(
+          "mb-4 md:mb-6",
+          "text-[7vw] md:text-[2.5rem]",
+          "leading-[110%] md:leading-[120%]"
+        )}
+      >
+        {header}
+      </h2>
+      <div
+        className={classnames(
+          "space-y-6 leading-[150%]",
+          "text-[4vw] md:text-lg"
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };
