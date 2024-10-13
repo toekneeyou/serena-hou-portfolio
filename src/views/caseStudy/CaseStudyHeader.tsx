@@ -14,7 +14,7 @@ export default function CaseStudyHeader({
   description,
 }: CaseStudyHeaderProps) {
   return (
-    <div className={classnames("pt-16 px-6 mb-10")}>
+    <div className={classnames("pt-16 px-6")}>
       <img {...logo} className="mx-auto mb-6" />
       <h1 className="text-4xl text-center mb-3">{header}</h1>
       <p className="text-xl text-center">{description}</p>
