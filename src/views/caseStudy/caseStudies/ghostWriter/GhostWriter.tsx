@@ -9,11 +9,11 @@ import CaseStudyHeader from "../../CaseStudyHeader";
 import { lazy, Suspense, useRef } from "react";
 import CaseStudyBody from "../../CaseStudyBody";
 import GhostWriterContent from "../GhostWriterContent";
+import CaseStudyHero from "../../CaseStudyHero";
 
 const GhostWriterSideNav = lazy(() => import("./GhostWriterSideNav"));
 
 export const GhostWriterCaseStudy = () => {
-  const ref = useRef(null);
   const isMobile = useAppSelector(getIsMobile);
   const isTablet = useAppSelector(getIsTablet);
   const isDesktop = useAppSelector(getIsDesktop);
@@ -30,14 +30,8 @@ export const GhostWriterCaseStudy = () => {
     : getCloudUrl("gw/bg-desktop.jpg");
 
   return (
-    <article ref={ref} className="case-study bg-white text-black">
-      <section
-        className={classnames(
-          "relative",
-          "pt-[4rem] md:pt-[6rem] lg:pt-[25vh]",
-          "lg:px-[2.5rem] xl:px-[5rem] 2xl:px-[7.5rem]",
-          "lg:flex lg:h-screen lg:overflow-hidden"
-        )}
+    <article className="case-study bg-white text-black">
+      <CaseStudyHero
         style={{
           background: `url(${backgroundImage}) center / cover no-repeat`,
         }}
@@ -78,26 +72,17 @@ export const GhostWriterCaseStudy = () => {
           width={347}
           height={707}
         />
-      </section>
-      <div className={classnames("lg:grid lg:grid-cols-1")}>
-        {isDesktop && (
-          <Suspense>
-            <div
-              className={classnames(
-                "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 z-10",
-                "lg:pl-[2.5rem] xl:pl-[5rem] 2xl:pl-[7.5rem]"
-              )}
-            >
+      </CaseStudyHero>
+      <CaseStudyBody
+        nav={
+          isDesktop ? (
+            <Suspense>
               <GhostWriterSideNav />
-            </div>
-          </Suspense>
-        )}
-        <div className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2">
-          <CaseStudyBody>
-            <GhostWriterContent />
-          </CaseStudyBody>
-        </div>
-      </div>
+            </Suspense>
+          ) : undefined
+        }
+        content={<GhostWriterContent />}
+      />
     </article>
   );
 };
