@@ -4,6 +4,21 @@ import { classnames, getCloudUrl } from "../../../lib/helpers";
 import DownGreenArrow from "./ghostWriter/DownGreenArrow";
 import { useAppSelector } from "../../../lib/hooks/reduxHooks";
 import { getIsMobile } from "../../../store/viewportSlice";
+import {
+  GW_APPROACH_ID,
+  GW_FEEDBACK_ID,
+  GW_GOAL_ID,
+  GW_INTRODUCTION_ID,
+  GW_ISSUES_ID,
+  GW_PROBLEM_ID,
+  GW_REDESIGN_ID,
+  GW_RESEARCH_ID,
+  GW_RESULTS_ID,
+  GW_TAKEAWAY_ID,
+  GW_USER_INSIGHTS_ID,
+} from "./ghostWriter/ghostWriterConstants";
+
+const VERTICAL_SPACING = "space-y-[3.75rem] md:space-y-[5rem]";
 
 export default function GhostWriterContent() {
   const isMobile = useAppSelector(getIsMobile);
@@ -12,54 +27,57 @@ export default function GhostWriterContent() {
     <div
       className={classnames(
         "mx-auto",
-        "space-y-[3.75rem] md:space-y-[5rem]",
+        VERTICAL_SPACING,
         "lg:max-w-[40rem] 2xl:max-w-[45rem]"
       )}
     >
-      <GWCaseStudySection
-        description=" A NEW CHAPTER FOR GHOST WRITER"
-        header="Transforming Instagram Reels for Success in a YouTube Series"
-      >
-        <p>
-          The social media team for <em>Ghost Writer</em> was struggling with
-          the performance of their Instagram Reels. As the visual designer, I
-          stepped in, identified the design problems, and collaborated with the
-          team to create three new prototypes. These simple changes led to a{" "}
-          <strong>525% increase in views 🚀</strong>, proving that small
-          adjustments can make a significant impact.
-        </p>
-      </GWCaseStudySection>
-      <GWCaseStudySection
-        description="What is Ghost Writer?"
-        header="A Fun Comedy Series on YouTube"
-      >
-        <p>
-          <em>Ghost Writer</em> is a comedy series on YouTube, with six seasons
-          to date. Each episode averages about <strong>750,000 views</strong>,
-          adding up to around <strong>45 million views</strong> across all
-          seasons.
-        </p>
-        <img
-          width={713}
-          height={731}
-          src={getCloudUrl("gw/poster.jpg")}
-          alt="Ghost Writer Poster"
-          loading="lazy"
-        />
-      </GWCaseStudySection>
-      <GWCaseStudySection
-        description="What is My Role?"
-        header="Leading Visuals for the Ghost Writer Project"
-      >
-        <p>
-          As the post-production lead for <em>Ghost Writer</em>, I&rsquo;m in
-          charge of video quality and all things design for the series to help
-          the team improve their visuals to engage our audience better.
-        </p>
-      </GWCaseStudySection>
+      <div className={VERTICAL_SPACING} id={GW_INTRODUCTION_ID}>
+        <GWCaseStudySection
+          description=" A NEW CHAPTER FOR GHOST WRITER"
+          header="Transforming Instagram Reels for Success in a YouTube Series"
+        >
+          <p>
+            The social media team for <em>Ghost Writer</em> was struggling with
+            the performance of their Instagram Reels. As the visual designer, I
+            stepped in, identified the design problems, and collaborated with
+            the team to create three new prototypes. These simple changes led to
+            a <strong>525% increase in views 🚀</strong>, proving that small
+            adjustments can make a significant impact.
+          </p>
+        </GWCaseStudySection>
+        <GWCaseStudySection
+          description="What is Ghost Writer?"
+          header="A Fun Comedy Series on YouTube"
+        >
+          <p>
+            <em>Ghost Writer</em> is a comedy series on YouTube, with six
+            seasons to date. Each episode averages about{" "}
+            <strong>750,000 views</strong>, adding up to around{" "}
+            <strong>45 million views</strong> across all seasons.
+          </p>
+          <img
+            width={713}
+            height={731}
+            src={getCloudUrl("gw/poster.jpg")}
+            alt="Ghost Writer Poster"
+            loading="lazy"
+          />
+        </GWCaseStudySection>
+        <GWCaseStudySection
+          description="What is My Role?"
+          header="Leading Visuals for the Ghost Writer Project"
+        >
+          <p>
+            As the post-production lead for <em>Ghost Writer</em>, I&rsquo;m in
+            charge of video quality and all things design for the series to help
+            the team improve their visuals to engage our audience better.
+          </p>
+        </GWCaseStudySection>
+      </div>
       <GWCaseStudySection
         description="The Problem"
         header="Reels That Just Didn’t Capture Viewer Attention"
+        id={GW_PROBLEM_ID}
       >
         <p>
           The social media team was unhappy with their Instagram Reels. Views
@@ -71,6 +89,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="The Goal"
         header="Boosting Viewer Retention with Engaging Reels"
+        id={GW_GOAL_ID}
       >
         <p>
           Our main focus is viewer retention. We want to create visually
@@ -89,6 +108,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="My Approach"
         header="Finding Solutions Step by Step"
+        id={GW_APPROACH_ID}
       >
         <ol className="space-y-1 md:space-y-2">
           {[
@@ -152,6 +172,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="Listening to Feedback"
         header="Understanding the Team's Needs"
+        id={GW_FEEDBACK_ID}
       >
         <p>
           Before diving into the design work, I asked the social media team four
@@ -210,6 +231,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="Spotting the Issues"
         header="Logo Blockage and Frame Position Problems"
+        id={GW_ISSUES_ID}
       >
         <p>
           As I looked over the initial reel designs, I spotted a few problems
@@ -227,104 +249,108 @@ export default function GhostWriterContent() {
           </li>
         </ul>
       </GWCaseStudySection>
-      <GWCaseStudySection
-        description="Doing Research"
-        header="Analyzing Competitors"
-      >
-        <p>
-          I teamed up with the social media crew to dive into how Instagram's
-          algorithm boosts visibility and engagement. We checked out reels from
-          similar accounts and noticed they used full-screen visuals with
-          minimal branding to keep viewers hooked. Our research showed that
-          over-branding, like big logos, could actually hurt engagement, so we
-          decided to go with a more subtle approach. From our competitors, we
-          learned that using the full screen and keeping branding simple makes a
-          big difference.
-        </p>
-        <ol className="space-y-3">
-          {[
-            {
-              title: "1. Laugh Factory",
-              description:
-                "They use full-screen visuals focused on the comedian, starting with catchy moments to grab attention and keeping branding minimal.",
-              img: {
-                src: getCloudUrl("gw/laugh-factory-screenshot.png"),
-                alt: "Screenshot of Laugh Factory reel",
+      <div className={VERTICAL_SPACING} id={GW_RESEARCH_ID}>
+        <GWCaseStudySection
+          description="Doing Research"
+          header="Analyzing Competitors"
+        >
+          <p>
+            I teamed up with the social media crew to dive into how Instagram's
+            algorithm boosts visibility and engagement. We checked out reels
+            from similar accounts and noticed they used full-screen visuals with
+            minimal branding to keep viewers hooked. Our research showed that
+            over-branding, like big logos, could actually hurt engagement, so we
+            decided to go with a more subtle approach. From our competitors, we
+            learned that using the full screen and keeping branding simple makes
+            a big difference.
+          </p>
+          <ol className="space-y-3">
+            {[
+              {
+                title: "1. Laugh Factory",
+                description:
+                  "They use full-screen visuals focused on the comedian, starting with catchy moments to grab attention and keeping branding minimal.",
+                img: {
+                  src: getCloudUrl("gw/laugh-factory-screenshot.png"),
+                  alt: "Screenshot of Laugh Factory reel",
+                },
               },
-            },
-            {
-              title: "2. Comedy Central Standup",
-              description:
-                "They prioritize full-screen videos with clear visuals and use light text overlays to highlight punchlines without cluttering the screen.",
-              img: {
-                src: getCloudUrl("gw/comedy-central-screenshot.png"),
-                alt: "Screenshot of Comedy Central reel",
+              {
+                title: "2. Comedy Central Standup",
+                description:
+                  "They prioritize full-screen videos with clear visuals and use light text overlays to highlight punchlines without cluttering the screen.",
+                img: {
+                  src: getCloudUrl("gw/comedy-central-screenshot.png"),
+                  alt: "Screenshot of Comedy Central reel",
+                },
               },
-            },
-            {
-              title: "3. 404 by L.A. Times",
-              description:
-                "They use dynamic transitions and clean visuals with minimal distractions, allowing the comedy to take center stage without heavy branding.",
-              img: {
-                src: getCloudUrl("gw/404-screenshot.png"),
-                alt: "Screenshot of 404 reel.",
+              {
+                title: "3. 404 by L.A. Times",
+                description:
+                  "They use dynamic transitions and clean visuals with minimal distractions, allowing the comedy to take center stage without heavy branding.",
+                img: {
+                  src: getCloudUrl("gw/404-screenshot.png"),
+                  alt: "Screenshot of 404 reel.",
+                },
               },
-            },
-            {
-              title: "4. Buzzfeed",
-              description:
-                "Their reels are vibrant with quick cuts and smooth visuals, keeping branding subtle and avoiding large logos or distracting elements.",
-              img: {
-                src: getCloudUrl("gw/buzzfeed-screenshot.png"),
-                description: "Screenshot of Buzzfeed reel",
+              {
+                title: "4. Buzzfeed",
+                description:
+                  "Their reels are vibrant with quick cuts and smooth visuals, keeping branding subtle and avoiding large logos or distracting elements.",
+                img: {
+                  src: getCloudUrl("gw/buzzfeed-screenshot.png"),
+                  description: "Screenshot of Buzzfeed reel",
+                },
               },
-            },
-          ].map((item, i) => {
-            return (
-              <li
-                key={item.title}
-                className={classnames(
-                  "rounded-[2rem] p-6 border-[0.25rem]",
-                  "md:flex md:items-center md:gap-6",
-                  {
-                    "bg-ghost-writer-secondary border-transparent": i % 2 === 0,
-                    "border-ghost-writer-secondary": i % 2 !== 0,
-                  }
-                )}
-              >
-                <div>
-                  <h3 className="text-2xl mb-4">{item.title}</h3>
-                  <p className="mb-6">{item.description}</p>
-                </div>
-                <img
-                  className="h-[20rem] mx-auto"
-                  {...item.img}
-                  loading="lazy"
-                />
-              </li>
-            );
-          })}
-        </ol>
-      </GWCaseStudySection>
-      <GWCaseStudySection
-        description="Important Consideration"
-        header="Cropping and Safe Zones Matter"
-      >
-        <p>
-          To make sure key visuals don’t get cut off or covered by things like
-          captions and buttons, we kept everything important centered in a 4:5
-          safe zone. It’s crucial to avoid placing key elements too close to the
-          edges.
-        </p>
-        <img
-          className="mx-auto"
-          src={getCloudUrl("gw/safe-zone.png")}
-          alt="Safe zones in an instagram reel"
-        />
-      </GWCaseStudySection>
+            ].map((item, i) => {
+              return (
+                <li
+                  key={item.title}
+                  className={classnames(
+                    "rounded-[2rem] p-6 border-[0.25rem]",
+                    "md:flex md:items-center md:gap-6",
+                    {
+                      "bg-ghost-writer-secondary border-transparent":
+                        i % 2 === 0,
+                      "border-ghost-writer-secondary": i % 2 !== 0,
+                    }
+                  )}
+                >
+                  <div>
+                    <h3 className="text-2xl mb-4">{item.title}</h3>
+                    <p className="mb-6">{item.description}</p>
+                  </div>
+                  <img
+                    className="h-[20rem] mx-auto"
+                    {...item.img}
+                    loading="lazy"
+                  />
+                </li>
+              );
+            })}
+          </ol>
+        </GWCaseStudySection>
+        <GWCaseStudySection
+          description="Important Consideration"
+          header="Cropping and Safe Zones Matter"
+        >
+          <p>
+            To make sure key visuals don’t get cut off or covered by things like
+            captions and buttons, we kept everything important centered in a 4:5
+            safe zone. It’s crucial to avoid placing key elements too close to
+            the edges.
+          </p>
+          <img
+            className="mx-auto"
+            src={getCloudUrl("gw/safe-zone.png")}
+            alt="Safe zones in an instagram reel"
+          />
+        </GWCaseStudySection>
+      </div>
       <GWCaseStudySection
         description="Redesigning with Purpose"
         header="Turning Insights into Action"
+        id={GW_REDESIGN_ID}
       >
         <p>
           Here’s where things get exciting. I redesigned our Instagram Reels
@@ -360,6 +386,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="Getting User Insights"
         header="Gathering Team Input on Designs"
+        id={GW_USER_INSIGHTS_ID}
       >
         <p>
           To ensure our redesigned Reel appealed to a broad audience, we
@@ -390,7 +417,7 @@ export default function GhostWriterContent() {
               message: "I liked Design 3! The layout looks clean and simple.",
             },
           ].map((item) => (
-            <li className="flex gap-3">
+            <li className="flex gap-3" key={item.name}>
               <img className="self-start" loading="lazy" src={item.avatar} />
               <div>
                 <div className="flex items-center">
@@ -420,6 +447,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="Results of the Redesign"
         header="A 525% Increase in Reel Views!"
+        id={GW_RESULTS_ID}
       >
         <p>
           Our new approach worked wonders! We saw an amazing 525% increase in
@@ -433,6 +461,7 @@ export default function GhostWriterContent() {
       <GWCaseStudySection
         description="Lessons From The Project"
         header="Balancing Looks and Function Is Key"
+        id={GW_TAKEAWAY_ID}
       >
         <p>
           Working on this Instagram Reels project taught me a lot. Here are the
@@ -487,18 +516,21 @@ export default function GhostWriterContent() {
 interface GWCaseStudySectionProps extends PropsWithChildren {
   header: string;
   description: string;
+  id?: string;
 }
 
 const GWCaseStudySection = ({
   description,
   header,
   children,
+  id,
 }: GWCaseStudySectionProps) => {
   return (
     <CaseStudySection
       description={description}
       header={header}
       descriptionColor="text-ghost-writer-primary"
+      id={id}
     >
       {children}
     </CaseStudySection>

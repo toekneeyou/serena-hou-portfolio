@@ -1,17 +1,10 @@
-import { ReactNode } from "react";
 import { classnames } from "../../lib/helpers";
 import { PropsWithClassNameAndChildren } from "../../lib/types";
 
-interface CaseStudyBodyProps extends PropsWithClassNameAndChildren {
-  nav: ReactNode;
-  content: ReactNode;
-}
-
 export default function CaseStudyBody({
   className,
-  nav,
-  content,
-}: CaseStudyBodyProps) {
+  children,
+}: PropsWithClassNameAndChildren) {
   return (
     <section
       className={classnames(
@@ -20,12 +13,11 @@ export default function CaseStudyBody({
         "pt-[6rem]",
         "px-6 md:px-12",
         "md:mx-6 lg:mx-[2.5rem] xl:mx-[5rem] 2xl:mx-[7.5rem]",
-        "lg:grid lg:grid-cols-[1fr,max-content,1fr]",
+
         className
       )}
     >
-      {nav}
-      {content}
+      {children}
     </section>
   );
 }

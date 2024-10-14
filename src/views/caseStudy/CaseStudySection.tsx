@@ -5,6 +5,7 @@ interface CaseStudySectionProps extends PropsWithChildren {
   description: string;
   header: string;
   descriptionColor: string;
+  id?: string;
 }
 
 export const CaseStudySection = ({
@@ -12,9 +13,10 @@ export const CaseStudySection = ({
   description,
   header,
   descriptionColor,
+  id,
 }: CaseStudySectionProps) => {
   return (
-    <div className="text-lg">
+    <div className="text-lg" id={id}>
       <p
         className={classnames(
           `uppercase font-bold mb-2`,
@@ -27,18 +29,13 @@ export const CaseStudySection = ({
       <h2
         className={classnames(
           "mb-4 md:mb-6",
-          "text-[7vw] md:text-[2.5rem]",
+          "text-3xl md:text-[2.5rem]",
           "leading-[110%] md:leading-[120%]"
         )}
       >
         {header}
       </h2>
-      <div
-        className={classnames(
-          "space-y-6 leading-[150%]",
-          "text-[4vw] md:text-lg"
-        )}
-      >
+      <div className={classnames("space-y-6 leading-[150%]", "text-lg")}>
         {children}
       </div>
     </div>

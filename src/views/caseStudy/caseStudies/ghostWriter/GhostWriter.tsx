@@ -79,17 +79,25 @@ export const GhostWriterCaseStudy = () => {
           height={707}
         />
       </section>
-
-      <CaseStudyBody
-        nav={
-          isDesktop && (
-            <Suspense>
+      <div className={classnames("lg:grid lg:grid-cols-1")}>
+        {isDesktop && (
+          <Suspense>
+            <div
+              className={classnames(
+                "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 z-10",
+                "lg:pl-[2.5rem] xl:pl-[5rem] 2xl:pl-[7.5rem]"
+              )}
+            >
               <GhostWriterSideNav />
-            </Suspense>
-          )
-        }
-        content={<GhostWriterContent />}
-      />
+            </div>
+          </Suspense>
+        )}
+        <div className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2">
+          <CaseStudyBody>
+            <GhostWriterContent />
+          </CaseStudyBody>
+        </div>
+      </div>
     </article>
   );
 };
