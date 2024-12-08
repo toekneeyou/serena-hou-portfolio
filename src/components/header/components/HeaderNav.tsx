@@ -9,7 +9,7 @@ import {
 import { classnames } from "@helpers/helpers";
 import { prefetchBlog, prefetchVideos, prefetchVisuals } from "../helpers";
 
-const Nav = () => {
+const HeaderNav = () => {
   const location = useLocation();
 
   return (
@@ -53,4 +53,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default HeaderNav;

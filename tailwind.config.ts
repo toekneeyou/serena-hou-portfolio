@@ -38,6 +38,7 @@ const config: Config = {
         brandsRight: "linear-gradient(90deg, transparent, #262525)",
       },
       colors: {
+        background: "#262525",
         beige,
         taupe,
         charcoal,
@@ -59,6 +60,11 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(200%)" },
         },
+      },
+      zIndex: {
+        header: "100",
+        "header-gradient": "99",
+        "mobile-menu": "98",
       },
     },
   },
