@@ -18,7 +18,21 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Alias */
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@features/*": ["src/features/*"],
+      "@helpers/*": ["src/lib/helpers/*"],
+      "@hooks/*": ["src/lib/hooks/*"],
+      "@services/*": ["src/lib/services/*"],
+      "@store/*": ["src/store/*"],
+      "@types/*": ["src/lib/types/*"],
+      "@views/*": ["src/views/*"]
+    }
   },
   "include": ["src"]
 }
