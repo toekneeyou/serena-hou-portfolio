@@ -3,15 +3,13 @@ import ProjectView from "../project/ProjectView";
 import BrandsSection from "./brandsSection/BrandsSection";
 import { ContactView } from "../contact/ContactView";
 
-const HomeView = () => {
+export const HomeView = () => {
   return (
     <>
-      {/* <HeroSection />
-      <BrandsSection />
-      <ProjectView />
-      <ContactView /> */}
+      {/* <HeroSection /> */}
+      {/* <BrandsSection /> */}
+      {/* <ProjectView /> */}
+      {/* <ContactView /> */}
     </>
   );
 };
-
-export default HomeView;

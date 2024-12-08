@@ -1,16 +1,8 @@
 import { useLocation } from "react-router-dom";
-import {
-  contactRoute,
-  videoRoute,
-  visualRoute,
-} from "../../lib/services/routeService";
 
 const Footer = () => {
   const location = useLocation();
-  const isHidden =
-    location.pathname === visualRoute.path ||
-    location.pathname === videoRoute.path ||
-    location.pathname === contactRoute.path;
+  const isHidden = false;
 
   if (isHidden) return null;
 

@@ -1,17 +1,17 @@
-import Nav from "./Nav";
-import { homeRoute } from "../../lib/services/routeService";
-import { classnames } from "../../lib/helpers";
+import { HOME_ROUTE } from "@features/router/constants";
+import { classnames } from "../../lib/helpers/helpers";
 import { useLocation, useNavigate } from "react-router-dom";
+import Nav from "./components/HeaderNav";
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const navigateHome = () => {
-    if (location.pathname === homeRoute.path) {
+    if (location.pathname === HOME_ROUTE) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    navigate(homeRoute.path!);
+    navigate(HOME_ROUTE);
   };
 
   return (
@@ -23,7 +23,7 @@ const Header = () => {
         )}
       >
         <button onClick={navigateHome}>
-          <img src="/src/assets/sh-logo.png" className="h-6 w-auto"/>
+          <img src="/src/assets/sh-logo.png" className="h-6 w-auto" />
         </button>
         <Nav />
       </header>
