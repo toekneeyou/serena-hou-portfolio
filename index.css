@@ -15,10 +15,12 @@
     width: 100%;
     background-color: #262525;
     color: white;
+    min-height: 100vh;
     overflow-y: auto;
   }
   #root {
     width: inherit;
+    min-height: inherit;
   }
   h1 {
     font-size: 5.125rem;
