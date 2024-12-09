@@ -23,22 +23,20 @@ const Header = () => {
   };
 
   return (
-    <>
-      <header
-        className={classnames(
-          "header",
-          "px-[1.875rem] xl:p-[2.25rem]",
-          "between-row z-header fixed w-full",
-          "h-11 xl:h-16"
-        )}
-      >
-        <button onClick={navigateHome} className="z-header">
-          <img src="/src/assets/sh-logo.png" className={"h-6 w-auto"} />
-        </button>
-        <Suspense>{isDesktop ? <HeaderNav /> : <HeaderMobileMenu />}</Suspense>
-        <HeaderGradient />
-      </header>
-    </>
+    <header
+      className={classnames(
+        "header",
+        "px-[1.875rem] xl:p-[2.25rem]",
+        "between-row z-header fixed w-full",
+        "h-16"
+      )}
+    >
+      <button onClick={navigateHome} className="z-header-content">
+        <img src="/src/assets/sh-logo.png" className={"h-6 w-auto"} />
+      </button>
+      <Suspense>{isDesktop ? <HeaderNav /> : <HeaderMobileMenu />}</Suspense>
+      <HeaderGradient />
+    </header>
   );
 };
 

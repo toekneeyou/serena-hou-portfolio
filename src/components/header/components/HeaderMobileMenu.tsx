@@ -1,11 +1,13 @@
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { APP_ROUTES } from "../constants";
-import { useId, useState } from "react";
+import { MouseEventHandler, useId, useState } from "react";
 import { classnames } from "@helpers/helpers";
+import { useNavigate } from "react-router-dom";
 
 const HeaderMobileMenu = () => {
   const buttonId = useId();
   const navId = useId();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -20,7 +22,7 @@ const HeaderMobileMenu = () => {
         aria-expanded={isMobileMenuOpen ? "true" : "false"}
         aria-label="Open navigation menu"
         id={buttonId}
-        className="z-header"
+        className="z-header-content"
       >
         <Bars3Icon className="size-6" />
       </button>
@@ -34,9 +36,21 @@ const HeaderMobileMenu = () => {
           }
         )}
       >
-        <ul className="flex flex-col items-center justify-center h-full gap-y-20">
+        <ul className="flex flex-col items-center justify-center h-full gap-y-16">
           {APP_ROUTES.map((route) => {
-            return <li className="uppercase text-xs">{route.name}</li>;
+            const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+              e.preventDefault();
+              setIsMobileMenuOpen(false);
+              navigate(route.path);
+            };
+
+            return (
+              <li className="uppercase text-md" role="link">
+                <a href={route.path} onClick={handleClick}>
+                  {route.name}
+                </a>
+              </li>
+            );
           })}
         </ul>
       </nav>

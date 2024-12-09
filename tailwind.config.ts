@@ -63,8 +63,9 @@ const config: Config = {
       },
       zIndex: {
         header: "100",
-        "header-gradient": "99",
-        "mobile-menu": "98",
+        "header-content": "2",
+        "header-gradient": "1",
+        "mobile-menu": "0",
       },
     },
   },

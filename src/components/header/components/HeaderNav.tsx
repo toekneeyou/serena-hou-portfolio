@@ -13,7 +13,7 @@ const HeaderNav = () => {
   const location = useLocation();
 
   return (
-    <nav className="nav">
+    <nav className="nav z-header-content">
       <ul className="flex items-center gap-x-[0.625rem]">
         {APP_ROUTES.map((route) => {
           const isActive = location.pathname === route.path;
