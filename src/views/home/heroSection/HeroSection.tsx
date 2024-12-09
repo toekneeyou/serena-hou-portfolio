@@ -11,7 +11,7 @@ const HeroSection = () => {
       <div
         className={classnames(
           "hero-text h-full flex items-center col-start-1 col-end-3 row-start-1 row-end-2 z-hero-text",
-          "pl-11 pr-11 sm:pl-16 sm:pr-16 md:pl-24 md:pr-24 lg:pl-44 lg:pr-0"
+          "pl-11 pr-11 sm:pl-16 sm:pr-16 md:pl-24 md:pr-24 lg:pl-44 lg:pr-0 pt-[50%] sm:pt-[25%] md:pt-0"
         )}
       >
         <div>
@@ -42,7 +42,7 @@ const HeroSection = () => {
         </div>
       </div>
       {/* Hero Visual */}
-      <div className="hero-visual flex items-start col-start-2 col-end-3 row-start-1 row-end-2 z-hero-visual">
+      <div className="hero-visual flex items-start col-start-1 sm:col-start-2 col-end-3 row-start-1 row-end-2 z-hero-visual">
         <div className="hero-marquee pointer-events-none flex translate-y-[-100%] -translate-x-20 rotate-45 origin-[0%_100%]">
           <SerenaFilm />
         </div>

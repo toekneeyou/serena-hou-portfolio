@@ -66,6 +66,8 @@ const config: Config = {
         "header-content": "2",
         "header-gradient": "1",
         "mobile-menu": "0",
+        "hero-text": "1",
+        "hero-visual": "0",
       },
     },
   },

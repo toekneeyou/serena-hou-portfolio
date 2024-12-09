@@ -45,7 +45,7 @@ const HeaderMobileMenu = () => {
             };
 
             return (
-              <li className="uppercase text-md" role="link">
+              <li className="uppercase text-base" role="link">
                 <a href={route.path} onClick={handleClick}>
                   {route.name}
                 </a>
