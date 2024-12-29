@@ -38,6 +38,7 @@ const config: Config = {
         brandsRight: "linear-gradient(90deg, transparent, #262525)",
       },
       colors: {
+        "nav-active-link-bg": "#FFFFFF33",
         background: "#262525",
         beige,
         taupe,

@@ -3,8 +3,8 @@ import {
   calculateViewportSize,
   setViewportSize,
   ViewportSize,
-} from "../../store/viewportSlice";
-import { useAppDispatch } from "../../lib/hooks/reduxHooks";
+} from "@store/viewportSlice";
+import { useAppDispatch } from "@hooks/reduxHooks";
 
 const ViewportObserver = () => {
   const dispatch = useAppDispatch();

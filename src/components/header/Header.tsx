@@ -2,9 +2,13 @@ import { ABS_ROUTES } from "@constants/routes";
 import { useNavigate } from "react-router-dom";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import { useAppSelector } from "@hooks/reduxHooks";
+import { getIsMobile } from "@store/viewportSlice";
+import HeaderNav from "./components/HeaderNav";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const isMobile = useAppSelector(getIsMobile);
 
   const goHome = () => {
     navigate(ABS_ROUTES.HOME);
@@ -22,9 +26,13 @@ export const Header = () => {
         <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
 
-      <button>
-        <Bars3Icon className="size-6" />
-      </button>
+      {isMobile ? (
+        <button>
+          <Bars3Icon className="size-6" />
+        </button>
+      ) : (
+        <HeaderNav />
+      )}
     </header>
   );
 };

@@ -62,3 +62,5 @@ export const isAriaHidden = (a: number | string, b: number | string) => {
 export const getCloudUrl = (filename: string) => {
   return `https://tony-is-looking-for-a-job.s3.us-east.cloud-object-storage.appdomain.cloud/${filename}`;
 };
+
+export const pxToRem = (px: number) => `${px / 16}rem`;

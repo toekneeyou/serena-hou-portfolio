@@ -9,3 +9,8 @@ export interface PropsWithClassNameAndChildren
     PropsWithChildren {}
 
 export type ApiStatus = "idle" | "loading" | "success" | "fail";
+
+export type ElementProps<T extends HTMLElement> = React.DetailedHTMLProps<
+  React.HTMLAttributes<T>,
+  T
+>;
