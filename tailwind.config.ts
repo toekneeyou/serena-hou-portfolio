@@ -61,6 +61,9 @@ const config: Config = {
           "100%": { transform: "translateX(200%)" },
         },
       },
+      height: {
+        header: "6.25rem",
+      },
       zIndex: {
         header: "100",
         "header-content": "2",

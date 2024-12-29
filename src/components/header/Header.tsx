@@ -1,43 +1,30 @@
-import { HOME_ROUTE } from "@features/router/constants";
-import { classnames } from "../../lib/helpers/helpers";
-import { useLocation, useNavigate } from "react-router-dom";
+import { ROUTES } from "@constants/routes";
+import { useNavigate } from "react-router-dom";
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 
-import { HeaderGradient } from "./components/HeaderGradient";
-import { lazy, Suspense } from "react";
-import { useAppSelector } from "@hooks/reduxHooks";
-import { getIsDesktop } from "@store/viewportSlice";
-import HeaderMobileMenu from "./components/HeaderMobileMenu";
-
-const HeaderNav = lazy(() => import("./components/HeaderNav"));
-
-const Header = () => {
-  const location = useLocation();
+export const Header = () => {
   const navigate = useNavigate();
-  const isDesktop = useAppSelector(getIsDesktop);
 
-  const navigateHome = () => {
-    if (location.pathname === HOME_ROUTE) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    navigate(HOME_ROUTE);
+  const goHome = () => {
+    navigate(ROUTES.HOME_ROUTE);
   };
 
   return (
     <header
-      className={classnames(
-        "header",
-        "px-[1.875rem] xl:p-[2.25rem]",
-        "between-row z-header fixed w-full",
-        "h-16"
+      className={clsx(
+        "app-header",
+        "px-7 py-7 h-header",
+        "bg-background between-row z-header fixed w-full"
       )}
     >
-      <button onClick={navigateHome} className="z-header-content">
-        <img src="/src/assets/sh-logo.png" className={"h-6 w-auto"} />
+      <button onClick={goHome}>
+        <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
-      <Suspense>{isDesktop ? <HeaderNav /> : <HeaderMobileMenu />}</Suspense>
-      <HeaderGradient />
+
+      <button>
+        <Bars3Icon className="size-6" />
+      </button>
     </header>
   );
 };
-
-export default Header;

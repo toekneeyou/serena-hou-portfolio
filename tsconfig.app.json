@@ -23,8 +23,10 @@
     /* Alias */
     "baseUrl": "./",
     "paths": {
+      "@app/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/lib/constants/*"],
       "@features/*": ["src/features/*"],
       "@helpers/*": ["src/lib/helpers/*"],
       "@hooks/*": ["src/lib/hooks/*"],
