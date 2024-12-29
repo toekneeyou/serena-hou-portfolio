@@ -1,4 +1,4 @@
-import { ROUTES } from "@constants/routes";
+import { ABS_ROUTES } from "@constants/routes";
 import { useNavigate } from "react-router-dom";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
@@ -7,7 +7,7 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate(ROUTES.HOME_ROUTE);
+    navigate(ABS_ROUTES.HOME);
   };
 
   return (
