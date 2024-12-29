@@ -1,10 +1,12 @@
 import { ABS_ROUTES } from "@constants/routes";
 import { useNavigate } from "react-router-dom";
-import { Bars3Icon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useAppSelector } from "@hooks/reduxHooks";
 import { getIsMobile } from "@store/viewportSlice";
 import HeaderNav from "./components/HeaderNav";
+import { lazy, Suspense } from "react";
+
+const HeaderMobileMenu = lazy(() => import("./components/HeaderMobileMenu"));
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -22,14 +24,14 @@ export const Header = () => {
         "bg-background between-row z-header fixed w-full"
       )}
     >
-      <button onClick={goHome}>
+      <button onClick={goHome} className="z-header-content">
         <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
 
       {isMobile ? (
-        <button>
-          <Bars3Icon className="size-6" />
-        </button>
+        <Suspense>
+          <HeaderMobileMenu />
+        </Suspense>
       ) : (
         <HeaderNav />
       )}

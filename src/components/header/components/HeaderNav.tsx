@@ -15,7 +15,7 @@ const HeaderNav = () => {
         {APP_ROUTES.map((route) => {
           const isActive = location.pathname === route.path;
 
-          const preventDefaultIfActive: MouseEventHandler<HTMLButtonElement> = (
+          const preventDefaultIfActive: MouseEventHandler<HTMLAnchorElement> = (
             e
           ) => {
             if (isActive) {
@@ -33,9 +33,9 @@ const HeaderNav = () => {
 
           return (
             <li key={`${route.path}-${route.name}`}>
-              <button
+              <a
                 className={clsx(
-                  "uppercase rounded-lg py-2 px-3 text-white hover:bg-nav-active-link-bg transition-[background-color] centered-row h-8",
+                  "uppercase rounded-lg py-2 px-3 text-white hover:bg-nav-active-link-bg transition-[background-color] centered-row h-8 cursor-pointer",
                   {
                     "bg-nav-active-link-bg": isActive,
                   }
@@ -44,20 +44,7 @@ const HeaderNav = () => {
                 onMouseEnter={handleMouseEnter}
               >
                 <span className="leading-none">{route.name}</span>
-              </button>
-              {/* <Link
-                onClick={preventDefaultIfActive}
-                to={route.path}
-                onMouseEnter={handleMouseEnter}
-                className={clsx(
-                  "uppercase rounded-lg py-1 px-3 text-white hover:bg-nav-active-link-bg transition-[background-color] centered-row",
-                  {
-                    "bg-nav-active-link-bg": isActive,
-                  }
-                )}
-              >
-                {route.name}
-              </Link> */}
+              </a>
             </li>
           );
         })}

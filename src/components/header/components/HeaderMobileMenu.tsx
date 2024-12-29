@@ -1,4 +1,4 @@
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { APP_ROUTES } from "../constants";
 import { MouseEventHandler, useId, useState } from "react";
 import { classnames } from "@helpers/helpers";
@@ -24,12 +24,16 @@ const HeaderMobileMenu = () => {
         id={buttonId}
         className="z-header-content"
       >
-        <Bars3Icon className="size-6" />
+        {isMobileMenuOpen ? (
+          <XMarkIcon className="size-6" />
+        ) : (
+          <Bars3Icon className="size-6" />
+        )}
       </button>
       <nav
         id={navId}
         className={classnames(
-          "fixed top-0 py-11 left-0 right-0 bottom-0 h-screen w-screen transition-opacity z-mobile-menu bg-background",
+          "fixed top-0 py-header left-0 right-0 bottom-0 h-screen w-screen transition-all z-mobile-menu bg-background",
           {
             "opacity-1": isMobileMenuOpen,
             "opacity-0 pointer-events-none": !isMobileMenuOpen,
