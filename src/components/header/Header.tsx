@@ -21,7 +21,7 @@ export const Header = () => {
       className={clsx(
         "app-header",
         "px-7 py-7 h-header",
-        "bg-background between-row z-header fixed w-full"
+        "bg-charcoal between-row z-header fixed w-full"
       )}
     >
       <button onClick={goHome} className="z-header-content">

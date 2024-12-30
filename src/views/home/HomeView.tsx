@@ -1,10 +1,11 @@
 import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { BrandMarquee } from "./components/BrandMarquee";
+import { ProjectView } from "@views/project/ProjectView";
 
 export const HomeView = () => {
   return (
     <MainContentLayout>
-      <section className="centered-col h-screen px-10 py-8">
+      <section className="centered-col h-screen px-9 py-8 relative mb-6">
         <div className="centered-col gap-14">
           <div className="centered-col">
             <h1 className="text-3xl">SERENA HOU</h1>
@@ -22,6 +23,7 @@ export const HomeView = () => {
           <BrandMarquee />
         </div>
       </section>
+      <ProjectView />
     </MainContentLayout>
   );
 };

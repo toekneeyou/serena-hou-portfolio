@@ -6,7 +6,6 @@ export const charcoal = "#262525";
 export const fog = "#EAEAEA";
 export const black = "#000";
 export const white = "#FFF";
-export const backgroundColor = "#262525";
 
 export const sm = 640;
 export const md = 768;
@@ -32,8 +31,6 @@ const config: Config = {
       },
       animation: {
         "hero-film-marquee": "marquee-left 30s linear infinite",
-        "brand-one-marquee": "marquee-left 5s linear infinite",
-        "brand-two-marquee": "marquee-right 60s linear infinite",
       },
       backgroundImage: {
         header: "linear-gradient(rgba(0, 0, 0, 0.4), transparent)",
@@ -41,7 +38,6 @@ const config: Config = {
         brandsRight: "linear-gradient(90deg, transparent, #262525)",
       },
       colors: {
-        background: backgroundColor,
         beige,
         taupe,
         charcoal,
@@ -54,16 +50,7 @@ const config: Config = {
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],
       },
-      keyframes: {
-        "marquee-left": {
-          "0%": { left: "0" },
-          "100%": { left: "-200%" },
-        },
-        "marquee-right": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(200%)" },
-        },
-      },
+      keyframes: {},
       height: {
         header: headerHeight,
       },
