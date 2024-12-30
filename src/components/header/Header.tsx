@@ -28,13 +28,7 @@ export const Header = () => {
         <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
 
-      {isMobile ? (
-        <Suspense>
-          <HeaderMobileMenu />
-        </Suspense>
-      ) : (
-        <HeaderNav />
-      )}
+      <Suspense>{isMobile ? <HeaderMobileMenu /> : <HeaderNav />}</Suspense>
     </header>
   );
 };

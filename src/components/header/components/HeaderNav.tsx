@@ -35,9 +35,9 @@ const HeaderNav = () => {
             <li key={`${route.path}-${route.name}`}>
               <a
                 className={clsx(
-                  "uppercase rounded-lg py-2 px-3 text-white hover:bg-nav-active-link-bg transition-[background-color] centered-row h-8 cursor-pointer",
+                  "uppercase rounded-lg py-2 px-3 text-white hover:bg-white/25 transition-[background-color] centered-row h-8 cursor-pointer",
                   {
-                    "bg-nav-active-link-bg": isActive,
+                    "bg-white/25": isActive,
                   }
                 )}
                 onClick={preventDefaultIfActive}

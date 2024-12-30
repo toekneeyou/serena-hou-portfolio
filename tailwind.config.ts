@@ -5,7 +5,8 @@ export const taupe = "#706962";
 export const charcoal = "#262525";
 export const fog = "#EAEAEA";
 export const black = "#000";
-export const white = "#fff";
+export const white = "#FFF";
+export const backgroundColor = "#262525";
 
 export const sm = 640;
 export const md = 768;
@@ -13,6 +14,8 @@ export const lg = 1024;
 export const mbAir = 1280;
 export const mb14 = 1512;
 export const mb16 = 1728;
+
+const headerHeight = "6.25rem";
 
 const config: Config = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -29,7 +32,7 @@ const config: Config = {
       },
       animation: {
         "hero-film-marquee": "marquee-left 30s linear infinite",
-        "brand-one-marquee": "marquee-left 60s linear infinite",
+        "brand-one-marquee": "marquee-left 5s linear infinite",
         "brand-two-marquee": "marquee-right 60s linear infinite",
       },
       backgroundImage: {
@@ -38,8 +41,7 @@ const config: Config = {
         brandsRight: "linear-gradient(90deg, transparent, #262525)",
       },
       colors: {
-        "nav-active-link-bg": "#FFFFFF33",
-        background: "#262525",
+        background: backgroundColor,
         beige,
         taupe,
         charcoal,
@@ -54,8 +56,8 @@ const config: Config = {
       },
       keyframes: {
         "marquee-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-200%)" },
+          "0%": { left: "0" },
+          "100%": { left: "-200%" },
         },
         "marquee-right": {
           "0%": { transform: "translateX(0)" },
@@ -63,7 +65,7 @@ const config: Config = {
         },
       },
       height: {
-        header: "6.25rem",
+        header: headerHeight,
       },
       zIndex: {
         header: "100",
