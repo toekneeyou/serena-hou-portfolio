@@ -5,8 +5,8 @@ import { ProjectView } from "@views/project/ProjectView";
 export const HomeView = () => {
   return (
     <MainContentLayout>
-      <section className="centered-col h-screen px-9 py-8 relative mb-6">
-        <div className="centered-col gap-14">
+      <section className="centered-col h-screen px-9 py-10 relative mb-6">
+        <div className="centered-col gap-14 max-w-mobile-container">
           <div className="centered-col">
             <h1 className="text-3xl">SERENA HOU</h1>
             <p>UI Designer</p>

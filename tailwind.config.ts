@@ -15,6 +15,7 @@ export const mb14 = 1512;
 export const mb16 = 1728;
 
 const headerHeight = "6.25rem";
+const mobileContainerWidth = "20rem";
 
 const config: Config = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -61,6 +62,12 @@ const config: Config = {
         "mobile-menu": "0",
         "hero-text": "1",
         "hero-visual": "0",
+      },
+      width: {
+        "mobile-container": mobileContainerWidth,
+      },
+      maxWidth: {
+        "mobile-container": mobileContainerWidth,
       },
     },
   },
