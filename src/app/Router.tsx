@@ -4,6 +4,7 @@ import App from "@app/App";
 import { NotFound } from "@views/not-found/NotFound";
 import { ROUTES } from "@constants/routes";
 import { HomeView } from "@views/home/HomeView";
+import { VisualView } from "@views/visual/VisualView";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
         path: ROUTES.PROJECT,
         element: <HomeView />,
       },
+      { path: ROUTES.VISUAL, element: <VisualView /> },
       { path: "*", element: <NotFound /> },
     ],
   },

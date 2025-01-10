@@ -1,64 +1,38 @@
-import { PropsWithChildren, useRef, WheelEventHandler } from "react";
-import VisualCarousel from "./VisualCarousel";
-import {
-  visualGetCurrIndexStatus,
-  visualNext,
-  visualPrev,
-} from "../../store/visualSlice";
-import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
-import VisualInitializer from "./VisualInitializer";
-import ProjectNameRoll from "./ProjectNameRoll";
-import DateRoll from "./DateRoll";
-import ProjectNumberRoll from "./ProjectNumberRoll";
-import TagsRoll from "./TagsRoll";
+import { MainContentLayout } from "@components/layouts/MainContentLayout";
+import { VisualCard } from "./components/VisualCard";
 
 export const VisualView = () => {
   return (
-    <VisualViewContainer>
-      <VisualInitializer />
-      <div className="between-row w-full pl-32 pr-14 pb-10">
-        <ProjectNameRoll />
-        <DateRoll />
+    <MainContentLayout className="pt-32 pb-7">
+      <div className="max-w-mobile-container mx-auto mb-14">
+        <h2
+          className={`text-40 text-center mb-2 font-mango font-black leading-none tracking-wider`}
+        >
+          VISUAL WORKS
+        </h2>
+        <p className="text-16 text-center">
+          Here’s a collection of visuals I’ve enjoyed creating over the years.
+        </p>
       </div>
-      <VisualCarousel />
-      <div className="between-row w-full pl-32 pr-14 pt-10">
-        <TagsRoll />
-        <ProjectNumberRoll />
-      </div>
-    </VisualViewContainer>
-  );
-};
-
-const VisualViewContainer = ({ children }: PropsWithChildren) => {
-  const dispatch = useAppDispatch();
-  const doNotInterupt = useRef(false);
-  const { canGoToNextVisual, canGoToPrevVisual } = useAppSelector(
-    visualGetCurrIndexStatus
-  );
-  /**
-   *
-   * Detects wheel event and scrolls to the next or current page
-   *
-   */
-  const handleWheel: WheelEventHandler<HTMLElement> = (e) => {
-    if (!doNotInterupt.current) {
-      const isNext = e.deltaY >= 32 && canGoToNextVisual;
-      const isPrev = e.deltaY <= -32 && canGoToPrevVisual;
-
-      if (isNext || isPrev) {
-        doNotInterupt.current = true;
-        setTimeout(() => {
-          doNotInterupt.current = false;
-        }, 300);
-        if (isNext) dispatch(visualNext());
-        if (isPrev) dispatch(visualPrev());
-      }
-    }
-  };
-
-  return (
-    <section className="h-screen w-full centered-col" onWheel={handleWheel}>
-      {children}
-    </section>
+      <ul className="max-w-mobile-container mx-auto space-y-9">
+        <li>
+          <VisualCard
+            title="ZENME: Anime Streaming Website"
+            description="UI Design / Web Design &bull; 2024"
+            img={{ src: "/src/assets/mobile/zenme-visual.jpg", alt: "Zenme" }}
+          />
+        </li>
+        <li>
+          <VisualCard
+            img={{
+              src: "/src/assets/mobile/jury-duty-visual.jpg",
+              alt: "Redesigned Jury Duty Portal",
+            }}
+            title="Los Angeles Jury Online Service"
+            description="UI Design / Web Design &bull; 2024"
+          />
+        </li>
+      </ul>
+    </MainContentLayout>
   );
 };
