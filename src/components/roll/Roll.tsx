@@ -1,6 +1,7 @@
 import { LegacyRef, useLayoutEffect, useMemo, useRef } from "react";
 import { PropsWithClassName } from "../../types/types";
-import { classnames, isAriaHidden } from "../../lib/helpers/general";
+import { isAriaHidden } from "../../lib/helpers/general";
+import clsx from "clsx";
 
 export interface RollProps<T> extends PropsWithClassName {
   selectId?: (item: T) => string;
@@ -64,7 +65,7 @@ const Roll = <T,>({
   return (
     <ul
       style={{ height }}
-      className={classnames("roll", "overflow-hidden", className)}
+      className={clsx("roll", "overflow-hidden", className)}
       ref={containerRef}
     >
       {itemsCopy.map((item, i) => {

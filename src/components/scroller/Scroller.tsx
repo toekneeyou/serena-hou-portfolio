@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { classnames } from "../../lib/helpers/general";
 import { PropsWithClassName } from "../../types/types";
+import clsx from "clsx";
 
 interface ScrollerProps extends PropsWithClassName {
   pages: number;
@@ -25,7 +25,7 @@ const Scroller = ({
 
   return (
     <div
-      className={classnames(
+      className={clsx(
         "scroller",
         "flex flex-col items-center justify-start w-[24px] overflow-y-hidden",
         className

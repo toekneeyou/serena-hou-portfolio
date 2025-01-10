@@ -1,8 +1,8 @@
 import { APP_ROUTES } from "../constants";
 import { MouseEventHandler, useId, useState } from "react";
-import { classnames } from "@helpers/general";
 import { useNavigate } from "react-router-dom";
 import { IconMenu2, IconX } from "@tabler/icons-react";
+import clsx from "clsx";
 
 const HeaderMobileMenu = () => {
   const buttonId = useId();
@@ -28,7 +28,7 @@ const HeaderMobileMenu = () => {
       </button>
       <nav
         id={navId}
-        className={classnames(
+        className={clsx(
           "fixed top-0 py-header left-0 right-0 bottom-0 h-screen w-screen transition-all z-mobile-menu bg-charcoal",
           {
             "opacity-1": isMobileMenuOpen,
