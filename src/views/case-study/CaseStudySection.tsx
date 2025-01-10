@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { classnames } from "../../lib/helpers/helpers";
+import { classnames } from "../../lib/helpers/general";
 
 interface CaseStudySectionProps extends PropsWithChildren {
   description: string;

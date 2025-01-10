@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { classnames } from "../../lib/helpers/helpers";
+import { classnames } from "../../lib/helpers/general";
 import { PropsWithClassName } from "../../types/types";
 
 interface CaseStudyBodyProps extends PropsWithClassName {

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { classnames } from "../../lib/helpers/helpers";
+import { classnames } from "../../lib/helpers/general";
 import { PropsWithClassNameAndChildren } from "../../types/types";
 
 interface CaseStudyHeroProps

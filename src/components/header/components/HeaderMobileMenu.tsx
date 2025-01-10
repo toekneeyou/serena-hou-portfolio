@@ -1,6 +1,6 @@
 import { APP_ROUTES } from "../constants";
 import { MouseEventHandler, useId, useState } from "react";
-import { classnames } from "@helpers/helpers";
+import { classnames } from "@helpers/general";
 import { useNavigate } from "react-router-dom";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 

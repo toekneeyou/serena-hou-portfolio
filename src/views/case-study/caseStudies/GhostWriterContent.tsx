@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { CaseStudySection } from "../CaseStudySection";
-import { classnames, getCloudUrl } from "../../../lib/helpers/helpers";
+import { classnames, getCloudUrl } from "../../../lib/helpers/general";
 import DownGreenArrow from "./ghostWriter/DownGreenArrow";
 import { useAppSelector } from "../../../lib/hooks/reduxHooks";
 import { getIsMobile } from "../../../store/viewportSlice";

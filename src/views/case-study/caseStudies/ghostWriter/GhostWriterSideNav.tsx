@@ -1,5 +1,5 @@
 import { GW_SECTIONS } from "./ghostWriterConstants";
-import { classnames } from "../../../../lib/helpers/helpers";
+import { classnames } from "../../../../lib/helpers/general";
 import useSideNav from "../../../../lib/hooks/useSideNav";
 
 export default function GhostWriterSideNav() {

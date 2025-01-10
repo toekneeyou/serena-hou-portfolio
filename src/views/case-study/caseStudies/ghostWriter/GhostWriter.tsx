@@ -4,7 +4,7 @@ import {
   getIsMobile,
   getIsTablet,
 } from "../../../../store/viewportSlice";
-import { classnames, getCloudUrl } from "../../../../lib/helpers/helpers";
+import { classnames, getCloudUrl } from "../../../../lib/helpers/general";
 import CaseStudyHeader from "../../CaseStudyHeader";
 import { lazy, Suspense, useRef } from "react";
 import CaseStudyBody from "../../CaseStudyBody";

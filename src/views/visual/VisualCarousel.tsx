@@ -1,5 +1,5 @@
 import Roll, { RollProps } from "../../components/roll/Roll";
-import { classnames } from "../../lib/helpers/helpers";
+import { classnames } from "../../lib/helpers/general";
 import {
   Visual,
   visualGetCurrIndex,

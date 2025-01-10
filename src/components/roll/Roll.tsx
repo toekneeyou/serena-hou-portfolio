@@ -1,6 +1,6 @@
 import { LegacyRef, useLayoutEffect, useMemo, useRef } from "react";
 import { PropsWithClassName } from "../../types/types";
-import { classnames, isAriaHidden } from "../../lib/helpers/helpers";
+import { classnames, isAriaHidden } from "../../lib/helpers/general";
 
 export interface RollProps<T> extends PropsWithClassName {
   selectId?: (item: T) => string;

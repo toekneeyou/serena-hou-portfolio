@@ -1,4 +1,4 @@
-import { pxToRem } from "@helpers/helpers";
+import { pxToRem } from "@helpers/conversions";
 import { ProjectCard } from "./components/project-card/ProjectCard";
 import { projectTranslations } from "./constants";
 import { renderProjectCardText } from "./helpers";

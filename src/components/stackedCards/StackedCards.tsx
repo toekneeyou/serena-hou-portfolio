@@ -1,5 +1,5 @@
 import { LegacyRef, useEffect, useRef } from "react";
-import { classnames } from "../../lib/helpers/helpers";
+import { classnames } from "../../lib/helpers/general";
 
 const MAX_STACK_DEPTH = 7; // rem
 

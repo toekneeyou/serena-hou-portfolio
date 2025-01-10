@@ -1,7 +1,7 @@
 import { sanityClient } from "@services/sanityService";
 import { useQuery } from "@tanstack/react-query";
 import { Visual } from "../types";
-import { minutesToMs } from "@helpers/time";
+import { minutesToMs } from "@helpers/conversions";
 
 export const useVisuals = () => {
   const { data, isLoading, error } = useQuery({

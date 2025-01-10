@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { classnames, getCloudUrl } from "../../../../lib/helpers/helpers";
+import { classnames, getCloudUrl } from "../../../../lib/helpers/general";
 import { useAppSelector } from "../../../../lib/hooks/reduxHooks";
 import {
   getIsDesktop,

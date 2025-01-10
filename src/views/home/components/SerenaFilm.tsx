@@ -1,4 +1,4 @@
-import { classnames } from "@helpers/helpers";
+import { classnames } from "@helpers/general";
 
 const SerenaFilm = () => (
   <img
