@@ -20,7 +20,7 @@ export const Header = () => {
     <header
       className={clsx(
         "app-header",
-        "px-7 py-7 h-header",
+        "px-7 h-header",
         "bg-charcoal between-row z-header fixed w-full"
       )}
     >

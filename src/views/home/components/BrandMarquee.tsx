@@ -2,7 +2,7 @@ import Marquee from "react-fast-marquee";
 
 export const BrandMarquee = () => {
   return (
-    <div className="w-screen flex flex-col gap-y-6 absolute bottom-8">
+    <div className="w-screen flex flex-col gap-y-6">
       <Marquee
         gradient={true}
         gradientColor="#262525"
