@@ -4,7 +4,7 @@ import {
   Visual,
   visualGetCurrIndex,
   visualGetVisuals,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 import { WrenchIcon } from "@heroicons/react/20/solid";
 
 const ProjectNumberRoll = () => {

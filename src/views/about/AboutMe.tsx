@@ -1,4 +1,4 @@
-import { classnames } from "../../lib/helpers";
+import { classnames } from "../../lib/helpers/helpers";
 import { aboutContentWidthClassName } from "./AboutView";
 
 const AboutMe = () => {

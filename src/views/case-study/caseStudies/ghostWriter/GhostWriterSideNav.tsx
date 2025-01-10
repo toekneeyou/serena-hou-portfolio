@@ -1,5 +1,5 @@
 import { GW_SECTIONS } from "./ghostWriterConstants";
-import { classnames } from "../../../../lib/helpers";
+import { classnames } from "../../../../lib/helpers/helpers";
 import useSideNav from "../../../../lib/hooks/useSideNav";
 
 export default function GhostWriterSideNav() {
@@ -17,7 +17,7 @@ export default function GhostWriterSideNav() {
             <li key={section.display}>
               <a
                 className={classnames(
-                  "text-xs grid grid-cols-[1.75rem,1fr] cursor-pointer",
+                  "text-12 grid grid-cols-[1.75rem,1fr] cursor-pointer",
                   { "text-[#808080]": !isCurrent }
                 )}
                 onClick={(e) => {

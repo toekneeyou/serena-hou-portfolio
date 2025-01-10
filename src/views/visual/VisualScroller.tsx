@@ -4,7 +4,7 @@ import {
   visualGetCurrIndex,
   visualGetVisualIds,
   visualSetCurrIndex,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 
 const VisualScroller = () => {
   const dispatch = useAppDispatch();

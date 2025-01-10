@@ -1,4 +1,4 @@
-import { classnames } from "../../lib/helpers";
+import { classnames } from "../../lib/helpers/helpers";
 import { useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
   videoGetAllVideoIds,

@@ -4,8 +4,8 @@ import {
   Visual,
   visualGetCurrIndex,
   visualGetVisuals,
-} from "../../store/visualSlice";
-import { classnames } from "../../lib/helpers";
+} from "../../store/visual/visualSlice";
+import { classnames } from "../../lib/helpers/helpers";
 
 const TagsRoll = () => {
   const visuals = useAppSelector(visualGetVisuals);

@@ -4,7 +4,7 @@ import {
   Visual,
   visualGetCurrIndex,
   visualGetVisuals,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 
 const ProjectNameRoll = () => {
   const visuals = useAppSelector(visualGetVisuals);

@@ -1,6 +1,6 @@
 import { ImgHTMLAttributes, ReactNode } from "react";
-import { classnames } from "../../lib/helpers";
-import { PropsWithClassName } from "../../lib/types";
+import { classnames } from "../../lib/helpers/helpers";
+import { PropsWithClassName } from "../../types/types";
 
 interface CaseStudyHeaderProps extends PropsWithClassName {
   logo: ImgHTMLAttributes<HTMLImageElement>;

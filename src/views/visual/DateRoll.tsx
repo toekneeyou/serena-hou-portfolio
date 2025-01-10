@@ -4,7 +4,7 @@ import {
   Visual,
   visualGetCurrIndex,
   visualGetVisuals,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 
 const DateRoll = () => {
   const visuals = useAppSelector(visualGetVisuals);

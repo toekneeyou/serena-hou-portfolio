@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, useState } from "react";
-import { classnames } from "../../lib/helpers";
+import { classnames } from "../../lib/helpers/helpers";
 
 interface ContactButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name: string;

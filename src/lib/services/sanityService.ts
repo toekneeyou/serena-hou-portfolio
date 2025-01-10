@@ -32,23 +32,6 @@ export const fetchVideosAndCategories = async () => {
   return response;
 };
 
-export const fetchVisuals = async () => {
-  const response = await sanityClient.fetch(`
-    *[_type == "visual"] | order(date desc) {
-      _id,
-      name,
-      title,
-      date,
-      tags,
-      "image_small": image_small.asset->url,
-      "image_medium": image_medium.asset->url,
-      "image_large": image_large.asset->url
-    }
-  `);
-  handleNoResults(response);
-  return response;
-};
-
 export const fetchProjects = async () => {
   const response = await sanityClient.fetch(`*[_type == "project"]{
     _id,

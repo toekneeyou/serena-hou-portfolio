@@ -1,4 +1,4 @@
-import { isAriaHidden } from "../../lib/helpers";
+import { isAriaHidden } from "../../lib/helpers/helpers";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 import {
   videoSetCurrIndex,

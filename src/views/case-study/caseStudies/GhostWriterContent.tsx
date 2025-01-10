@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { CaseStudySection } from "../CaseStudySection";
-import { classnames, getCloudUrl } from "../../../lib/helpers";
+import { classnames, getCloudUrl } from "../../../lib/helpers/helpers";
 import DownGreenArrow from "./ghostWriter/DownGreenArrow";
 import { useAppSelector } from "../../../lib/hooks/reduxHooks";
 import { getIsMobile } from "../../../store/viewportSlice";
@@ -17,6 +17,7 @@ import {
   GW_TAKEAWAY_ID,
   GW_USER_INSIGHTS_ID,
 } from "./ghostWriter/ghostWriterConstants";
+import CaseStudyUL from "../CaseStudyUL";
 
 const VERTICAL_SPACING = "space-y-[3.75rem] md:space-y-[5rem]";
 
@@ -422,7 +423,7 @@ export default function GhostWriterContent() {
               <div>
                 <div className="flex items-center">
                   <span className="font-bold text-base">{item.name}</span>・
-                  <span className="text-taupe text-xs">{item.team}</span>
+                  <span className="text-taupe text-12">{item.team}</span>
                 </div>
                 <p>{item.message}</p>
               </div>
@@ -467,8 +468,8 @@ export default function GhostWriterContent() {
           Working on this Instagram Reels project taught me a lot. Here are the
           key takeaways:
         </p>
-        <ul className="list-disc ml-4 md:ml-8 space-y-6">
-          {[
+        <CaseStudyUL
+          options={[
             {
               title: "User-Centric Design",
               description:
@@ -489,13 +490,9 @@ export default function GhostWriterContent() {
               description:
                 " I learned how crucial it is to balance attractive visuals with functionality, ensuring the design supports the core message without distractions.",
             },
-          ].map((item) => (
-            <li key={item.title}>
-              <h3 className="inline-block text-lg">{item.title}</h3>:{" "}
-              <span>{item.description}</span>
-            </li>
-          ))}
-        </ul>
+          ]}
+        />
+
         <p>
           This project not only improved our Instagram Reels but also enhanced
           my skills in social media content optimization and user-centered

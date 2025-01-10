@@ -1,10 +1,10 @@
 import Roll, { RollProps } from "../../components/roll/Roll";
-import { classnames } from "../../lib/helpers";
+import { classnames } from "../../lib/helpers/helpers";
 import {
   Visual,
   visualGetCurrIndex,
   visualGetVisuals,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 import { useAppSelector } from "../../lib/hooks/reduxHooks";
 import VisualScroller from "./VisualScroller";
 

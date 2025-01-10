@@ -4,7 +4,7 @@ import {
   visualGetShouldFetch,
   visualInitialFetch,
   visualSetCurrIndex,
-} from "../../store/visualSlice";
+} from "../../store/visual/visualSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
 
 const VisualInitializer = () => {
