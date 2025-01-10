@@ -1,19 +1,18 @@
-import { ABS_ROUTES } from "@constants/routes";
+import { ROUTES } from "@constants/routes";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { useAppSelector } from "@hooks/reduxHooks";
-import { getIsMobile } from "@store/viewportSlice";
 import HeaderNav from "./components/HeaderNav";
 import { lazy, Suspense } from "react";
+import { useViewportState } from "@contexts/viewport/hooks";
 
 const HeaderMobileMenu = lazy(() => import("./components/HeaderMobileMenu"));
 
 export const Header = () => {
   const navigate = useNavigate();
-  const isMobile = useAppSelector(getIsMobile);
+  const { isMobile } = useViewportState();
 
   const goHome = () => {
-    navigate(ABS_ROUTES.HOME);
+    navigate(ROUTES.HOME);
   };
 
   return (

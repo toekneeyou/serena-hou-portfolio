@@ -1,8 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../constants";
 import { MouseEventHandler } from "react";
-import { prefetchBlog, prefetchVideos, prefetchVisuals } from "../helpers";
-import { ABS_ROUTES } from "@constants/routes";
 import clsx from "clsx";
 
 const HeaderNav = () => {
@@ -25,12 +23,6 @@ const HeaderNav = () => {
             }
           };
 
-          const handleMouseEnter = () => {
-            if (route.path === ABS_ROUTES.VISUAL) prefetchVisuals();
-            if (route.path === ABS_ROUTES.VIDEO) prefetchVideos();
-            if (route.path === ABS_ROUTES.ABOUT) prefetchBlog();
-          };
-
           return (
             <li key={`${route.path}-${route.name}`}>
               <a
@@ -41,7 +33,6 @@ const HeaderNav = () => {
                   }
                 )}
                 onClick={preventDefaultIfActive}
-                onMouseEnter={handleMouseEnter}
               >
                 <span className="leading-none">{route.name}</span>
               </a>
