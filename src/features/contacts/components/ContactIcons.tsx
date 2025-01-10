@@ -4,6 +4,7 @@ export const ContactIcons = () => {
   return (
     <ul className="flex items-center justify-center gap-x-9 w-full mb-4">
       {SOCIAL_MEDIA_LINKS.map((sm) => {
+        console.log(sm);
         return (
           <li key={sm.name}>
             <a href={sm.url} target="_blank">
