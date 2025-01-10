@@ -1,3 +1,58 @@
+@font-face {
+  font-family: "MangoGrotesque", sans-serif;
+  src: url("/src/assets/fonts/MangoGrotesque-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque", sans-serif;
+  src: url("/src/assets/fonts/MangoGrotesque-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/src/assets/fonts/MangoGrotesque-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +65,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     position: relative;
     width: 100%;
@@ -21,23 +77,6 @@
   #root {
     width: inherit;
     min-height: inherit;
-  }
-  h1 {
-    font-size: 5rem;
-    font-weight: 700;
-  }
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-  }
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .serena-hou-h1-shadow {
-    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
-      1px 1px 0 white; /* Outline color */
   }
 }
 

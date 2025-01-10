@@ -14,7 +14,7 @@ export const mbAir = 1280;
 export const mb14 = 1512;
 export const mb16 = 1728;
 
-const headerHeight = "6.25rem";
+const headerHeight = "5rem";
 const mobileContainerWidth = "20rem";
 
 const config: Config = {
@@ -49,7 +49,35 @@ const config: Config = {
         "str-secondary": "#F2F2F2",
       },
       fontFamily: {
+        mango: ["MangoGrotesque", "sans-serif"],
         oswald: ["Oswald", "sans-serif"],
+      },
+      fontSize: {
+        8: "0.5rem",
+        10: "0.625rem",
+        12: "0.75rem",
+        14: "0.875rem",
+        16: "1rem",
+        18: "1.125rem",
+        20: "1.25rem",
+        22: "1.375rem",
+        24: "1.5rem",
+        26: "1.625rem",
+        28: "1.75rem",
+        30: "1.875rem",
+        32: "2rem",
+        36: "2.25rem",
+        40: "2.5rem",
+        44: "2.75rem",
+        48: "3rem",
+        52: "3.25rem",
+        56: "3.5rem",
+        60: "3.75rem",
+        64: "4rem",
+        68: "4.25rem",
+        72: "4.5rem",
+        76: "4.75rem",
+        80: "5rem",
       },
       keyframes: {},
       height: {
