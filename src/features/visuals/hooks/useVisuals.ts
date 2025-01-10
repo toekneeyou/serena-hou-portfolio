@@ -1,10 +1,12 @@
 import { sanityClient } from "@services/sanityService";
 import { useQuery } from "@tanstack/react-query";
+import { Visual } from "../types";
+import { minutesToMs } from "@helpers/time";
 
 export const useVisuals = () => {
-  const { data } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["visuals"],
-    queryFn: async () => {
+    queryFn: async (): Promise<Visual[]> => {
       const response = await sanityClient.fetch(`
             *[_type == "visual"] | order(date desc) {
               _id,
@@ -19,7 +21,12 @@ export const useVisuals = () => {
           `);
       return response;
     },
+    staleTime: minutesToMs(10),
   });
 
-  console.log(data);
+  return {
+    visuals: data ?? [],
+    isVisualsLoading: isLoading,
+    visualsError: error,
+  };
 };
