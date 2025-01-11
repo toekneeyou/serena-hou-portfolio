@@ -14,7 +14,7 @@ export const mbAir = 1280;
 export const mb14 = 1512;
 export const mb16 = 1728;
 
-const headerHeight = "5rem";
+export const headerHeight = "5rem";
 const mobileContainerWidth = "20rem";
 
 const config: Config = {
