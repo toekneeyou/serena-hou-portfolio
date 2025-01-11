@@ -2,6 +2,10 @@ import { pxToRem } from "@helpers/conversions";
 import { ProjectCard } from "./components/project-card/ProjectCard";
 import { projectTranslations } from "./constants";
 import { renderProjectCardText } from "./helpers";
+import igCaseStudyMobile from "@assets/mobile/ig-case-study.png";
+import youtubeCaseStudyMobile from "@assets/mobile/youtube-case-study.png";
+import yelpCaseStudyMobile from "@assets/mobile/yelp-case-study.png";
+import strCaseStudyMobile from "@assets/mobile/str-case-study.png";
 
 export const ProjectView = () => {
   return (
@@ -27,7 +31,7 @@ export const ProjectView = () => {
               renderProjectCardText
             )}
             style={{
-              backgroundImage: "url('/src/assets/mobile/str-case-study.png')",
+              backgroundImage: `url(${strCaseStudyMobile})`,
             }}
           />
         </li>
@@ -44,7 +48,7 @@ export const ProjectView = () => {
             <div className="flex items-end justify-center flex-1">
               <img
                 className="mr-4"
-                src="/src/assets/mobile/ig-case-study.png"
+                src={igCaseStudyMobile}
                 style={{ width: pxToRem(140) }}
               />
             </div>
@@ -61,7 +65,7 @@ export const ProjectView = () => {
             <div className="centered-row flex-1">
               <img
                 className="max-w-full"
-                src="/src/assets/mobile/yelp-case-study.png"
+                src={yelpCaseStudyMobile}
                 style={{ width: pxToRem(288) }}
               />
             </div>
@@ -78,7 +82,7 @@ export const ProjectView = () => {
           >
             <div className="centered-row flex-1 flex">
               <img
-                src="/src/assets/mobile/youtube-case-study.png"
+                src={youtubeCaseStudyMobile}
                 style={{ height: pxToRem(188) }}
               />
             </div>
