@@ -1,8 +1,9 @@
 import { APP_ROUTES } from "../constants";
 import { MouseEventHandler, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IconMenu2, IconX } from "@tabler/icons-react";
 import clsx from "clsx";
+import { XIcon } from "@components/icons/XIcon";
+import { Menu2Icon } from "@components/icons/Menu2Icon";
 
 const HeaderMobileMenu = () => {
   const buttonId = useId();
@@ -24,7 +25,7 @@ const HeaderMobileMenu = () => {
         id={buttonId}
         className="z-header-content"
       >
-        {isMobileMenuOpen ? <IconX /> : <IconMenu2 />}
+        {isMobileMenuOpen ? <XIcon /> : <Menu2Icon />}
       </button>
       <nav
         id={navId}
