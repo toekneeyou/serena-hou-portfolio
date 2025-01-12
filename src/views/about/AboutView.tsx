@@ -1,10 +1,10 @@
-import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { Tools } from "./components/Tools";
+import serenaGif from "@assets/serena.gif";
 
 export const AboutView = () => {
   return (
-    <MainContentLayout className="space-y-16">
-      <section className="max-w-mobile-container mx-auto space-y-16">
+    <main className="main-content-layout space-y-16">
+      <section className="mobile-container mx-auto space-y-16">
         <div className="space-y-7">
           <h2
             className={`text-40 text-center font-mango font-black leading-none tracking-wider`}
@@ -14,7 +14,7 @@ export const AboutView = () => {
           <p className="text-20 text-center">Hey there, I'm Serena!</p>
 
           <div className="h-40 w-40 rounded-full center-row mx-auto overflow-hidden">
-            <img src="/src/assets/serena.gif" className="w-full" alt="Serena" />
+            <img src={serenaGif} className="w-full" alt="Serena" />
           </div>
 
           <p className="text-20 text-center">
@@ -23,7 +23,7 @@ export const AboutView = () => {
           </p>
         </div>
 
-        <div className="max-w-mobile-container mx-auto space-y-7">
+        <div className="mobile-container mx-auto space-y-7">
           <p>
             For over 10 years, I worked in the video production industry and
             eventually became a Video Post-Production Lead. While making videos
@@ -44,6 +44,6 @@ export const AboutView = () => {
       </section>
 
       <Tools />
-    </MainContentLayout>
+    </main>
   );
 };

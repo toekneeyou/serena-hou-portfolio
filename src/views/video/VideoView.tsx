@@ -1,4 +1,3 @@
-import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { VideoCategoryName } from "@views/video/types";
 import clsx from "clsx";
 import { useCallback, useEffect, useMemo, useRef } from "react";
@@ -69,8 +68,8 @@ export const VideoView = () => {
   }, [sortedVideos, updateCategoryParam]);
 
   return (
-    <MainContentLayout className="space-y-7">
-      <div className="max-w-mobile-container centered-row mx-auto">
+    <main className="main-content-layout space-y-7">
+      <div className="mobile-container centered-row mx-auto">
         <TitleRoll sortedVideos={sortedVideos} />
       </div>
 
@@ -93,7 +92,7 @@ export const VideoView = () => {
               <ul
                 className={clsx(
                   category.name,
-                  "max-w-mobile-container mx-auto space-y-2"
+                  "mobile-container mx-auto space-y-2"
                 )}
               >
                 {category.video.map((vid) => {
@@ -124,6 +123,6 @@ export const VideoView = () => {
           />
         </div>
       </div>
-    </MainContentLayout>
+    </main>
   );
 };

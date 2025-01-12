@@ -3,7 +3,7 @@ import { TOOLS } from "../constants";
 
 export const Tools = () => {
   return (
-    <section className="max-w-mobile-container mx-auto space-y-16">
+    <section className="mobile-container mx-auto space-y-16">
       <h2
         className={`text-40 text-center font-mango font-black leading-none tracking-wider`}
       >

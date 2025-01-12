@@ -1,9 +1,10 @@
 import { BrandMarquee } from "./BrandMarquee";
+import serenaGif from "@assets/serena.gif";
 
 export const Hero = () => {
   return (
     <section id="hero" className="centered-col mb-28 space-y-28">
-      <div className="centered-col gap-14 max-w-mobile-container">
+      <div className="centered-col gap-14 mobile-container">
         <div className="centered-col">
           <h1 className="text-48 leading-none font-black font-mango tracking-wider">
             Serena Hou
@@ -12,7 +13,7 @@ export const Hero = () => {
         </div>
 
         <div className="h-40 w-40 rounded-full center-row overflow-hidden">
-          <img src="/src/assets/serena.gif" className="w-full" alt="Serena" />
+          <img src={serenaGif} className="w-full" alt="Serena" />
         </div>
 
         <div>

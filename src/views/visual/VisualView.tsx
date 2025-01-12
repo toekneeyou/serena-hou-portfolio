@@ -1,4 +1,3 @@
-import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { VisualCard } from "@views/visual/components/VisualCard";
 import { useVisuals } from "./hooks/useVisuals";
 
@@ -6,8 +5,8 @@ export const VisualView = () => {
   const { visuals } = useVisuals();
 
   return (
-    <MainContentLayout>
-      <div className="max-w-mobile-container mx-auto mb-14">
+    <main className="main-content-layout">
+      <div className="mobile-container mx-auto mb-14">
         <h2
           className={`text-40 text-center mb-2 font-mango font-black leading-none tracking-wider`}
         >
@@ -18,7 +17,7 @@ export const VisualView = () => {
         </p>
       </div>
 
-      <ul className="max-w-mobile-container mx-auto space-y-9">
+      <ul className="mobile-container mx-auto space-y-9">
         {visuals.map((visual) => {
           const date = new Date(visual.date);
 
@@ -38,6 +37,6 @@ export const VisualView = () => {
           );
         })}
       </ul>
-    </MainContentLayout>
+    </main>
   );
 };

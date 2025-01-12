@@ -1,12 +1,11 @@
-import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { ProjectView } from "@views/project/ProjectView";
 import { Hero } from "./components/Hero";
 
 export const HomeView = () => {
   return (
-    <MainContentLayout>
+    <main className="main-content-layout">
       <Hero />
       <ProjectView />
-    </MainContentLayout>
+    </main>
   );
 };
