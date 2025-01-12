@@ -4,14 +4,17 @@ import clsx from "clsx";
 import HeaderNav from "./components/HeaderNav";
 import { lazy, Suspense } from "react";
 import { useViewportState } from "@contexts/viewport/hooks";
+import { useMenUActions } from "@contexts/menu/hooks";
 
 const HeaderMobileMenu = lazy(() => import("./components/HeaderMobileMenu"));
 
 export const Header = () => {
   const navigate = useNavigate();
   const { isMobile } = useViewportState();
+  const { closeMenu } = useMenUActions();
 
   const goHome = () => {
+    closeMenu();
     navigate(ROUTES.HOME);
   };
 

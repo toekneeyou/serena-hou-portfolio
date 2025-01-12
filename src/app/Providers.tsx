@@ -4,6 +4,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ViewportProvider } from "@contexts/viewport/ViewportContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { MenuProvider } from "@contexts/menu/MenuContext";
 
 const queryClient = new QueryClient();
 const isDev = import.meta.env.MODE === "development";
@@ -13,7 +14,7 @@ export const Providers: FC<PropsWithChildren> = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary fallbackRender={Fallback}>
         <ViewportProvider>
-          {children}
+          <MenuProvider>{children}</MenuProvider>
           <ReactQueryDevtools initialIsOpen={isDev} />
         </ViewportProvider>
       </ErrorBoundary>
