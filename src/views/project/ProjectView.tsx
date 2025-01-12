@@ -2,16 +2,33 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { ROUTES } from "@constants/routes";
 import { ProjectList } from "./components/project-list/ProjectList";
+import { headerMobileHeight } from "@theme/height";
+import { useViewportState } from "@contexts/viewport/hooks";
 
 export const ProjectView = () => {
   const location = useLocation();
   const projectsRef = useRef<HTMLElement>(null);
+  const { isMobile } = useViewportState();
 
   useEffect(() => {
-    if (location.pathname === ROUTES.PROJECT && projectsRef.current) {
-      projectsRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [location.pathname]);
+    const observer = new ResizeObserver(() => {
+      if (location.pathname === ROUTES.PROJECT && projectsRef.current) {
+        const top = projectsRef.current.getBoundingClientRect().top;
+        const fromTop = isMobile ? headerMobileHeight : 0;
+        const scrollToPosition = window.scrollY + top - fromTop;
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+
+    observer.observe(document.documentElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [location.pathname, isMobile]);
 
   return (
     <section ref={projectsRef} className="centered-col gap-9 px-8 w-full">

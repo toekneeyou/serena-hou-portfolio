@@ -13,7 +13,13 @@ export const Hero = () => {
         </div>
 
         <div className="h-40 w-40 rounded-full center-row overflow-hidden">
-          <img src={serenaGif} className="w-full" alt="Serena" />
+          <img
+            src={serenaGif}
+            width="10rem"
+            height="10rem"
+            className="w-full"
+            alt="Serena"
+          />
         </div>
 
         <div>
