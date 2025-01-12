@@ -21,7 +21,7 @@ export const useVisuals = () => {
           `);
       return response;
     },
-    staleTime: minutesToMs(10),
+    staleTime: minutesToMs(30),
   });
 
   return {

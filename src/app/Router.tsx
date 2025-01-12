@@ -7,6 +7,7 @@ import { HomeView } from "@views/home/HomeView";
 import { VisualView } from "@views/visual/VisualView";
 import { VideoView } from "@views/video/VideoView";
 import { AboutView } from "@views/about/AboutView";
+import { ContactView } from "@views/contact/ContactView";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: ROUTES.VISUAL, element: <VisualView /> },
       { path: ROUTES.VIDEO, element: <VideoView /> },
       { path: ROUTES.ABOUT, element: <AboutView /> },
+      { path: ROUTES.CONTACT, element: <ContactView /> },
       { path: "*", element: <NotFound /> },
     ],
   },
