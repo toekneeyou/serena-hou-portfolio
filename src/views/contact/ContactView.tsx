@@ -1,5 +1,6 @@
 import { MainContentLayout } from "@components/layouts/MainContentLayout";
 import { CopyIcon } from "@components/icons/CopyIcon";
+import { SOCIAL_MEDIA_LINKS } from "@constants/contacts";
 
 const emailAddress = import.meta.env.VITE_EMAIL_ADDRESS;
 
@@ -11,21 +12,46 @@ export const ContactView = () => {
 
   return (
     <MainContentLayout>
-      <div className="space-y-7 mx-auto max-w-mobile-container">
+      <div className="space-y-14 mx-auto max-w-mobile-container">
         <h2
           className={`text-40 text-center font-mango font-black leading-none tracking-wider`}
         >
           LET'S CONNECT!
         </h2>
+
         <div className="h-40 w-40 rounded-full center-row mx-auto overflow-hidden">
           <img src="/src/assets/serena.gif" className="w-full" alt="Serena" />
         </div>
-        <div className="centered-row gap-x-4">
-          <p className="text-24">{emailAddress}</p>
 
-          <button onClick={handleCopyEmail} aria-label="Copy Email">
-            <CopyIcon />
-          </button>
+        <div className="space-y-6">
+          <div className="centered-row gap-x-4">
+            <p className="text-24">{emailAddress}</p>
+
+            <button onClick={handleCopyEmail} aria-label="Copy Email">
+              <CopyIcon />
+            </button>
+          </div>
+          <ul className="centered-col gap-y-6">
+            {SOCIAL_MEDIA_LINKS.filter(
+              (socialMedia) => socialMedia.name !== "Email"
+            ).map((sm) => {
+              const handleClick = () => {
+                window.open(sm.url, "_blank");
+              };
+
+              return (
+                <li key={sm.name}>
+                  <button
+                    className="px-6 py-2 rounded-md"
+                    style={{ border: "1px solid white" }}
+                    onClick={handleClick}
+                  >
+                    {sm.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>{" "}
         </div>
       </div>
     </MainContentLayout>
