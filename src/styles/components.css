@@ -2,7 +2,7 @@
 
 @layer components {
   .main-content-layout {
-    @apply w-full max-w-screen-3xl mx-auto pt-28 pb-12;
+    @apply w-full max-w-screen-3xl mx-auto pt-28 pb-14;
   }
   .btn {
     @apply bg-btn-default hover:bg-btn-hover active:bg-btn-active;
@@ -11,5 +11,10 @@
   }
   .mobile-container {
     @apply w-full max-w-[20rem];
+  }
+  .header {
+    @apply h-header-mobile;
+    @apply px-7;
+    @apply bg-charcoal between-row z-header fixed w-full;
   }
 }

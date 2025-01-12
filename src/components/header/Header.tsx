@@ -19,13 +19,7 @@ export const Header = () => {
   };
 
   return (
-    <header
-      className={clsx(
-        "app-header",
-        "px-7 h-header",
-        "bg-charcoal between-row z-header fixed w-full"
-      )}
-    >
+    <header className={clsx("header")}>
       <button onClick={goHome} className="z-header-content">
         <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
