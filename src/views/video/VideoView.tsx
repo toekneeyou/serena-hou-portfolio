@@ -1,74 +1,115 @@
-import { PropsWithChildren, useRef, WheelEventHandler } from "react";
-import { useAppDispatch, useAppSelector } from "../../lib/hooks/reduxHooks";
-import {
-  videoGetCurrIndexStatus,
-  videoNext,
-  videoPrev,
-} from "../../store/video/videoSlice";
-
-import VideoCurrCategoryRoll from "./VideoCurrCategoryRoll";
-import VideoCarousel from "./VideoCarousel";
-import VideoCategoryListRoll from "./VideoCategoryListRoll";
-import VideoInitializer from "./VideoInitializer";
-import VideoNumberRoll from "./VideoNumberRoll";
-import VideoScroller from "./VideoScroller";
+import { MainContentLayout } from "@components/layouts/MainContentLayout";
+import { VideoCategoryName } from "@views/video/types";
+import clsx from "clsx";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useVideos } from "./hooks/useVideos";
+import { TitleRoll } from "./components/TitleRoll";
+import { VIDEO_CATEGORY_PARAM, videoOrder } from "./constants";
 
 export const VideoView = () => {
-  return (
-    <VideoViewContainer>
-      <VideoInitializer />
+  const [params, setParams] = useSearchParams();
+  const { videos } = useVideos();
+  const videoRefs = useRef<HTMLLIElement[]>([]);
 
-      <div className="centered-row h-[inherit] w-max z-[1]">
-        <VideoCurrCategoryRoll />
-        <VideoCategoryListRoll />
-      </div>
+  const sortedVideos = useMemo(() => {
+    return videos.sort((a, b) => {
+      const indexA = videoOrder.indexOf(a.name as VideoCategoryName);
+      const indexB = videoOrder.indexOf(b.name as VideoCategoryName);
 
-      <div className="absolute left-0 top-0 w-full h-full overflow-hidden centered-row">
-        <div className="relative">
-          <VideoCarousel />
-          <div className="absolute h-full -right-14 top-0 centered-row">
-            <VideoScroller />
-          </div>
-        </div>
-      </div>
+      return indexA - indexB;
+    });
+  }, [videos]);
 
-      <div className="flex items-end h-full pr-14 pb-28">
-        <VideoNumberRoll />
-      </div>
-    </VideoViewContainer>
-  );
-};
-
-const VideoViewContainer = ({ children }: PropsWithChildren) => {
-  const dispatch = useAppDispatch();
-  const doNotInterupt = useRef(false);
-  const { canGoToNextVideo, canGoToPrevVideo } = useAppSelector(
-    videoGetCurrIndexStatus
-  );
-  /**
-   * Detects wheel event and scrolls to the next or current page
-   */
-  const handleWheel: WheelEventHandler<HTMLElement> = (e) => {
-    if (!doNotInterupt.current) {
-      const isNext = e.deltaY >= 32 && canGoToNextVideo;
-      const isPrev = e.deltaY <= -32 && canGoToPrevVideo;
-
-      if (isNext || isPrev) {
-        doNotInterupt.current = true;
-        setTimeout(() => {
-          doNotInterupt.current = false;
-        }, 300);
-        if (isNext) dispatch(videoNext());
-        if (isPrev) dispatch(videoPrev());
+  const updateCategoryParam = useCallback(
+    (categoryName: VideoCategoryName) => {
+      const newParams = new URLSearchParams();
+      if (!categoryName) {
+        setParams(newParams);
+        return;
       }
+      newParams.set(VIDEO_CATEGORY_PARAM, categoryName);
+      setParams(newParams);
+    },
+    [setParams]
+  );
+
+  useEffect(() => {
+    if (params.size === 0 && sortedVideos.length > 0 && sortedVideos[0]?.name) {
+      updateCategoryParam(sortedVideos[0].name);
     }
-  };
+  }, [params, updateCategoryParam, sortedVideos]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.75) {
+            updateCategoryParam(
+              (entry.target.getAttribute("data-name") as VideoCategoryName) ??
+                ""
+            );
+          }
+        });
+      },
+      { threshold: [0.25, 0.5, 0.75, 1] }
+    );
+
+    if (videoRefs.current) {
+      videoRefs.current.forEach((el) => {
+        observer.observe(el);
+      });
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, [sortedVideos, updateCategoryParam]);
+
   return (
-    <section
-      className="between-row w-full h-screen relative"
-      onWheel={handleWheel}
-    >
-      {children}
-    </section>
+    <MainContentLayout className="pt-28 pb-7">
+      <div className="max-w-mobile-container centered-row mx-auto mb-7">
+        <TitleRoll sortedVideos={sortedVideos} />
+      </div>
+
+      <ul
+        className="all-videos grid grid-flow-row w-screen overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth"
+        style={{ gridTemplateColumns: `repeat(${sortedVideos.length}, 100%)` }}
+      >
+        {sortedVideos.map((category, i) => {
+          return (
+            <li
+              key={category.name}
+              className="inline-block h-[inherit] w-full snap-center"
+              data-name={category.name}
+              ref={(el) => {
+                if (videoRefs.current) {
+                  videoRefs.current[i] = el as HTMLLIElement;
+                }
+              }}
+            >
+              <ul
+                className={clsx(
+                  category.name,
+                  "max-w-mobile-container mx-auto space-y-2"
+                )}
+              >
+                {category.video.map((vid) => {
+                  return (
+                    <li
+                      key={vid.name}
+                      onClick={() => {
+                        window.open(vid.videoUrl, "_blank");
+                      }}
+                    >
+                      <img src={vid.thumbnailUrl} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </MainContentLayout>
   );
 };

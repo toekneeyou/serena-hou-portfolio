@@ -43,6 +43,7 @@ const HeaderMobileMenu = () => {
               e.preventDefault();
               setIsMobileMenuOpen(false);
               navigate(route.path);
+              window.scrollTo({ top: 0 });
             };
 
             return (

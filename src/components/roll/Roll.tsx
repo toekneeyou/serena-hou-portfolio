@@ -14,6 +14,7 @@ export interface RollProps<T> extends PropsWithClassName {
   currIndex: number;
   height?: string;
   direction?: "up" | "down";
+  alignment?: "start" | "center" | "end";
 }
 
 const Roll = <T,>({
@@ -24,6 +25,7 @@ const Roll = <T,>({
   currIndex,
   height,
   direction = "up",
+  alignment = "start",
 }: RollProps<T>) => {
   const containerRef = useRef<HTMLUListElement>(null);
   const itemsRef = useRef<HTMLLIElement[]>([]);
@@ -39,7 +41,9 @@ const Roll = <T,>({
       const container = containerRef.current;
       if (itemsEl && container) {
         const maxHeight = Math.max(
-          ...itemsEl.map((item) => item.getBoundingClientRect().height)
+          ...itemsEl.map((item) => {
+            return item.getBoundingClientRect().height;
+          })
         );
         container.style.height = `${maxHeight}px`;
         itemsEl.forEach((item) => {
@@ -77,7 +81,14 @@ const Roll = <T,>({
             aria-hidden={isAriaHidden(i, currIndex)}
             ref={(el) => (itemsRef.current[i] = el as HTMLLIElement)}
             key={key}
-            className="transition-transform duration-300 flex items-center"
+            className={clsx(
+              "transition-transform duration-300 flex items-center",
+              {
+                "justify-start": alignment === "start",
+                "justify-center": alignment === "center",
+                "justify-end": alignment === "end",
+              }
+            )}
             style={{ transform: `translateY(-${yOffset}%)`, height }}
           >
             {itemRenderFunction(item, i)}

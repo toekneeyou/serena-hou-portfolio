@@ -5,6 +5,7 @@ import { NotFound } from "@views/not-found/NotFound";
 import { ROUTES } from "@constants/routes";
 import { HomeView } from "@views/home/HomeView";
 import { VisualView } from "@views/visual/VisualView";
+import { VideoView } from "@views/video/VideoView";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
         element: <HomeView />,
       },
       { path: ROUTES.VISUAL, element: <VisualView /> },
+      { path: ROUTES.VIDEO, element: <VideoView /> },
       { path: "*", element: <NotFound /> },
     ],
   },
