@@ -12,13 +12,4 @@
   .mobile-container {
     @apply w-full max-w-[20rem];
   }
-  .header {
-    @apply h-header-mobile;
-    @apply px-7;
-    @apply bg-charcoal between-row z-header fixed w-full;
-  }
-  .footer {
-    @apply border-t-[1px] border-t-divider v-stack;
-    @apply p-7;
-  }
 }

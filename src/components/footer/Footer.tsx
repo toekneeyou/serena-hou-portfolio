@@ -1,4 +1,5 @@
 import { SOCIAL_MEDIA_LINKS } from "@constants/contacts";
+import clsx from "clsx";
 
 export const Footer = () => {
   const isHidden = false;
@@ -6,7 +7,7 @@ export const Footer = () => {
   if (isHidden) return null;
 
   return (
-    <footer className="footer">
+    <footer className={clsx("border-t-[1px] border-t-divider v-stack", "px-7")}>
       <ul className="flex items-center justify-center gap-x-9 w-full mb-4">
         {SOCIAL_MEDIA_LINKS.map((sm) => {
           return (
