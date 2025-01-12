@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { useVideos } from "./hooks/useVideos";
 import { TitleRoll } from "./components/TitleRoll";
 import { VIDEO_CATEGORY_PARAM, videoOrder } from "./constants";
+import Scroller from "@components/scroller/Scroller";
 
 export const VideoView = () => {
   const [params, setParams] = useSearchParams();
@@ -110,6 +111,16 @@ export const VideoView = () => {
           );
         })}
       </ul>
+      <div className="centered-row">
+        <div className="rotate-[270deg]">
+          <Scroller
+            pages={sortedVideos.length}
+            currIndex={sortedVideos.findIndex(
+              (video) => video.name === params.get("category")
+            )}
+          />
+        </div>
+      </div>
     </MainContentLayout>
   );
 };

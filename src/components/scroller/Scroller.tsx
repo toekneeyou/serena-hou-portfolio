@@ -5,7 +5,7 @@ import clsx from "clsx";
 interface ScrollerProps extends PropsWithClassName {
   pages: number;
   currIndex: number;
-  handleSelection: (index: number) => void;
+  handleSelection?: (index: number) => void;
 }
 
 const SEGMENT_HEIGHT = 1.25; // rem
@@ -37,7 +37,7 @@ const Scroller = ({
         const yOffset = 200 - 100 * currIndex;
 
         const handleClick = () => {
-          handleSelection(indexNum);
+          handleSelection?.(indexNum);
         };
 
         return (
