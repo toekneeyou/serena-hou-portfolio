@@ -6,7 +6,7 @@ export const VisualView = () => {
   const { visuals } = useVisuals();
 
   return (
-    <MainContentLayout className="pt-28 pb-7">
+    <MainContentLayout>
       <div className="max-w-mobile-container mx-auto mb-14">
         <h2
           className={`text-40 text-center mb-2 font-mango font-black leading-none tracking-wider`}

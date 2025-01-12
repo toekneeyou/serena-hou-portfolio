@@ -9,7 +9,7 @@ export const MainContentLayout: FC<ElementProps<HTMLElement>> = ({
 }) => {
   return (
     <main
-      className={clsx("w-full max-w-[1728px] mx-auto", className)}
+      className={clsx("w-full max-w-[1728px] mx-auto pt-28 pb-12", className)}
       {...props}
     >
       {children}

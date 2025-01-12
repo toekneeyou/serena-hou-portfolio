@@ -4,7 +4,7 @@ import { Hero } from "./components/Hero";
 
 export const HomeView = () => {
   return (
-    <MainContentLayout className="pt-32 pb-7">
+    <MainContentLayout>
       <Hero />
       <ProjectView />
     </MainContentLayout>

@@ -69,7 +69,7 @@ export const VideoView = () => {
   }, [sortedVideos, updateCategoryParam]);
 
   return (
-    <MainContentLayout className="pt-28 pb-7 space-y-7">
+    <MainContentLayout className="space-y-7">
       <div className="max-w-mobile-container centered-row mx-auto">
         <TitleRoll sortedVideos={sortedVideos} />
       </div>
