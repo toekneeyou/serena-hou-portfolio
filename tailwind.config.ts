@@ -1,4 +1,5 @@
 import { backgroundColor } from "./src/theme/backgroundColor";
+import { borderColor } from "./src/theme/borderColor";
 import { fontFamily } from "./src/theme/fontFamily";
 import { fontSize } from "./src/theme/fontSize";
 import { colors } from "./src/theme/colors";
@@ -14,6 +15,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundColor,
+      borderColor,
       colors,
       fontFamily,
       fontSize,
