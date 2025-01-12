@@ -1,4 +1,4 @@
-import { lg, mb14, mb16, mbAir, md, sm } from "../../../tailwind.config";
+import { lg, mb14, mb16, mbAir, md, sm } from "@theme/screens";
 import { ViewportSize } from "./types";
 
 export const calculateViewportSize = () => {

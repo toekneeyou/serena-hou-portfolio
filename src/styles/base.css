@@ -1,0 +1,31 @@
+@tailwind base;
+
+@layer base {
+  :root {
+    font-family: Helvetica, Inter, system-ui, Avenir, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    position: relative;
+    width: 100%;
+    background-color: #262525;
+    color: white;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  #root {
+    width: inherit;
+    min-height: inherit;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+    transition: none;
+  }
+}

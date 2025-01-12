@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "MangoGrotesque", sans-serif;
+  src: url("../assets/fonts/MangoGrotesque-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque", sans-serif;
+  src: url("../assets/fonts/MangoGrotesque-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("../assets/fonts/MangoGrotesque-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}

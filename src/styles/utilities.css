@@ -1,0 +1,28 @@
+@tailwind utilities;
+
+@layer utilities {
+  .h-stack {
+    @apply flex flex-row;
+  }
+  .v-stack {
+    @apply flex flex-col;
+  }
+  .centered-row {
+    @apply flex justify-center items-center;
+  }
+  .centered-col {
+    @apply flex flex-col justify-center items-center;
+  }
+  .between-row {
+    @apply flex items-center justify-between;
+  }
+  .hide-scrollbar {
+    /* Hide scrollbar for WebKit-based browsers */
+    -webkit-overflow-scrolling: touch; /* Ensure smooth scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* WebKit browsers */
+  }
+}

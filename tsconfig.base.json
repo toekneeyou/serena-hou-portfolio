@@ -13,8 +13,12 @@
       "@hooks/*": ["src/lib/hooks/*"],
       "@services/*": ["src/lib/services/*"],
       "@store/*": ["src/store/*"],
+      "@theme/*": ["src/theme/*"],
       "@types/*": ["src/lib/types/*"],
       "@views/*": ["src/views/*"]
     }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   }
 }
