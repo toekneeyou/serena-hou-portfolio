@@ -1,14 +1,8 @@
 import { useMemo } from "react";
-import { PropsWithClassName } from "../../types/types";
 import clsx from "clsx";
-
-interface ScrollerProps extends PropsWithClassName {
-  pages: number;
-  currIndex: number;
-  handleSelection?: (index: number) => void;
-}
-
-const SEGMENT_HEIGHT = 1.25; // rem
+import { ScrollerProps } from "./types";
+import { SEGMENT_HEIGHT } from "./constants";
+import { pxToRem } from "@helpers/conversions";
 
 const Scroller = ({
   pages,
@@ -30,7 +24,7 @@ const Scroller = ({
         "flex flex-col items-center justify-start w-[24px] overflow-y-hidden",
         className
       )}
-      style={{ height: `${5 * SEGMENT_HEIGHT}rem` }}
+      style={{ height: pxToRem(5 * SEGMENT_HEIGHT) }}
     >
       {segments.map((indexNum) => {
         const isCurr = currIndex === indexNum;
@@ -47,8 +41,8 @@ const Scroller = ({
             onClick={handleClick}
             className="centered-row transition-transform"
             style={{
-              height: `${SEGMENT_HEIGHT}rem`,
-              minHeight: `${SEGMENT_HEIGHT}rem`,
+              height: pxToRem(SEGMENT_HEIGHT),
+              minHeight: pxToRem(SEGMENT_HEIGHT),
               transform: `translateY(${yOffset}%)`,
             }}
           >

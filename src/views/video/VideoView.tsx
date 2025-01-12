@@ -7,6 +7,8 @@ import { useVideos } from "./hooks/useVideos";
 import { TitleRoll } from "./components/TitleRoll";
 import { VIDEO_CATEGORY_PARAM, videoOrder } from "./constants";
 import Scroller from "@components/scroller/Scroller";
+import { SEGMENT_HEIGHT } from "@components/scroller/constants";
+import { pxToRem } from "@helpers/conversions";
 
 export const VideoView = () => {
   const [params, setParams] = useSearchParams();
@@ -112,7 +114,7 @@ export const VideoView = () => {
         })}
       </ul>
 
-      <div className="centered-row h-5">
+      <div className="centered-row" style={{ height: pxToRem(SEGMENT_HEIGHT) }}>
         <div className="rotate-[270deg]">
           <Scroller
             pages={sortedVideos.length}
