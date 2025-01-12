@@ -67,8 +67,8 @@ export const VideoView = () => {
   }, [sortedVideos, updateCategoryParam]);
 
   return (
-    <MainContentLayout className="pt-28 pb-7">
-      <div className="max-w-mobile-container centered-row mx-auto mb-7">
+    <MainContentLayout className="pt-28 pb-7 space-y-7">
+      <div className="max-w-mobile-container centered-row mx-auto">
         <TitleRoll sortedVideos={sortedVideos} />
       </div>
 
@@ -111,7 +111,8 @@ export const VideoView = () => {
           );
         })}
       </ul>
-      <div className="centered-row">
+
+      <div className="centered-row h-5">
         <div className="rotate-[270deg]">
           <Scroller
             pages={sortedVideos.length}
