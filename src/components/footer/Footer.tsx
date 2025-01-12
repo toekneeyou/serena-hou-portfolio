@@ -1,4 +1,4 @@
-import { ContactIcons } from "@features/contacts/components/ContactIcons";
+import { SOCIAL_MEDIA_LINKS } from "@constants/contacts";
 
 export const Footer = () => {
   const isHidden = false;
@@ -7,7 +7,17 @@ export const Footer = () => {
 
   return (
     <footer className="border-t-[1px] border-t-[#999999] p-7 flex flex-col">
-      <ContactIcons />
+      <ul className="flex items-center justify-center gap-x-9 w-full mb-4">
+        {SOCIAL_MEDIA_LINKS.map((sm) => {
+          return (
+            <li key={sm.name}>
+              <a href={sm.url} target="_blank">
+                <sm.icon />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
       <p className="text-center mb-2 text-12">
         Check out this portfolio on a desktop for the best experience!
       </p>

@@ -1,21 +1,7 @@
-import { LegacyRef, useLayoutEffect, useMemo, useRef } from "react";
-import { PropsWithClassName } from "../../types/types";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import { isAriaHidden } from "../../lib/helpers/general";
 import clsx from "clsx";
-
-export interface RollProps<T> extends PropsWithClassName {
-  selectId?: (item: T) => string;
-  items: T[];
-  itemRenderFunction: (
-    item: T,
-    index?: number,
-    ref?: LegacyRef<HTMLElement>
-  ) => JSX.Element;
-  currIndex: number;
-  height?: string;
-  direction?: "up" | "down";
-  alignment?: "start" | "center" | "end";
-}
+import { RollProps } from "./types";
 
 const Roll = <T,>({
   className,

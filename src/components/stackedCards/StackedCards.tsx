@@ -1,5 +1,5 @@
+import clsx from "clsx";
 import { LegacyRef, useEffect, useRef } from "react";
-import { classnames } from "../../lib/helpers/general";
 
 const MAX_STACK_DEPTH = 7; // rem
 
@@ -136,7 +136,7 @@ const StackedCards = <T extends { id: string }>({
   }, [cards]);
 
   return (
-    <ul ref={containerRef} className={classnames("stacked-cards")}>
+    <ul ref={containerRef} className={clsx("stacked-cards")}>
       {cards.map((card, i) => {
         return (
           <li

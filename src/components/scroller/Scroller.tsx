@@ -53,7 +53,7 @@ const Scroller = ({
             }}
           >
             <div
-              className={classnames(
+              className={clsx(
                 "h-[6px] w-[12px] rounded-[0.25rem] bg-[#E5DBD0] transition-all",
                 { "opacity-30 w-[12px]": !isCurr, "w-[24px]": isCurr }
               )}
