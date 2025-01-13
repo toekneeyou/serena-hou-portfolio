@@ -1,7 +1,7 @@
 import { pxToRem } from "../lib/helpers/conversions";
 import { headerHeightTablet, headerHeightMobile } from "./height";
 
-export const padding = {
+export const space = {
   "header-mobile": pxToRem(headerHeightMobile),
   "header-tablet": pxToRem(headerHeightTablet),
 };

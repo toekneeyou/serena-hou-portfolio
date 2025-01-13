@@ -19,8 +19,17 @@
   .tablet-container {
     @apply w-full max-w-tablet-container;
   }
+  .title-container {
+    @apply mobile-container md:tablet-container;
+    @apply mb-14 md:mb-20;
+    @apply space-y-2;
+  }
   .title {
     @apply text-40 md:text-120;
-    @apply text-center mb-2 font-mango font-black leading-none tracking-wider;
+    @apply text-center font-mango font-black leading-none tracking-wider;
+  }
+  .description {
+    @apply text-16 md:text-20;
+    @apply text-neutral-300 text-center;
   }
 }

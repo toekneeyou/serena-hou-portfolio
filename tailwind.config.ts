@@ -4,7 +4,7 @@ import { fontFamily } from "./src/theme/fontFamily";
 import { fontSize } from "./src/theme/fontSize";
 import { colors } from "./src/theme/colors";
 import { height } from "./src/theme/height";
-import { padding } from "./src/theme/padding";
+import { space } from "./src/theme/space";
 import { Config } from "tailwindcss";
 import { screens } from "./src/theme/screens";
 import { width } from "./src/theme/width";
@@ -22,7 +22,8 @@ const config: Config = {
       fontFamily,
       fontSize,
       height,
-      padding,
+      margin: space,
+      padding: space,
       screens,
       width,
       maxWidth: width,

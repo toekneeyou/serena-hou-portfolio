@@ -5,10 +5,10 @@ export const VisualView = () => {
   const { visuals } = useVisuals();
 
   return (
-    <main className="main-content-layout">
-      <div className="mobile-container mx-auto mb-14">
-        <h2 className={"title"}>VISUAL WORKS</h2>
-        <p className="text-16 text-center">
+    <main className="main-content-layout centered-col">
+      <div className="title-container">
+        <h2 className="title">VISUAL WORKS</h2>
+        <p className="description">
           Here’s a collection of visuals I’ve enjoyed creating over the years.
         </p>
       </div>
