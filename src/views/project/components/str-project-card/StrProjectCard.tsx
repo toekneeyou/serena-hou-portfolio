@@ -2,17 +2,18 @@ import { useViewportState } from "@contexts/viewport/hooks";
 import { ProjectCard } from "../project-card/ProjectCard";
 import { projectTranslations } from "@views/project/constants";
 import strBgTablet from "@assets/tablet/str-case-study-bg.jpg";
+import strBgDesktop from "@assets/desktop/str-case-study-bg.jpg";
 import strVisualTablet from "@assets/tablet/str-case-study-visual.png";
 import clsx from "clsx";
 
 export const StrProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
   const { str } = projectTranslations;
-  const background = isDesktop ? undefined : strBgTablet;
+  const background = isDesktop ? strBgDesktop : strBgTablet;
 
   return (
     <ProjectCard
-      className="group"
+      className="group lg:pr-0"
       header={isMobile ? str.mobile.title : str.default.title}
       subheader={isMobile ? str.mobile.description : str.default.description}
       background={background}
@@ -22,7 +23,9 @@ export const StrProjectCard = () => {
           <img
             loading="lazy"
             className={clsx(
-              "w-[12rem] md:w-[17rem] -translate-y-6 md:group-hover:scale-105 md:group-hover:translate-y-[-20%] md:transition-transform md:duration-300"
+              "w-[12rem] md:w-[17rem] lg:w-full lg:max-w-[29rem]",
+              "-translate-y-6 lg:-translate-y-10",
+              "md:group-hover:scale-105 md:group-hover:translate-y-[-20%] md:transition-transform md:duration-300"
             )}
             src={strVisualTablet}
           />

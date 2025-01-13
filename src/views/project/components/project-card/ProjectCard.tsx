@@ -19,11 +19,12 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   return (
     <div
       className={clsx(
-        "w-80 h-80 md:w-tablet-container md:max-w-full",
+        "w-80 md:w-tablet-container md:max-w-full lg:w-full",
+        "h-80 lg:h-[35rem]",
         "aspect-square md:aspect-auto",
-        "pt-11 md:px-14 md:py-0",
+        "pt-11 md:px-14 md:py-0 lg:px-24",
         "flex flex-col md:flex-row md:items-center",
-        "rounded-xl text-black overflow-hidden gap-3 cursor-pointer relative bg-neutral-300 group",
+        "rounded-xl text-black bg-clip-border gap-3 cursor-pointer relative bg-neutral-300 group",
         className
       )}
       style={{
@@ -42,12 +43,13 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         />
       )}
 
-      <div className="md:w-[50%]">
+      <div className="">
         <h3
           className={clsx(
             "text-center md:text-start",
-            "mx-6 md:mx-0 mb-3 md:mb-2",
-            "leading-tight text-20 font-bold"
+            "text-20 md:text-24 lg:text-32 xl:text-40",
+            "mx-6 md:mx-0 mb-3 md:mb-2 lg:mb-3",
+            "leading-tight font-bold"
           )}
         >
           {header.map(renderProjectCardText)}
@@ -56,7 +58,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
           className={clsx(
             "mx-6 md:mx-0",
             "text-center md:text-start",
-            "text-12 md:text-14",
+            "text-12 md:text-14 lg:text-18 xl:text-24",
             "text-neutral-500"
           )}
         >
@@ -68,7 +70,10 @@ export const ProjectCard: FC<ProjectCardProps> = ({
             return (
               <li
                 key={skill}
-                className="text-nowrap after:content-['/'] after:mx-1 last:after:content-[''] last:after:mx-0 text-12 text-neutral-950"
+                className={clsx(
+                  "md:text-12 lg:text-14 xl:text-20",
+                  "text-nowrap after:content-['/'] after:mx-1 last:after:content-[''] last:after:mx-0 text-neutral-950"
+                )}
               >
                 {skill}
               </li>

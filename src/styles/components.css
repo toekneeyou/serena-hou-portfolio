@@ -19,6 +19,9 @@
   .tablet-container {
     @apply w-full max-w-tablet-container;
   }
+  .desktop-container {
+    @apply w-full max-w-desktop-container;
+  }
   .title-container {
     @apply mobile-container md:tablet-container;
     @apply mb-14 md:mb-20;

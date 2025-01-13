@@ -5,7 +5,7 @@ export const projectTranslations = {
       description: ["Streaming Platform for Comedy Shows"],
     },
     default: {
-      title: ["Redesign the Streaming Experience for 1M Users"],
+      title: ["Redesign the Streaming", "Experience for 1M Users"],
       description: ["Streaming Platform for Comedy Shows"],
     },
     skills: ["Web Design", "UX Research", "UI Design", "Design System"],
@@ -29,7 +29,8 @@ export const projectTranslations = {
     default: {
       title: ["Elevate Yelp Elite:", "Exclusive Rewards Redefined"],
       description: [
-        "Creating Ongoing Value and Engagement for Our Most Active Users",
+        "Creating Ongoing Value and Engagement",
+        "for Our Most Active Users",
       ],
     },
     skills: ["Mobile Design", "UX Research", "UI Design"],
