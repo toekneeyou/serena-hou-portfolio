@@ -7,11 +7,7 @@ export const VisualView = () => {
   return (
     <main className="main-content-layout">
       <div className="mobile-container mx-auto mb-14">
-        <h2
-          className={`text-40 text-center mb-2 font-mango font-black leading-none tracking-wider`}
-        >
-          VISUAL WORKS
-        </h2>
+        <h2 className={"title"}>VISUAL WORKS</h2>
         <p className="text-16 text-center">
           Here’s a collection of visuals I’ve enjoyed creating over the years.
         </p>

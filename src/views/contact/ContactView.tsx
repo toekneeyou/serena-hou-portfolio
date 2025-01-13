@@ -13,11 +13,7 @@ export const ContactView = () => {
   return (
     <main className="main-content-layout">
       <div className="space-y-14 mx-auto mobile-container">
-        <h2
-          className={`text-40 text-center font-mango font-black leading-none tracking-wider`}
-        >
-          LET'S CONNECT!
-        </h2>
+        <h2 className={"title"}>LET'S CONNECT!</h2>
 
         <div className="h-40 w-40 rounded-full center-row mx-auto overflow-hidden">
           <img src={serenaContactGif} className="w-full" alt="Serena" />

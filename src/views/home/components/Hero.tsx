@@ -10,9 +10,12 @@ export const Hero = () => {
 
   return (
     <section
-      className={clsx("centered-col md:items-start md:justify-end", "mb-28", {
-        "space-y-28": isMobile,
-      })}
+      className={clsx(
+        "centered-col md:items-start md:justify-end",
+        {
+          "space-y-28": isMobile,
+        }
+      )}
     >
       {!isMobile && (
         <div className="flex justify-end">

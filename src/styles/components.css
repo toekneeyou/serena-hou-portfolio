@@ -14,9 +14,13 @@
     @apply uppercase py-2 px-6 border rounded-md transition-all;
   }
   .mobile-container {
-    @apply w-full max-w-[20rem];
+    @apply w-full max-w-mobile-container;
   }
   .tablet-container {
     @apply w-full max-w-tablet-container;
+  }
+  .title {
+    @apply text-40 md:text-120;
+    @apply text-center mb-2 font-mango font-black leading-none tracking-wider;
   }
 }

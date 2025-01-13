@@ -10,13 +10,7 @@ interface TitleRollProps {
 export const TitleRoll: FC<TitleRollProps> = ({ sortedVideos }) => {
   const [params] = useSearchParams();
   const itemRenderFunction = (video: VideoCategory) => {
-    return (
-      <h2
-        className={`text-40 text-center uppercase font-mango font-black leading-none tracking-wider`}
-      >
-        {video.title}
-      </h2>
-    );
+    return <h2 className={"title"}>{video.title}</h2>;
   };
 
   return (

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Tools } from "./components/Tools";
 import serenaGif from "@assets/serena.gif";
 
@@ -6,11 +7,7 @@ export const AboutView = () => {
     <main className="main-content-layout space-y-16">
       <section className="mobile-container mx-auto space-y-16">
         <div className="space-y-7">
-          <h2
-            className={`text-40 text-center font-mango font-black leading-none tracking-wider`}
-          >
-            ABOUT ME
-          </h2>
+          <h2 className={clsx("title")}>ABOUT ME</h2>
           <p className="text-20 text-center">Hey there, I'm Serena!</p>
 
           <div className="h-40 w-40 rounded-full center-row mx-auto overflow-hidden">

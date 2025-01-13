@@ -4,6 +4,7 @@ import { ROUTES } from "@constants/routes";
 import { ProjectList } from "./components/project-list/ProjectList";
 import { headerHeightMobile } from "@theme/height";
 import { useViewportState } from "@contexts/viewport/hooks";
+import clsx from "clsx";
 
 export const ProjectView = () => {
   const location = useLocation();
@@ -33,11 +34,7 @@ export const ProjectView = () => {
   return (
     <section ref={projectsRef} className="centered-col gap-9 px-8 w-full">
       <div className="mobile-container">
-        <h2
-          className={`text-40 text-center mb-2 font-mango font-black leading-none tracking-wider`}
-        >
-          PROJECTS
-        </h2>
+        <h2 className={clsx("title")}>PROJECTS</h2>
         <p className="text-16 text-center">
           Explore my featured projects, showcasing my passion for design and
           user experience.
