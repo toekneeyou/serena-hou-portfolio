@@ -26,4 +26,5 @@ export const fontSize = () => ({
   72: pxToRem(72),
   76: pxToRem(76),
   80: pxToRem(80),
+  120: pxToRem(120),
 });

@@ -2,7 +2,11 @@
 
 @layer components {
   .main-content-layout {
-    @apply w-full max-w-screen-3xl mx-auto pt-28 pb-14;
+    @apply w-full max-w-screen-3xl mx-auto;
+    @apply pt-28 md:pt-header-tablet pb-14 md:pb-header-tablet;
+  }
+  .header-gradient {
+    @apply absolute bg-gradient-to-b from-charcoal to-transparent left-0 top-0 h-80 max-h-screen w-full pointer-events-none;
   }
   .btn {
     @apply bg-btn-default hover:bg-btn-hover active:bg-btn-active;
@@ -11,5 +15,8 @@
   }
   .mobile-container {
     @apply w-full max-w-[20rem];
+  }
+  .tablet-container {
+    @apply w-full max-w-tablet-container;
   }
 }

@@ -2,7 +2,7 @@ import { pxToRem } from "@helpers/conversions";
 import { FC } from "react";
 import { CustomIconProps } from "./types";
 
-export const XIcon: FC<CustomIconProps> = ({ size = 24 }) => {
+export const XIcon: FC<CustomIconProps> = ({ size = 24, ...svgProps }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +15,7 @@ export const XIcon: FC<CustomIconProps> = ({ size = 24 }) => {
       strokeLinecap="round"
       strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-x"
+      {...svgProps}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M18 6l-12 12" />

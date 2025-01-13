@@ -21,14 +21,17 @@ export const Header = () => {
   return (
     <header
       className={clsx(
-        "h-header-mobile",
         "px-7",
-        "bg-charcoal between-row z-header fixed w-full"
+        "h-header-mobile md:h-header-tablet",
+        "bg-charcoal md:bg-transparent",
+        "between-row z-header fixed w-full"
       )}
     >
       <button onClick={goHome} className="z-header-content">
         <img src="/src/assets/sh-logo.png" className={clsx("h-8 w-auto")} />
       </button>
+
+      {!isMobile && <div className="header-gradient" />}
 
       <Suspense>{isMobile ? <HeaderMobileMenu /> : <HeaderNav />}</Suspense>
     </header>
