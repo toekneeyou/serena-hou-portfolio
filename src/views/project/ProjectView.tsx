@@ -35,10 +35,12 @@ export const ProjectView = () => {
     <section ref={projectsRef} className={clsx("centered-col w-full")}>
       <div className="title-container">
         <h2 className={clsx("title")}>PROJECTS</h2>
-        <p className="description">
-          Explore my featured projects, showcasing my passion for design and
-          user experience.
-        </p>
+        <div className="fluid-container">
+          <p className="description">
+            Explore my featured projects, showcasing my passion for design and
+            user experience.
+          </p>
+        </div>
       </div>
 
       <ProjectList />

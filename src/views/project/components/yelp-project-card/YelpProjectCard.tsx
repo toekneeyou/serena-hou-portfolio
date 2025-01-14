@@ -7,6 +7,7 @@ import yelpCaseStudyMobile from "@assets/mobile/yelp-case-study-visual.png";
 import yelpPhone1 from "@assets/yelp-phone-1.png";
 import yelpPhone2 from "@assets/yelp-phone-2.png";
 import yelpPhone3 from "@assets/yelp-phone-3.png";
+import clsx from "clsx";
 
 export const YelpProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
@@ -28,20 +29,37 @@ export const YelpProjectCard = () => {
               src={yelpCaseStudyMobile}
             />
           ) : (
-            <div className="relative w-full lg:w-[29rem] lg:-mr-12 aspect-square">
+            <div
+              className={clsx(
+                "relative w-full aspect-square",
+                "lg:w-[29rem] lg:-mr-12"
+              )}
+            >
               <img
                 loading="lazy"
-                className="absolute top-[15%] left-[30%] w-[70%] transition-transform duration-300 group-hover:translate-x-[-15%] group-hover:translate-y-[-15%]"
+                className={clsx(
+                  "absolute transition-transform duration-300 group-hover:translate-x-[-15%] group-hover:translate-y-[-15%]",
+                  "md:top-[10%] md:left-[40%] md:w-[85%]",
+                  "lg:top-[15%] lg:left-[30%] lg:w-[70%]"
+                )}
                 src={yelpPhone3}
               />
               <img
                 loading="lazy"
-                className="absolute top-[40%] left-0 w-[70%] transition-transform duration-300 group-hover:translate-x-[-10%] group-hover:translate-y-[-10%]"
+                className={clsx(
+                  "absolute top-[40%] left-0 transition-transform duration-300 group-hover:translate-x-[-10%] group-hover:translate-y-[-10%]",
+                  "md:w-[85%]",
+                  "lg:w-[70%]"
+                )}
                 src={yelpPhone1}
               />
               <img
                 loading="lazy"
-                className="absolute top-[15%] left-0 w-[70%] transition-transform duration-300 group-hover:translate-x-[35%] group-hover:translate-y-[35%]"
+                className={clsx(
+                  "absolute top-[15%] transition-transform duration-300 group-hover:translate-x-[35%] group-hover:translate-y-[35%]",
+                  "md:left-[10%] md:w-[85%]",
+                  "lg:left-0 lg:w-[70%]"
+                )}
                 src={yelpPhone2}
               />
             </div>

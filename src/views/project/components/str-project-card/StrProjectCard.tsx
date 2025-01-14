@@ -13,19 +13,24 @@ export const StrProjectCard = () => {
 
   return (
     <ProjectCard
-      className="group lg:pr-0"
+      className={clsx("group", "lg:pr-0")}
       header={isMobile ? str.mobile.title : str.default.title}
       subheader={isMobile ? str.mobile.description : str.default.description}
       background={background}
       skills={projectTranslations.str.skills}
       visual={
-        <div className="flex items-end justify-center flex-1 md:h-full md:group-hover:scale-110 md:transition-transform md:duration-300">
+        <div
+          className={clsx(
+            "flex items-end justify-center flex-1",
+            "md:h-full md:group-hover:scale-110 md:transition-transform md:duration-300"
+          )}
+        >
           <img
             loading="lazy"
             className={clsx(
-              "w-[12rem] md:w-[17rem] lg:w-full lg:max-w-[29rem]",
-              "-translate-y-6 lg:-translate-y-10",
-              "md:group-hover:scale-105 md:group-hover:translate-y-[-20%] md:transition-transform md:duration-300"
+              "w-192px -translate-y-6",
+              "md:w-272px md:group-hover:scale-105 md:group-hover:translate-y-[-20%] md:transition-transform md:duration-300",
+              "lg:-translate-y-10 lg:w-full lg:max-w-464px"
             )}
             src={strVisualTablet}
           />

@@ -11,58 +11,66 @@ export const Hero = () => {
   return (
     <section
       className={clsx(
-        "centered-col",
-        "relative md:items-start md:justify-end lg:min-h-screen lg:justify-center",
+        "centered-col relative",
+        "md:justify-end",
+        "lg:min-h-screen lg:justify-center",
         {
-          "space-y-28": isMobile,
+          "gap-y-28": isMobile,
         }
       )}
     >
-      {/* Film Strip */}
       {!isMobile && (
-        <div className="flex justify-end z-hero-visual lg:absolute lg:top-0 lg:right-0 -mr-page-gutter">
+        <div
+          className={clsx(
+            "flex justify-end z-hero-visual -mr-page-gutter",
+            "lg:absolute lg:top-0 lg:right-0"
+          )}
+        >
           <img
             src={filmStripCorner}
             className="lg:max-h-[42rem] lg:w-auto z-[1]"
+            role="presentation"
           />
         </div>
       )}
-      {/* Hero Text + Image */}
+
       <div
         className={clsx(
-          "z-hero",
-          "mx-auto md:mb-20 lg:my-48",
-          "space-y-14 md:space-y-9",
-          "mobile-container md:tablet-container lg:desktop-container"
+          "z-hero centered-col gap-y-14",
+          "md:mb-20 md:gap-y-9 md:items-start md:fluid-container",
+          "lg:my-48"
         )}
       >
         <div
           className={clsx(
-            "z-hero-text",
-            "centered-col md:flex-col-reverse md:items-start"
+            "z-hero-text centered-col",
+            "md:flex-col-reverse md:items-start"
           )}
         >
-          <h1 className="text-48 md:text-120 leading-none font-black font-mango tracking-wider">
+          <h1
+            className={clsx(
+              "text-48px leading-none font-black font-mango tracking-wider",
+              "md:text-120px"
+            )}
+          >
             Serena Hou
           </h1>
-          <p className="text-24 md:text-40">UI Designer</p>
+          <p className={clsx("text-24px", "md:text-40px")}>UI Designer</p>
         </div>
 
         {isMobile && (
-          <div className="h-40 w-40 mx-auto rounded-full center-row overflow-hidden">
+          <div className="center-row">
             <img
               src={serenaGif}
-              width="10rem"
-              height="10rem"
-              className="w-full"
+              className="h-40 w-40 object-top object-cover rounded-full"
               alt="Serena"
             />
           </div>
         )}
 
         {isMobile ? (
-          <div>
-            <p className="text-center text-neutral-300 text-18">
+          <div className="fluid-container">
+            <p className="text-center text-neutral-300 text-18px">
               10+ years in video production, specializing in visual storytelling
               and motion graphics
             </p>
@@ -76,7 +84,7 @@ export const Hero = () => {
               return (
                 <li
                   key={text}
-                  className="flex items-center text-neutral-300 text-24 gap-x-[1ch]"
+                  className="flex items-center text-neutral-300 text-24px gap-x-[1ch]"
                 >
                   <XIcon
                     role="presentation"

@@ -1,31 +1,5 @@
-import { pxToRem } from "../lib/helpers/conversions";
+import { px } from "./px";
 
 export const fontSize = () => ({
-  8: pxToRem(8),
-  10: pxToRem(10),
-  12: pxToRem(12),
-  14: pxToRem(14),
-  16: pxToRem(16),
-  18: pxToRem(18),
-  20: pxToRem(20),
-  22: pxToRem(22),
-  24: pxToRem(24),
-  26: pxToRem(26),
-  28: pxToRem(28),
-  30: pxToRem(30),
-  32: pxToRem(32),
-  36: pxToRem(36),
-  40: pxToRem(40),
-  44: pxToRem(44),
-  48: pxToRem(48),
-  52: pxToRem(52),
-  56: pxToRem(56),
-  60: pxToRem(60),
-  64: pxToRem(64),
-  68: pxToRem(68),
-  72: pxToRem(72),
-  76: pxToRem(76),
-  80: pxToRem(80),
-  120: pxToRem(120),
-  160: pxToRem(160),
+  ...px,
 });

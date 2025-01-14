@@ -7,6 +7,7 @@ import youtubeCaseStudyMobile from "@assets/mobile/youtube-case-study-visual.png
 import ytPhone1 from "@assets/yt-phone-1.png";
 import ytPhone2 from "@assets/yt-phone-2.png";
 import ytPhone3 from "@assets/yt-phone-3.png";
+import clsx from "clsx";
 
 export const YoutubeProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
@@ -25,22 +26,44 @@ export const YoutubeProjectCard = () => {
       visual={
         <div className="centered-row flex-1 flex">
           {isMobile ? (
-            <img className="h-48 md:h-64" src={youtubeCaseStudyMobile} />
+            <img
+              loading="lazy"
+              className={clsx("h-192px", "md:h-256px")}
+              src={youtubeCaseStudyMobile}
+            />
           ) : (
-            <div className="relative w-full md:w-[17rem] lg:w-[29rem] aspect-square">
+            <div
+              className={clsx(
+                "relative w-full aspect-square",
+                "md:w-[17rem]",
+                "lg:w-[29rem]"
+              )}
+            >
               <img
                 loading="lazy"
-                className="absolute top-[30%] left-[30%] md:h-52 lg:h-80 rotate-[-60deg] transition-transform duration-300 group-hover:rotate-[-50deg] group-hover:translate-x-[-2%] group-hover-translate-x-[-2%]"
+                className={clsx(
+                  "absolute top-[30%] left-[30%] rotate-[-60deg] transition-transform duration-300 group-hover:rotate-[-50deg] group-hover:translate-x-[-2%] group-hover-translate-x-[-2%]",
+                  "md:h-200px",
+                  "lg:h-320px"
+                )}
                 src={ytPhone1}
               />
               <img
                 loading="lazy"
-                className="absolute top-[15%] left-[40%] md:h-52 lg:h-80 rotate-[-50deg] transition-transform duration-300 group-hover:rotate-[-30deg] group-hover:translate-x-[2%] group-hover:translate-y-[-5%]"
+                className={clsx(
+                  "absolute top-[15%] left-[40%] rotate-[-50deg] transition-transform duration-300 group-hover:rotate-[-30deg] group-hover:translate-x-[2%] group-hover:translate-y-[-5%]",
+                  "md:h-200px",
+                  "lg:h-320px"
+                )}
                 src={ytPhone2}
               />
               <img
                 loading="lazy"
-                className="absolute top-[0%] left-[50%] md:h-52 lg:h-80 rotate-[-40deg]  transition-transform duration-300 group-hover:rotate-[-5deg] group-hover:translate-x-[15%] group-hover:translate-y-[-8%]"
+                className={clsx(
+                  "absolute top-[0%] left-[50%] rotate-[-40deg] transition-transform duration-300 group-hover:rotate-[-5deg] group-hover:translate-x-[15%] group-hover:translate-y-[-8%]",
+                  "md:h-200px",
+                  "lg:h-320px"
+                )}
                 src={ytPhone3}
               />
             </div>

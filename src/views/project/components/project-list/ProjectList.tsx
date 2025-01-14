@@ -6,23 +6,17 @@ import { YoutubeProjectCard } from "../youtube-project-card/YoutubeProjectCard";
 
 export const ProjectList = () => {
   return (
-    <ul
-      className={clsx(
-        "project-list",
-        "mobile-container md:tablet-container lg:desktop-container",
-        "centered-col gap-y-9"
-      )}
-    >
-      <li className="w-full">
+    <ul className={clsx("project-list fluid-container flex flex-col gap-y-9")}>
+      <li>
         <StrProjectCard />
       </li>
-      <li className="w-full">
+      <li>
         <IgProjectCard />
       </li>
-      <li className="w-full">
+      <li>
         <YelpProjectCard />
       </li>
-      <li className="w-full">
+      <li>
         <YoutubeProjectCard />
       </li>
     </ul>

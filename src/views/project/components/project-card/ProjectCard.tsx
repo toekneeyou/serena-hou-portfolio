@@ -19,12 +19,9 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   return (
     <div
       className={clsx(
-        "w-80 md:w-tablet-container md:max-w-full lg:w-full",
-        "h-80 lg:h-[35rem]",
-        "aspect-square md:aspect-auto",
-        "pt-11 md:px-14 md:py-0 lg:px-24",
-        "flex flex-col md:flex-row md:items-center",
-        "rounded-xl text-black bg-clip-border gap-3 cursor-pointer relative bg-neutral-300 group",
+        "w-320px h-320px aspect-square pt-44px flex flex-col rounded-xl text-black bg-clip-border gap-3 cursor-pointer relative bg-neutral-300 group",
+        "md:w-tablet-container md:max-w-full md:aspect-auto md:px-56px md:py-0 md:flex-row md:items-center",
+        "lg:w-full lg:h-560px lg:px-96px",
         className
       )}
       style={{
@@ -43,36 +40,38 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         />
       )}
 
-      <div className="">
+      <div>
         <h3
           className={clsx(
-            "text-center md:text-start",
-            "text-20 md:text-24 lg:text-32 xl:text-40",
-            "mx-6 md:mx-0 mb-3 md:mb-2 lg:mb-3",
-            "leading-tight font-bold"
+            "text-center text-20px mx-24px mb-12px leading-tight font-bold",
+            "md:text-start md:text-24px md:mx-0 md:mb-8px",
+            "lg:text-32px lg:mb-12px",
+            "xl:text-40px"
           )}
         >
           {header.map(renderProjectCardText)}
         </h3>
         <p
           className={clsx(
-            "mx-6 md:mx-0",
-            "text-center md:text-start",
-            "text-12 md:text-14 lg:text-18 xl:text-24",
-            "text-neutral-500"
+            "mx-24px text-12px text-center text-neutral-500",
+            "md:mx-0 md:text-14px md:text-start",
+            "lg:text-18px",
+            "xl:text-24px"
           )}
         >
           {subheader.map(renderProjectCardText)}
         </p>
 
-        <ul className={clsx("hidden md:flex md:flex-wrap", "md:mt-12")}>
+        <ul className={clsx("hidden", "md:flex md:flex-wrap md:mt-48px")}>
           {skills.map((skill) => {
             return (
               <li
                 key={skill}
                 className={clsx(
-                  "md:text-12 lg:text-14 xl:text-20",
-                  "text-nowrap after:content-['/'] after:mx-1 last:after:content-[''] last:after:mx-0 text-neutral-950"
+                  "text-nowrap after:content-['/'] after:mx-1 last:after:content-[''] last:after:mx-0 text-neutral-950",
+                  "md:text-12px",
+                  "lg:text-14px",
+                  "xl:text-20px"
                 )}
               >
                 {skill}
