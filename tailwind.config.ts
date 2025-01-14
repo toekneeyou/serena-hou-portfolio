@@ -1,5 +1,6 @@
 import { backgroundColor } from "./src/theme/backgroundColor";
 import { borderColor } from "./src/theme/borderColor";
+import { borderWidth } from "./src/theme/borderWidth";
 import { boxShadow } from "./src/theme/boxShadow";
 import { fontFamily } from "./src/theme/fontFamily";
 import { fontSize } from "./src/theme/fontSize";
@@ -19,6 +20,7 @@ const config: Config = {
     extend: {
       backgroundColor,
       borderColor,
+      borderWidth,
       boxShadow,
       colors,
       fontFamily,
