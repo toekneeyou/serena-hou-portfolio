@@ -3,7 +3,9 @@
 @layer components {
   .main-content-layout {
     @apply w-full max-w-screen-3xl mx-auto;
-    @apply pt-28 md:pt-header-tablet pb-14 md:pb-header-tablet;
+    @apply pt-28 md:pt-header-tablet;
+    @apply pb-14 md:pb-header-tablet;
+    @apply px-page-gutter;
   }
   .header-gradient {
     @apply absolute bg-gradient-to-b from-charcoal to-transparent left-0 top-0 h-80 max-h-screen w-full pointer-events-none;

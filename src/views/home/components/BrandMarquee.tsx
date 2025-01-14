@@ -18,8 +18,12 @@ import oakberryLogo from "@assets/logos/oakberry-logo.png";
 import scottishLeaderLogo from "@assets/logos/scottish-leader-logo.png";
 import laFoodFestLogo from "@assets/logos/la-food-fest-logo.png";
 import weiChuanLogo from "@assets/logos/wei-chuan-logo.png";
+import { useViewportState } from "@contexts/viewport/hooks";
 
 export const BrandMarquee = () => {
+  const { isMobile, isTablet } = useViewportState();
+  const gradientWidth = isMobile ? "5rem" : isTablet ? "20rem" : "50rem";
+
   const renderImage = ({ src, alt }: { src: string; alt: string }) => {
     return (
       <img
@@ -27,22 +31,23 @@ export const BrandMarquee = () => {
         src={src}
         alt={alt}
         key={src}
-        className={clsx("h-6 md:h-10", "mr-14 md:mr-24")}
+        className={clsx("h-6 md:h-10 lg:h-12", "mr-14 md:mr-24")}
       />
     );
   };
+
   return (
     <div
       className={clsx(
-        "w-screen flex flex-col",
-        "gap-y-6 md:gap-y-8",
-        "md:py-10"
+        "w-screen flex flex-col z-marquee -mx-page-gutter",
+        "gap-y-6 md:gap-y-8 lg:gap-y-12",
+        "md:py-10 lg:py-12"
       )}
     >
       <Marquee
         gradient={true}
         gradientColor={charcoal}
-        gradientWidth="4rem"
+        gradientWidth={gradientWidth}
         speed={MARQUEE_SPEED}
         autoFill
       >
@@ -69,7 +74,7 @@ export const BrandMarquee = () => {
       <Marquee
         gradient={true}
         gradientColor={charcoal}
-        gradientWidth="4rem"
+        gradientWidth={gradientWidth}
         direction="right"
         speed={MARQUEE_SPEED}
         autoFill

@@ -32,7 +32,7 @@ export const ProjectView = () => {
   }, [location.pathname, isMobile]);
 
   return (
-    <section ref={projectsRef} className={clsx("centered-col px-8 w-full")}>
+    <section ref={projectsRef} className={clsx("centered-col w-full")}>
       <div className="title-container">
         <h2 className={clsx("title")}>PROJECTS</h2>
         <p className="description">

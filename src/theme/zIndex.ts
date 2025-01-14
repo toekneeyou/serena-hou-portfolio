@@ -3,6 +3,8 @@ export const zIndex = {
   "header-content": "2",
   "header-gradient": "1",
   "mobile-menu": "0",
-  "hero-text": "1",
-  "hero-visual": "0",
+  hero: "1",
+  "hero-text": "2",
+  "hero-visual": "1",
+  marquee: "0",
 };

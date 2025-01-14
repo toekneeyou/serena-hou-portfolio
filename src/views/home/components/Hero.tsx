@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { BrandMarquee } from "./BrandMarquee";
 import serenaGif from "@assets/serena.gif";
-import filmStripCornerTablet from "@assets/tablet/film-strip-corner.png";
+import filmStripCorner from "@assets/film-strip-corner.png";
 import { useViewportState } from "@contexts/viewport/hooks";
 import { XIcon } from "@components/icons/XIcon";
 
@@ -11,27 +11,36 @@ export const Hero = () => {
   return (
     <section
       className={clsx(
-        "centered-col md:items-start md:justify-end",
+        "centered-col",
+        "relative md:items-start md:justify-end lg:min-h-screen lg:justify-center",
         {
           "space-y-28": isMobile,
         }
       )}
     >
+      {/* Film Strip */}
       {!isMobile && (
-        <div className="flex justify-end">
-          <img src={isTablet ? filmStripCornerTablet : undefined} />
+        <div className="flex justify-end z-hero-visual lg:absolute lg:top-0 lg:right-0 -mr-page-gutter">
+          <img
+            src={filmStripCorner}
+            className="lg:max-h-[42rem] lg:w-auto z-[1]"
+          />
         </div>
       )}
-
+      {/* Hero Text + Image */}
       <div
         className={clsx(
-          "mx-auto md:mb-20",
+          "z-hero",
+          "mx-auto md:mb-20 lg:my-48",
           "space-y-14 md:space-y-9",
-          "mobile-container md:tablet-container"
+          "mobile-container md:tablet-container lg:desktop-container"
         )}
       >
         <div
-          className={clsx("centered-col md:flex-col-reverse md:items-start")}
+          className={clsx(
+            "z-hero-text",
+            "centered-col md:flex-col-reverse md:items-start"
+          )}
         >
           <h1 className="text-48 md:text-120 leading-none font-black font-mango tracking-wider">
             Serena Hou
@@ -69,7 +78,11 @@ export const Hero = () => {
                   key={text}
                   className="flex items-center text-neutral-300 text-24 gap-x-[1ch]"
                 >
-                  <XIcon role="presentation" className="stroke-neutral-300" />
+                  <XIcon
+                    role="presentation"
+                    className="stroke-neutral-300"
+                    size={isMobile ? 16 : isTablet ? 20 : 24}
+                  />
                   {text}
                 </li>
               );
