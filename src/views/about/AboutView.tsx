@@ -41,7 +41,7 @@ export const AboutView = () => {
                 src={serenaGif}
                 className={clsx(
                   "h-40 w-40 rounded-full object-cover object-top",
-                  "md:h-64 md:w-auto md:rounded-md",
+                  "md:h-[23rem] md:w-auto md:rounded-md",
                   "lg:h-444px"
                 )}
                 alt="Serena"
