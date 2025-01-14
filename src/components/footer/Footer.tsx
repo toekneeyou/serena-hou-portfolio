@@ -44,7 +44,7 @@ export const Footer = () => {
           Check out this portfolio on a desktop for the best experience!
         </p>
       )}
-      <div className="centered-row space-x-9">
+      <div className="centered-row gap-x-9">
         {isDesktop && (
           <img src={shLogo} className="h-9 aspect-square object-contain" />
         )}

@@ -37,7 +37,7 @@ export const Hero = () => {
       <div
         className={clsx(
           "z-hero centered-col gap-y-14",
-          "md:mb-20 md:gap-y-9 md:items-start md:fluid-container",
+          "md:mb-20 md:gap-y-9 md:items-start md:fluid-container md:pl-24px",
           "lg:my-48"
         )}
       >

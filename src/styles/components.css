@@ -6,7 +6,7 @@
     @apply md:pt-40 md:pb-40;
   }
   .header-gradient {
-    @apply absolute bg-gradient-to-b from-charcoal to-transparent left-0 top-0 h-80 max-h-screen w-full pointer-events-none;
+    @apply absolute bg-gradient-to-b from-charcoal to-transparent left-0 top-0 h-240px max-h-screen w-full pointer-events-none;
   }
   .btn {
     @apply bg-btn-default hover:bg-btn-hover active:bg-btn-active;
