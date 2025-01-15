@@ -3,16 +3,19 @@ import clsx from "clsx";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useVideos } from "./hooks/useVideos";
-import { TitleRoll } from "./components/TitleRoll";
+import { VideoCategoryRoll } from "./components/VideoCategoryRoll";
 import { VIDEO_CATEGORY_PARAM, videoOrder } from "./constants";
 import Scroller from "@components/scroller/Scroller";
 import { SEGMENT_HEIGHT } from "@components/scroller/constants";
 import { pxToRem } from "@helpers/conversions";
+import { useViewportState } from "@contexts/viewport/hooks";
 
 export const VideoView = () => {
   const [params, setParams] = useSearchParams();
   const { videos } = useVideos();
+  const { isDesktop } = useViewportState();
   const videoRefs = useRef<HTMLLIElement[]>([]);
+  const title = "VIDEO";
 
   const sortedVideos = useMemo(() => {
     return videos.sort((a, b) => {
@@ -68,13 +71,16 @@ export const VideoView = () => {
   }, [sortedVideos, updateCategoryParam]);
 
   return (
-    <main className="main-content-layout space-y-7">
-      <div className="fluid-container centered-row mx-auto">
-        <TitleRoll sortedVideos={sortedVideos} />
-      </div>
+    <main className="main-content-layout">
+      {!isDesktop && (
+        <div className="title-container fluid-container gap-y-0">
+          <h2 className="title">{title}</h2>
+          <VideoCategoryRoll sortedVideos={sortedVideos} />
+        </div>
+      )}
 
       <ul
-        className="all-videos grid grid-flow-row w-screen overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth"
+        className="all-videos grid grid-flow-row w-screen overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth mb-7"
         style={{ gridTemplateColumns: `repeat(${sortedVideos.length}, 100%)` }}
       >
         {sortedVideos.map((category, i) => {
@@ -90,7 +96,10 @@ export const VideoView = () => {
               }}
             >
               <ul
-                className={clsx(category.name, "fluid-container mx-auto space-y-2")}
+                className={clsx(
+                  category.name,
+                  "fluid-container mx-auto space-y-2"
+                )}
               >
                 {category.video.map((vid) => {
                   return (

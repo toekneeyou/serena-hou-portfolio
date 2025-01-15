@@ -5,15 +5,17 @@ import { useSearchParams } from "react-router-dom";
 import { useViewportState } from "@contexts/viewport/hooks";
 import { pxToRem } from "@helpers/conversions";
 
-interface TitleRollProps {
+interface VideoCategoryRollProps {
   sortedVideos: VideoCategory[];
 }
 
-export const TitleRoll: FC<TitleRollProps> = ({ sortedVideos }) => {
+export const VideoCategoryRoll: FC<VideoCategoryRollProps> = ({
+  sortedVideos,
+}) => {
   const [params] = useSearchParams();
   const { viewportSize } = useViewportState();
   const itemRenderFunction = (video: VideoCategory) => {
-    return <h2 className={"title"}>{video.title}</h2>;
+    return <h3 className="text-20px font-light">{video.title}</h3>;
   };
 
   const height = useMemo(() => {
@@ -25,7 +27,7 @@ export const TitleRoll: FC<TitleRollProps> = ({ sortedVideos }) => {
       case "md":
         return pxToRem(120);
       default:
-        return pxToRem(40);
+        return pxToRem(30);
     }
   }, [viewportSize]);
 
