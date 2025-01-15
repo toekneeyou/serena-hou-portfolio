@@ -19,7 +19,7 @@ export const VisualView = () => {
       <div
         className={clsx(
           "fluid-container",
-          "lg:grid lg:grid-cols-[5rem_1fr] lg:gap-x-44",
+          "lg:grid lg:grid-cols-[10rem_1fr] lg:gap-x-44",
           "xl:gap-x-60"
         )}
       >
