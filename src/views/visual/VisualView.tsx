@@ -24,7 +24,7 @@ export const VisualView = () => {
         )}
       >
         {isDesktop && (
-          <div className="h-screen centered-row">
+          <div className="h-full centered-row">
             <h2 className="text-160px font-black font-mango text-nowrap -rotate-90">
               {title}
             </h2>

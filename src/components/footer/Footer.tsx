@@ -23,8 +23,9 @@ export const Footer = () => {
   return (
     <footer
       className={clsx(
-        "border-t-1 border-t-divider v-stack centered-col p-page-gutter",
-        "lg:py-20 lg:flex-row-reverse lg:between-row"
+        "border-t-1 border-t-divider v-stack centered-col p-page-gutter h-footer-mobile",
+        "md:h-footer-tablet",
+        "lg:py-20 lg:flex-row-reverse lg:between-row lg:h-footer-desktop"
       )}
     >
       <ul className={clsx("centered-row gap-x-9", "mb-4", "lg:mb-0")}>

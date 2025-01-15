@@ -69,7 +69,7 @@ export const VideoView = () => {
 
   return (
     <main className="main-content-layout space-y-7">
-      <div className="mobile-container centered-row mx-auto">
+      <div className="fluid-container centered-row mx-auto">
         <TitleRoll sortedVideos={sortedVideos} />
       </div>
 
@@ -90,10 +90,7 @@ export const VideoView = () => {
               }}
             >
               <ul
-                className={clsx(
-                  category.name,
-                  "mobile-container mx-auto space-y-2"
-                )}
+                className={clsx(category.name, "fluid-container mx-auto space-y-2")}
               >
                 {category.video.map((vid) => {
                   return (

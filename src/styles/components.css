@@ -25,7 +25,8 @@
   }
   .title {
     @apply text-40px text-center font-mango font-black leading-none tracking-wider;
-    @apply md:text-120px;
+    @apply md:text-80px;
+    @apply lg:text-120px;
   }
   .description {
     @apply text-16px text-neutral-300 text-center;
