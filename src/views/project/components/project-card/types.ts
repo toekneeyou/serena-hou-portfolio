@@ -7,4 +7,5 @@ export interface ProjectCardProps extends ElementProps<HTMLDivElement> {
   skills: string[];
   visual?: ReactNode;
   background?: string;
+  url: string;
 }

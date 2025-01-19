@@ -5,14 +5,16 @@ import igBgTablet from "@assets/tablet/ig-case-study-bg.jpg";
 import igBgDesktop from "@assets/desktop/ig-case-study-bg-desktop.jpg";
 import igCaseStudyTablet from "@assets/tablet/ig-case-study-visual.png";
 import clsx from "clsx";
+import { ROUTES } from "@constants/routes";
 
-export const IgProjectCard = () => {
+export const GhostWriterProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
   const { ig } = projectTranslations;
   const background = isDesktop ? igBgDesktop : igBgTablet;
 
   return (
     <ProjectCard
+      url={`${ROUTES.CASE_STUDY}${ROUTES.GHOST_WRITER}`}
       className={clsx("overflow-hidden", "lg:pr-0")}
       background={background}
       header={isMobile ? ig.mobile.title : ig.default.title}

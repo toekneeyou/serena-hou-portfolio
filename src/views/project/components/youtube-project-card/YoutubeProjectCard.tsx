@@ -8,6 +8,7 @@ import ytPhone1 from "@assets/yt-phone-1.png";
 import ytPhone2 from "@assets/yt-phone-2.png";
 import ytPhone3 from "@assets/yt-phone-3.png";
 import clsx from "clsx";
+import { ROUTES } from "@constants/routes";
 
 export const YoutubeProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
@@ -16,6 +17,7 @@ export const YoutubeProjectCard = () => {
 
   return (
     <ProjectCard
+      url={`${ROUTES.CASE_STUDY}${ROUTES.YOUTUBE}`}
       className="lg:pr-0"
       background={background}
       header={isMobile ? youtube.mobile.title : youtube.default.title}

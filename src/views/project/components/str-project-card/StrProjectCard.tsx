@@ -5,6 +5,7 @@ import strBgTablet from "@assets/tablet/str-case-study-bg.jpg";
 import strBgDesktop from "@assets/desktop/str-case-study-bg.jpg";
 import strVisualTablet from "@assets/tablet/str-case-study-visual.png";
 import clsx from "clsx";
+import { ROUTES } from "@constants/routes";
 
 export const StrProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
@@ -13,6 +14,7 @@ export const StrProjectCard = () => {
 
   return (
     <ProjectCard
+      url={`${ROUTES.CASE_STUDY}${ROUTES.STR}`}
       className={clsx("group", "lg:pr-0")}
       header={isMobile ? str.mobile.title : str.default.title}
       subheader={isMobile ? str.mobile.description : str.default.description}

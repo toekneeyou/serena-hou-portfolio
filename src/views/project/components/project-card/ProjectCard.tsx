@@ -4,6 +4,7 @@ import { ProjectCardProps } from "./types";
 import { renderProjectCardText } from "@views/project/components/project-card/helpers";
 import filmFrame from "@assets/film-frame.png";
 import { useViewportState } from "@contexts/viewport/hooks";
+import { useNavigate } from "react-router-dom";
 
 export const ProjectCard: FC<ProjectCardProps> = ({
   className,
@@ -13,11 +14,15 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   skills,
   background,
   style = {},
+  url,
   ...props
 }) => {
   const { isMobile } = useViewportState();
+  const navigate = useNavigate();
   return (
     <div
+      role="button"
+      tabIndex={0}
       className={clsx(
         "w-320px h-320px aspect-square pt-44px flex flex-col rounded-xl text-black bg-clip-border gap-3 cursor-pointer relative bg-neutral-300 group",
         "md:w-tablet-container md:max-w-full md:aspect-auto md:px-56px md:py-0 md:flex-row md:items-center",
@@ -29,6 +34,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         backgroundSize: "cover",
         ...style,
       }}
+      onClick={() => navigate(url)}
       {...props}
     >
       {!isMobile && (

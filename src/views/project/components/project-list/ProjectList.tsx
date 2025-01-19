@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { StrProjectCard } from "../str-project-card/StrProjectCard";
-import { IgProjectCard } from "../ig-project-card/IgProjectCard";
+import { GhostWriterProjectCard } from "../ghost-writer-project-card/GhostWriterProjectCard";
 import { YelpProjectCard } from "../yelp-project-card/YelpProjectCard";
 import { YoutubeProjectCard } from "../youtube-project-card/YoutubeProjectCard";
 
@@ -11,7 +11,7 @@ export const ProjectList = () => {
         <StrProjectCard />
       </li>
       <li>
-        <IgProjectCard />
+        <GhostWriterProjectCard />
       </li>
       <li>
         <YelpProjectCard />

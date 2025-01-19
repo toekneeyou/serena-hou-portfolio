@@ -2,13 +2,13 @@ import { FallbackProps } from "react-error-boundary";
 
 function Fallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
-    <div role="alert" className="w-screen h-screen centered-col">
-      <div className="centered-col p-4 rounded-xl">
-        <p>Something went wrong!</p>
-        <pre style={{ color: "red" }}>{error.message}</pre>
-        <button onClick={resetErrorBoundary}>Reset</button>
-      </div>
-    </div>
+    <main className="main-content-layout h-screen centered-col">
+      <h1 className="text-8xl font-mango text-120px font-black mb-9">Oops!</h1>
+      <pre className="text-24px  text-red-600">{error.message}</pre>
+      <button className="btn mt-60px" onClick={resetErrorBoundary}>
+        Reset
+      </button>
+    </main>
   );
 }
 

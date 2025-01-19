@@ -8,6 +8,7 @@ import yelpPhone1 from "@assets/yelp-phone-1.png";
 import yelpPhone2 from "@assets/yelp-phone-2.png";
 import yelpPhone3 from "@assets/yelp-phone-3.png";
 import clsx from "clsx";
+import { ROUTES } from "@constants/routes";
 
 export const YelpProjectCard = () => {
   const { isDesktop, isMobile } = useViewportState();
@@ -16,6 +17,7 @@ export const YelpProjectCard = () => {
 
   return (
     <ProjectCard
+      url={`${ROUTES.CASE_STUDY}${ROUTES.YELP}`}
       background={background}
       header={isMobile ? yelp.mobile.title : yelp.default.title}
       subheader={isMobile ? yelp.mobile.description : yelp.default.description}

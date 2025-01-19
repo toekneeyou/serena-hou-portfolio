@@ -1,10 +1,7 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import {
-  CASE_STUDY_ROUTE,
-  GHOST_WRITER_ROUTE,
-} from "../../lib/services/routeService";
 import { useEffect } from "react";
+import { ROUTES } from "@constants/routes";
 
 export function CaseStudyView() {
   const location = useLocation();
@@ -13,8 +10,8 @@ export function CaseStudyView() {
    * Redirect to Ghost Writer case study if case study is not in pathname
    */
   useEffect(() => {
-    if (location.pathname.split(CASE_STUDY_ROUTE).length === 1) {
-      navigate(GHOST_WRITER_ROUTE);
+    if (location.pathname.split("/").length === 2) {
+      navigate(`${ROUTES.CASE_STUDY}${ROUTES.STR}`);
     }
   }, [location.pathname, navigate]);
 
