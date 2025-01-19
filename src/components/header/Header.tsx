@@ -16,6 +16,7 @@ export const Header = () => {
   const goHome = () => {
     closeMenu();
     navigate(ROUTES.HOME);
+    window.scrollTo({ top: 0 });
   };
 
   return (
