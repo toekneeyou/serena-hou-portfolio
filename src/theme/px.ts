@@ -1,6 +1,7 @@
 import { pxToRem } from "../lib/helpers/conversions";
 
 export const px = {
+  "4px": pxToRem(4),
   "8px": pxToRem(8),
   "10px": pxToRem(10),
   "12px": pxToRem(12),

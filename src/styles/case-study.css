@@ -1,0 +1,53 @@
+@tailwind components;
+
+@layer components {
+  .cs-layout {
+    @apply w-full px-gutter-sm centered-col items-stretch;
+    @apply md:px-gutter-md;
+  }
+
+  .cs-info {
+    @apply grid grid-cols-2 grid-rows-2 p-gutter-md shadow-lg rounded-2xl;
+  }
+
+  .cs-body {
+    @apply rounded-t-3xl bg-white px-gutter-sm py-gutter-3xl;
+    @apply md:px-gutter-md;
+  }
+
+  .cs-article {
+    @apply flex flex-col items-stretch gap-y-60px;
+  }
+
+  .cs-article__section {
+    @apply flex flex-col items-stretch gap-y-12px;
+  }
+
+  .cs-article__section__title {
+    @apply text-24px font-bold;
+  }
+
+  .str-article__section__title {
+    @apply cs-article__section__title text-[#2477DB];
+  }
+
+  .cs-article__section__subtitle {
+    @apply text-[#2477DB] text-12px font-bold uppercase;
+  }
+
+  .str-article__section__subtitle {
+    @apply cs-article__section__subtitle text-[#2477DB];
+  }
+
+  .cs-article__card {
+    @apply rounded-2xl flex flex-col items-stretch p-gutter-md gap-y-8px;
+  }
+
+  .str-article__card {
+    @apply cs-article__card bg-[#F0F5F7];
+  }
+
+  .cs-article__card__title {
+    @apply text-16px font-bold text-center;
+  }
+}

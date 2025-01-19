@@ -34,7 +34,10 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         backgroundSize: "cover",
         ...style,
       }}
-      onClick={() => navigate(url)}
+      onClick={() => {
+        navigate(url);
+        window.scroll({ top: 0 });
+      }}
       {...props}
     >
       {!isMobile && (

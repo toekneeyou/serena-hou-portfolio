@@ -39,9 +39,9 @@ export const BrandMarquee = () => {
   return (
     <div
       className={clsx(
-        "w-screen flex flex-col z-marquee -mx-page-gutter",
-        "gap-y-6 md:gap-y-8 lg:gap-y-12",
-        "md:py-10 lg:py-12"
+        "w-screen flex flex-col z-marquee -mx-gutter-sm gap-y-24px",
+        "md:py-40px md:-mx-gutter-md md:gap-y-32px",
+        "lg:gap-y-48px lg:py-48px"
       )}
     >
       <Marquee

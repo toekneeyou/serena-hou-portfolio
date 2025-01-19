@@ -22,7 +22,7 @@ export const Hero = () => {
       {!isMobile && (
         <div
           className={clsx(
-            "flex justify-end z-hero-visual -mr-page-gutter",
+            "flex justify-end z-hero-visual -mr-gutter-sm",
             "lg:absolute lg:top-0 lg:right-0"
           )}
         >
