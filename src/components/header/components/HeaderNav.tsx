@@ -20,6 +20,7 @@ const HeaderNav = () => {
               e.preventDefault();
             } else {
               navigate(route.path);
+              window.scroll({ top: 0 });
             }
           };
 

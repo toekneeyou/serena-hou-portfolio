@@ -1,132 +1,69 @@
-import { VideoCategoryName } from "@views/video/types";
-import clsx from "clsx";
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useVideos } from "./hooks/useVideos";
-import { VideoCategoryRoll } from "./components/VideoCategoryRoll";
-import { VIDEO_CATEGORY_PARAM, videoOrder } from "./constants";
-import Scroller from "@components/scroller/Scroller";
-import { SEGMENT_HEIGHT } from "@components/scroller/constants";
-import { pxToRem } from "@helpers/conversions";
 import { useViewportState } from "@contexts/viewport/hooks";
+import clsx from "clsx";
+import { useVideos } from "./hooks/useVideos";
 
 export const VideoView = () => {
-  const [params, setParams] = useSearchParams();
   const { videos } = useVideos();
   const { isDesktop } = useViewportState();
-  const videoRefs = useRef<HTMLLIElement[]>([]);
-  const title = "VIDEO";
-
-  const sortedVideos = useMemo(() => {
-    return videos.sort((a, b) => {
-      const indexA = videoOrder.indexOf(a.name as VideoCategoryName);
-      const indexB = videoOrder.indexOf(b.name as VideoCategoryName);
-
-      return indexA - indexB;
-    });
-  }, [videos]);
-
-  const updateCategoryParam = useCallback(
-    (categoryName: VideoCategoryName) => {
-      const newParams = new URLSearchParams();
-      if (!categoryName) {
-        setParams(newParams);
-        return;
-      }
-      newParams.set(VIDEO_CATEGORY_PARAM, categoryName);
-      setParams(newParams);
-    },
-    [setParams]
-  );
-
-  useEffect(() => {
-    if (params.size === 0 && sortedVideos.length > 0 && sortedVideos[0]?.name) {
-      updateCategoryParam(sortedVideos[0].name);
-    }
-  }, [params, updateCategoryParam, sortedVideos]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.75) {
-            updateCategoryParam(
-              (entry.target.getAttribute("data-name") as VideoCategoryName) ??
-                ""
-            );
-          }
-        });
-      },
-      { threshold: [0.25, 0.5, 0.75, 1] }
-    );
-
-    if (videoRefs.current) {
-      videoRefs.current.forEach((el) => {
-        observer.observe(el);
-      });
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, [sortedVideos, updateCategoryParam]);
+  const title = "VIDEOS";
 
   return (
     <main className="main-content-layout">
-      {!isDesktop && (
-        <div className="title-container fluid-container gap-y-0">
-          <h2 className="title">{title}</h2>
-          <VideoCategoryRoll sortedVideos={sortedVideos} />
-        </div>
-      )}
-
-      <ul
-        className="all-videos grid grid-flow-row w-screen overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth mb-7"
-        style={{ gridTemplateColumns: `repeat(${sortedVideos.length}, 100%)` }}
+      <div
+        className={clsx(
+          "fluid-container",
+          "lg:grid lg:grid-cols-[10rem_1fr] lg:gap-x-44",
+          "xl:gap-x-60"
+        )}
       >
-        {sortedVideos.map((category, i) => {
-          return (
-            <li
-              key={category.name}
-              className="inline-block h-[inherit] w-full snap-center"
-              data-name={category.name}
-              ref={(el) => {
-                if (videoRefs.current) {
-                  videoRefs.current[i] = el as HTMLLIElement;
-                }
-              }}
-            >
-              <ul
-                className={clsx(
-                  category.name,
-                  "fluid-container mx-auto space-y-2"
-                )}
-              >
-                {category.video.map((vid) => {
-                  return (
-                    <li
-                      key={vid.name}
-                      onClick={() => {
-                        window.open(vid.videoUrl, "_blank");
-                      }}
-                    >
-                      <img src={vid.thumbnailUrl} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          );
-        })}
-      </ul>
+        {isDesktop && (
+          <div className="h-full centered-row">
+            <h2 className="text-160px font-black font-mango text-nowrap -rotate-90">
+              {title}
+            </h2>
+          </div>
+        )}
 
-      <div className="centered-row" style={{ height: pxToRem(SEGMENT_HEIGHT) }}>
-        <div className="rotate-[270deg]">
-          <Scroller
-            pages={sortedVideos.length}
-            currIndex={sortedVideos.findIndex(
-              (video) => video.name === params.get("category")
-            )}
-          />
+        {!isDesktop && (
+          <div className="title-container">
+            <h2 className="title">{title}</h2>
+          </div>
+        )}
+
+        <div className="lg:flex lg:flex-col lg:items-start">
+          <ul className={clsx("grid grid-cols-1 gap-9", "md:grid-cols-2")}>
+            {videos.map((video) => {
+              return (
+                <li key={video.name} className="w-full">
+                  <button onClick={() => window.open(video.videoUrl, "_blank")}>
+                    <img
+                      src={video.thumbnailUrl}
+                      className={clsx(
+                        "mb-2 rounded-xl h-52 object-cover",
+                        "lg:h-64"
+                      )}
+                    />
+                    <h3
+                      className={clsx(
+                        "text-18px font-bold mb-1 text-start",
+                        "lg:text-20px"
+                      )}
+                    >
+                      {video.title}
+                    </h3>
+                    <p
+                      className={clsx(
+                        "text-12px text-neutral-300 text-start",
+                        "lg:text-14px"
+                      )}
+                    >
+                      {video.category.title}
+                    </p>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </main>

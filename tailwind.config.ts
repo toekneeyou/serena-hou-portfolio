@@ -6,7 +6,7 @@ import { fontFamily } from "./src/theme/fontFamily";
 import { fontSize } from "./src/theme/fontSize";
 import { colors } from "./src/theme/colors";
 import { height } from "./src/theme/height";
-import { space } from "./src/theme/space";
+import { spacing } from "./src/theme/spacing";
 import { Config } from "tailwindcss";
 import { screens } from "./src/theme/screens";
 import { width } from "./src/theme/width";
@@ -26,9 +26,8 @@ const config: Config = {
       fontFamily,
       fontSize,
       height,
-      margin: space,
-      padding: space,
       screens,
+      spacing,
       width,
       maxWidth: width,
       zIndex,
