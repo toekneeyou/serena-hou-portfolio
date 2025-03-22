@@ -1,0 +1,5 @@
+name = "my-worker"  # You can use any placeholder name here
+type = "javascript"
+
+[build]
+node_version = ">=20.0.0"
